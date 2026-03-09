@@ -1,0 +1,12 @@
+{
+  "baseline_mode": "ffmpeg_libx265",
+  "claim_id": "VID-C002",
+  "dataset_mode": "VISDRONE_PROXY",
+  "h265_ap_proxy": 1.0,
+  "operator": ">=",
+  "pass_threshold": true,
+  "primary_metric_value": 1.0,
+  "sequence": "visdrone_proxy_drone_view",
+  "threshold": 0.9,
+  "zpe_ap_proxy": 1.0
+}

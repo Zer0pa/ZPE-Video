@@ -1,0 +1,33 @@
+{
+  "dimension_minimum_checks": {
+    "anti_toy_depth": true,
+    "deterministic_reproducibility": true,
+    "engineering_completeness": true,
+    "robustness_failure_transparency": true,
+    "scientific_claim_hygiene": true
+  },
+  "dimensions": {
+    "anti_toy_depth": 5,
+    "code_quality_cohesion": 4,
+    "deterministic_reproducibility": 5,
+    "engineering_completeness": 5,
+    "exceed_brief_innovation": 4,
+    "interoperability_readiness": 5,
+    "performance_efficiency": 4,
+    "problem_solving_autonomy": 5,
+    "robustness_failure_transparency": 4,
+    "scientific_claim_hygiene": 5
+  },
+  "minimum_required_score": 45,
+  "non_negotiable_gates": {
+    "claim_evidence_bound": true,
+    "determinism_5_of_5": true,
+    "end_to_end_executed": true,
+    "lane_boundary_respected": true,
+    "uncaught_crash_rate_zero": true
+  },
+  "pass": false,
+  "pass_claim_count": 5,
+  "real_stack_hits": 6,
+  "total_score": 46
+}

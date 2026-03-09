@@ -1,0 +1,13 @@
+{
+  "claim_id": "VID-C004",
+  "dataset_mode": "HEVC_CTC_PROXY",
+  "h265_mv_bits_proxy": 2320,
+  "operator": "<=",
+  "pass_threshold": true,
+  "primary_metric_value": 0.4043103448275862,
+  "run_count": 134,
+  "sequence": "ctc_proxy_motion",
+  "threshold": 0.6,
+  "vector_count": 145,
+  "zpe_mv_bits": 938
+}

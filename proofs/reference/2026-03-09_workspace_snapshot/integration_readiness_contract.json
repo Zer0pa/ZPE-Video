@@ -1,0 +1,46 @@
+{
+  "appendix_e_checks": {
+    "E-G1_attempt_all_resources": true,
+    "E-G2_no_p0_proxy_pass": true,
+    "E-G3_impracticality_records_complete": true,
+    "E-G4_runpod_artifacts_complete_if_needed": true,
+    "E-G5_claim_updates_evidence_bound": true,
+    "has_imp_compute": true,
+    "missing_imp_records": [],
+    "p0_proxy_blocks": [
+      "VID-C001"
+    ],
+    "p0_proxy_pass_violations": []
+  },
+  "artifact_root": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1",
+  "claim_status_counts": {
+    "FAIL": 2,
+    "INCONCLUSIVE": 0,
+    "PASS": 5,
+    "PAUSED_EXTERNAL": 1
+  },
+  "codec_format": {
+    "magic": "ZPVID1",
+    "name": ".zpvid",
+    "version": 1
+  },
+  "commercialization_assessment_path": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/commercialization_assessment.json",
+  "comparator_integrity": {
+    "incumbent_baseline_present": true,
+    "modern_comparator_present": true
+  },
+  "gate_statuses": {
+    "A": "FAIL",
+    "B": "PASS",
+    "C": "PASS",
+    "D": "PASS",
+    "E": "PASS"
+  },
+  "lane_root": "/Users/Zer0pa/ZPE/ZPE Video",
+  "notes": [
+    "Proxy datasets used where required external corpora were unavailable in-lane.",
+    "Final-phase closure uses PASS/FAIL/PAUSED_EXTERNAL status policy."
+  ],
+  "quality_gate_pass": false,
+  "schema_version": "1.0.0"
+}

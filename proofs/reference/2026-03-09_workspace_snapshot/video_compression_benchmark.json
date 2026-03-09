@@ -1,0 +1,13 @@
+{
+  "baseline_mode": "ffmpeg_libx265",
+  "claim_id": "VID-C001",
+  "dataset_mode": "VIRAT_PROXY",
+  "h265_size_bytes": 240351,
+  "operator": ">=",
+  "pass_threshold": true,
+  "primary_metric_value": 134.5750279955207,
+  "sequence": "virat_proxy_static_bg",
+  "stretch_target_70x_pass": true,
+  "threshold": 50.0,
+  "zpe_size_bytes": 1786
+}

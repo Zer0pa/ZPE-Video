@@ -1,0 +1,224 @@
+{
+  "acceptance_all_claims_pass": false,
+  "appendix_e_checks_pass": true,
+  "artifact_root": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1",
+  "explicit_closure_ok": true,
+  "gate_statuses": {
+    "A": "FAIL",
+    "B": "PASS",
+    "C": "PASS",
+    "D": "PASS",
+    "E": "PASS"
+  },
+  "mandatory_files": [
+    {
+      "bytes": 6747,
+      "exists": true,
+      "file": "handoff_manifest.json",
+      "sha256": "d36a21cfe1b38055a8e9a9ed2656ee92e2a5ed80cae6e3d1899ac713ba6b2c19"
+    },
+    {
+      "bytes": 719,
+      "exists": true,
+      "file": "before_after_metrics.json",
+      "sha256": "f84c5ba4f25e6d2c14bf996581fc3819339553d16b1c69267ec47887cc65f82a"
+    },
+    {
+      "bytes": 1192,
+      "exists": true,
+      "file": "falsification_results.md",
+      "sha256": "38a7fc7ad27e7021ce27daada79c20962172191ef78a28c160ac300e38aea44a"
+    },
+    {
+      "bytes": 1897,
+      "exists": true,
+      "file": "claim_status_delta.md",
+      "sha256": "cbfa08eaf490e9cb6add34b31f2478e920d6133d8450a4451bbf6d95e88f90f1"
+    },
+    {
+      "bytes": 92987,
+      "exists": true,
+      "file": "command_log.txt",
+      "sha256": "88a2249e83dec493a6612e62b423350e9bee62dfc870bb8098abf9bca84ab97b"
+    },
+    {
+      "bytes": 340,
+      "exists": true,
+      "file": "video_compression_benchmark.json",
+      "sha256": "cf043cc57910c110e939591f5a06631c73e2c7ff17a45976d9bf96115f57658a"
+    },
+    {
+      "bytes": 289,
+      "exists": true,
+      "file": "video_detection_eval.json",
+      "sha256": "858344640de08719f5e4c0eefc1807184a51e5d2cc7a3a74a7f890463c3b5a23"
+    },
+    {
+      "bytes": 459,
+      "exists": true,
+      "file": "video_sketch_quality.json",
+      "sha256": "46f4d89b86c19f595bef8676c27927708d5bc45c3cbee925fc176b94d30cf569"
+    },
+    {
+      "bytes": 306,
+      "exists": true,
+      "file": "video_mv_bitrate_eval.json",
+      "sha256": "f79f927d2c095bc29df281f10b3db20919779f6bf5e4d33a12bdac99c2f6292a"
+    },
+    {
+      "bytes": 1903,
+      "exists": true,
+      "file": "video_latency_benchmark.json",
+      "sha256": "9dbfe8311d089302dfa8d9d64165e17b1afb5d079964fe8a575f4ce02786be1e"
+    },
+    {
+      "bytes": 3316,
+      "exists": true,
+      "file": "video_generative_eval.json",
+      "sha256": "86d462af3d301af1c2bfbfe151f85fb0e642462761cecdfbcc8e259e3fe70a75"
+    },
+    {
+      "bytes": 583,
+      "exists": true,
+      "file": "video_edge_roundtrip_eval.json",
+      "sha256": "192ce4b9a9f0365334c5c5b9d48c7d8111644b1aa01d1fe64d22d1969bda4522"
+    },
+    {
+      "bytes": 1276,
+      "exists": true,
+      "file": "video_machine_mode_latency.json",
+      "sha256": "07c4f504da704e82e8167545916fea6c44d428e472743aeb0426122f8c9ce1a1"
+    },
+    {
+      "bytes": 483,
+      "exists": true,
+      "file": "determinism_replay_results.json",
+      "sha256": "c2ae2627c98d99a1c78ca779ace4ab0d5893b9d70b38a5bdff6eb6bc0a285a19"
+    },
+    {
+      "bytes": 220,
+      "exists": true,
+      "file": "regression_results.txt",
+      "sha256": "88d223eaba2ebee8b9a7565004db3050db8ee00ad3aba1041654972898491760"
+    },
+    {
+      "bytes": 926,
+      "exists": true,
+      "file": "quality_gate_scorecard.json",
+      "sha256": "724b83caa69749af46d9d23382c25d478a9fe1b34ac261947e89913378624842"
+    },
+    {
+      "bytes": 921,
+      "exists": true,
+      "file": "innovation_delta_report.md",
+      "sha256": "03472778cf50e8e6bae14e6da927e730bf6e0fd6099bdab7466f65180609713d"
+    },
+    {
+      "bytes": 1329,
+      "exists": true,
+      "file": "integration_readiness_contract.json",
+      "sha256": "e8a0e48cbcbef3a7c3fed9d543218a16ed76d8660fdbc8166261e919332b0110"
+    },
+    {
+      "bytes": 1108,
+      "exists": true,
+      "file": "residual_risk_register.md",
+      "sha256": "624c336d586e6a0a7b47120ceabb99652e924301af7fdd62180493f57de5f181"
+    },
+    {
+      "bytes": 821,
+      "exists": true,
+      "file": "commercialization_risk_register.md",
+      "sha256": "c666d1fa3a08c38266d07b2be7bbfeee4e05207f3744679c86f071c9eee3576b"
+    },
+    {
+      "bytes": 8177,
+      "exists": true,
+      "file": "internet_evidence_log.md",
+      "sha256": "521f7083a5a572dd194d92fadef0c310a734e4ab8ba6f96cb69a682ef7e40339"
+    },
+    {
+      "bytes": 1562,
+      "exists": true,
+      "file": "concept_open_questions_resolution.md",
+      "sha256": "ca561cc7baa5060f3e8cd47392561818a0b86bde8ebad905ae9c175a36d15e12"
+    },
+    {
+      "bytes": 3383,
+      "exists": true,
+      "file": "concept_resource_traceability.json",
+      "sha256": "191a97755165f3a4c9554211b35dfb3f45147d888091825e01e995018bc014b4"
+    },
+    {
+      "bytes": 4265,
+      "exists": true,
+      "file": "max_resource_lock.json",
+      "sha256": "68e7128e1c6f517bf9f719e90f23a9cbb8cbb4d17bace59d654d6a3e92a97a3a"
+    },
+    {
+      "bytes": 23307,
+      "exists": true,
+      "file": "max_resource_validation_log.md",
+      "sha256": "3f1c61280fd672829d4d103d5f10992ef8e9cad77cdecf0c0b894036c427f87d"
+    },
+    {
+      "bytes": 6158,
+      "exists": true,
+      "file": "max_claim_resource_map.json",
+      "sha256": "b4aac3f6bf250bff11e173b6ff38fb88a351f846fde366acf9092a95b9bf8c06"
+    },
+    {
+      "bytes": 10738,
+      "exists": true,
+      "file": "impracticality_decisions.json",
+      "sha256": "3eae3c577da6558138b21d350b8b2fdb4995f241abf9027d683be799460bf2a8"
+    },
+    {
+      "bytes": 459,
+      "exists": true,
+      "file": "external_baseline_comparison_table.csv",
+      "sha256": "015639ed908fb175f84bc1b2a8f91ad9c06345cb6cea9e14d7a0f07730caa4dd"
+    },
+    {
+      "bytes": 4646,
+      "exists": true,
+      "file": "net_new_gap_closure_matrix.json",
+      "sha256": "99cf87940bd0b677553f2309b55074edd36c53e0c13f98733cf658d7d5b9ba60"
+    },
+    {
+      "bytes": 442,
+      "exists": true,
+      "file": "runpod_readiness_manifest.json",
+      "sha256": "8c597affdda05faaf7be43cf517f7be7a458b258fa837cce9178349ec03df13d"
+    },
+    {
+      "bytes": 903,
+      "exists": true,
+      "file": "runpod_exec_plan.md",
+      "sha256": "685ca5f1def9d0e5ca71bbf4fb9b895ac79bc58c37dcc06e47eccd325aa99228"
+    },
+    {
+      "bytes": 803,
+      "exists": true,
+      "file": "runpod_dataset_stage_manifest.json",
+      "sha256": "89410d0658b6771335d81490185aa0ff5463b1ef3f1037f1af8b7c427d6ccbe7"
+    },
+    {
+      "bytes": 830,
+      "exists": true,
+      "file": "runpod_pinned_deps_lock.txt",
+      "sha256": "1eaa4603567030d054ea8e0c41dd8eca09c94543ce97c79d897066a1aedc36f5"
+    },
+    {
+      "bytes": 1690,
+      "exists": true,
+      "file": "runpod_expected_artifact_manifest.json",
+      "sha256": "f0cbb84d176d924e7055362bca664cceba3f8b8976707cb380b4297fee91f0fa"
+    }
+  ],
+  "manifest_self_sha256": "d36a21cfe1b38055a8e9a9ed2656ee92e2a5ed80cae6e3d1899ac713ba6b2c19",
+  "overall_go_no_go": "NO-GO",
+  "quality_gate_pass": false,
+  "regression_pass": true,
+  "timestamp_utc": "2026-03-09T13:01:15.224995+00:00"
+}
