@@ -77,6 +77,7 @@ def encode_sequence(
     output_path: str,
     seed: int,
     use_gt_boxes: bool = True,
+    source_boxes: list[list[Box]] | None = None,
 ) -> EncodedSequenceResult:
     frame_payload_sizes: list[int] = []
     encode_latency_ms: list[float] = []
@@ -96,9 +97,14 @@ def encode_sequence(
         )
     )
 
+    if source_boxes is not None and len(source_boxes) != sequence.frame_count:
+        raise ValueError("SOURCE_BOXES_LENGTH_MISMATCH")
+
     for frame_idx, frame in enumerate(sequence.frames):
         start = time.perf_counter()
-        if use_gt_boxes and sequence.gt_boxes:
+        if source_boxes is not None:
+            boxes = source_boxes[frame_idx]
+        elif use_gt_boxes and sequence.gt_boxes:
             boxes = sequence.gt_boxes[frame_idx]
         else:
             boxes = detect_boxes_from_foreground(

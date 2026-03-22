@@ -12,6 +12,7 @@ class Box:
     w: int
     h: int
     label: int = 1
+    confidence: float = 1.0
 
     @property
     def right(self) -> int:
