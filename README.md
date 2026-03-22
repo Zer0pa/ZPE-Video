@@ -12,11 +12,13 @@ Snapshot date: `2026-03-22`
 - Latest Phase `09-09` verdict on the defended temporal surface: `bounded_signal_only`
 - Latest Phase `09.1` run-of-record verdict: `flat_lane_still_dominant`
 - Latest Phase `09.2` verdict on the defended layered-control-plane surface: `bounded_signal_only`
+- Latest Phase `09.3` verdict on the narrow facility-event surveillance surface: `bounded_signal_only`
 - Current inner-repo coherence check: `zpe_video.pipeline` imports cleanly and `tests/test_codec.py` passes (`2` tests)
 - Active blocker class: the subordinate wedge gate is still red on the defended `MOT17Det` two-detector surface (`>= 50%` suppression with `>= 95%` retained utility)
-- Current science handoff pack: `docs/inputs/2026-03-22_science_engineering_pack/`
+- Current science handoff pack: `docs/inputs/2026-03-22_science_engineering_pack_phase09_3_local/`
+- Local continuation status: the current `09.3` narrow-surface runner is executable on the Mac in the outer workspace arm64 lab runtime; pod access is not required for immediate continuation on that surface
 
-If you need the current proof surface, start with `docs/inputs/2026-03-22_science_engineering_pack/` and `proofs/PROOF_INDEX.md`, not the older dossier/live-status claims.
+If you need the current proof surface, start with `docs/inputs/2026-03-22_science_engineering_pack_phase09_3_local/` and `proofs/PROOF_INDEX.md`, not the older dossier/live-status claims.
 
 ## What This Repo Contains
 
@@ -27,7 +29,7 @@ If you need the current proof surface, start with `docs/inputs/2026-03-22_scienc
 - `scripts/measure_am_c01_ladder.py`: sparse-representation ladder probe for AM-C01 style analysis
 - `tests/`: lightweight codec smoke coverage
 - `docs/`: repo front door, architecture, legal, verification, and FAQ docs
-- `docs/inputs/2026-03-22_science_engineering_pack/`: compact scenario pack for the science engineering team
+- `docs/inputs/2026-03-22_science_engineering_pack_phase09_3_local/`: compact current-state pack for the science and engineering team, updated after the `09.3` narrow surveillance probe
 - `proofs/reference/2026-03-09_workspace_snapshot/`: curated evidence subset copied from the outer workspace
 
 ## What This Repo Does Not Claim
@@ -65,6 +67,15 @@ Current measurement entrypoints:
 python3 scripts/measure_am_c01.py --help
 python3 scripts/measure_am_c01_ladder.py --help
 ```
+
+Current local narrow-surface continuation entrypoint lives in the outer workspace lab:
+
+```bash
+cd "/Users/Zer0pa/ZPE/ZPE Video"
+./zpe_video_lab/.venv-arm64/bin/python zpe_video_lab/python/phase9_3_narrow_surveillance_wedge.py
+```
+
+That local `09.3` runner depends on repo-owned VIRAT files and the arm64 lab runtime already present on the Mac.
 
 Do not read a local gate pass as release truth. Phase 5 verification and clean-clone inspection are still deferred.
 
