@@ -1,18 +1,27 @@
-# Auditor Playbook
+<p>
+  <img src=".github/assets/readme/zpe-masthead.gif" alt="ZPE Video Masthead" width="100%">
+</p>
 
-This is the shortest honest audit path for the private ZPE Video staging repo.
+<p>
+  <img src=".github/assets/readme/section-bars/quick-start.svg" alt="QUICK START" width="100%">
+</p>
 
-It verifies structure and current known state. It does not establish release readiness.
+This is the shortest honest audit path for the live ZPE Video repo.
 
-## What You Can Verify Quickly
+It verifies structure and current known state. It does not establish
+release readiness.
+
+What you can verify quickly:
 
 - the repo installs as a Python package
 - the package imports cleanly
 - the lightweight code surface compiles
 - the staged proof snapshot is present
-- the current known verdict is still `NO-GO`
+- the current staged truth is still `09.3.2 = retire_surface`
 
-## Shortest Audit Path
+<p>
+  <img src=".github/assets/readme/section-bars/setup-and-verification.svg" alt="SETUP AND VERIFICATION" width="100%">
+</p>
 
 1. Create a local environment:
 
@@ -23,10 +32,11 @@ python3 -m pip install --upgrade pip
 python3 -m pip install -e ".[dev]"
 ```
 
-2. Run near-zero-cost sanity:
+2. Run low-cost sanity:
 
 ```bash
 python3 -m compileall src scripts
+pytest tests/test_codec.py
 python3 - <<'PY'
 import sys
 sys.path.insert(0, "src")
@@ -35,33 +45,33 @@ print(Wave1Pipeline)
 PY
 ```
 
-3. Inspect the staged proof snapshot:
+3. Inspect the current authority routes:
 
+- `docs/STATUS.md`
 - `proofs/PROOF_INDEX.md`
-- `proofs/reference/2026-03-09_workspace_snapshot/README.md`
-- `proofs/reference/2026-03-09_workspace_snapshot/claim_status_delta.md`
-- `proofs/reference/2026-03-09_workspace_snapshot/handoff_manifest.json`
-- `proofs/reference/2026-03-09_workspace_snapshot/quality_gate_scorecard.json`
+- `docs/inputs/status-notes/2026-03-23_phase09_3_2_retire_surface/`
+- `proofs/reference/2026-03-09_workspace_snapshot/`
 
-4. Read the current limits before making claims:
+4. Read the limits before making claims:
 
 - `PUBLIC_AUDIT_LIMITS.md`
 - `docs/VERIFICATION.md`
 - `docs/LEGAL_BOUNDARIES.md`
 
-## Current Expected Truth
+<p>
+  <img src=".github/assets/readme/section-bars/scope-discipline.svg" alt="SCOPE DISCIPLINE" width="100%">
+</p>
 
-- Current repo state is private staging.
-- Current full workspace snapshot verdict is `NO-GO`.
-- The staged proof subset is historical/current-workspace evidence, not a clean rerun generated from this repo.
-- A later resource-only probe touched `resource_inventory.json`, so the copied snapshot is mixed and cannot be promoted as a clean run-of-record.
+Current expected truth:
 
-## What Is Explicitly Deferred
+- repo state is `staging_only`
+- sparse VIRAT facility-crossing surface is `retire_surface`
+- the proof subset is historical evidence custody, not a clean repo rerun
+- the proof snapshot is mixed because `resource_inventory.json` was touched later
+
+Explicitly deferred:
 
 - broad reruns
 - clean-clone verification
-- benchmark/performance campaigns
+- benchmark campaigns
 - public release posture
-
-Those belong to Phase 4.5 and Phase 5, not this staging phase.
-

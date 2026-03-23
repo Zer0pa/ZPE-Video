@@ -1,14 +1,20 @@
-# Verification
+<p>
+  <img src="../.github/assets/readme/zpe-masthead.gif" alt="ZPE Video Masthead" width="100%">
+</p>
 
-This phase allows only minimal sanity.
+<p>
+  <img src="../.github/assets/readme/section-bars/verification.svg" alt="VERIFICATION" width="100%">
+</p>
 
-## Allowed Low-Cost Checks
+This phase allows only low-cost sanity.
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
+python3 -m pip install --upgrade pip
 python3 -m pip install -e ".[dev]"
 python3 -m compileall src scripts
+pytest tests/test_codec.py
 python3 - <<'PY'
 import sys
 sys.path.insert(0, "src")
@@ -17,13 +23,11 @@ print(Wave1Pipeline)
 PY
 ```
 
-Optional lightweight local smoke:
+<p>
+  <img src="../.github/assets/readme/section-bars/out-of-scope.svg" alt="OUT OF SCOPE" width="100%">
+</p>
 
-```bash
-python3 -m unittest tests/test_codec.py
-```
-
-## What This Does Not Cover
+This does not cover:
 
 - full gate reruns
 - benchmark campaigns
@@ -31,9 +35,12 @@ python3 -m unittest tests/test_codec.py
 - dataset-backed replay
 - public release checks
 
-## Current Verification Truth
+<p>
+  <img src="../.github/assets/readme/section-bars/summary.svg" alt="SUMMARY" width="100%">
+</p>
 
-- The staged repo structure can be checked now.
-- The staged proof subset can be inspected now.
-- Clean rerun authority must be deferred to Phase 4.5 and Phase 5.
+Current verification truth:
 
+- the staged repo structure can be checked now
+- the staged proof subset can be inspected now
+- clean rerun authority is still deferred

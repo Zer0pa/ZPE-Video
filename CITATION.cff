@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+message: >-
+  If you use ZPE Video in your research or rely on its proof corpus or
+  documentation routes, please cite this software record.
+type: software
+title: "ZPE Video: Zero-Point Encoding Video Workstream"
+authors:
+  - given-names: Zer0pa
+    family-names: Architect-Prime
+  - name: Zer0pa Labs
+version: 0.0.0
+date-released: "2026-03-23"
+repository-code: https://github.com/Zer0pa/ZPE-Video
+url: https://github.com/Zer0pa/ZPE-Video
+license: LicenseRef-Zer0pa-SAL-5.1
+abstract: >-
+  ZPE Video is the live repository for the Zero-Point Encoding video
+  workstream. It preserves the current Python package surface, the current
+  proof-custody subset, and the current falsification-led status of the
+  lane. The latest staged truth is the `09.3.2` portal-local
+  state-machine continuation, which improved the best defended sparse
+  VIRAT facility-crossing point to 37.50 percent suppression at 96.30
+  percent recall and still retired that surface for instability.
+keywords:
+  - video encoding
+  - signal processing
+  - falsifiability-first
+  - evidence discipline
+  - surveillance analysis
+  - primitive state machine
+  - zero-point encoding
+preferred-citation:
+  type: article
+  title: ZPE Architecture Originating Publication (Defensive Prior-Art Disclosure)
+  authors:
+    - given-names: Zer0pa
+      family-names: Architect-Prime
+    - name: Zer0pa Labs
+  year: 2026
+  url: https://github.com/Zer0pa/ZPE-Video
+identifiers:
+  - type: url
+    value: https://github.com/Zer0pa/ZPE-Video
+    description: Live repository
