@@ -23,7 +23,6 @@ This document defines the intended public organization of the live
     <tr><td><code>src/</code>, <code>scripts/</code>, <code>tests/</code></td><td>Live Python code substrate</td><td>Intentionally kept Python-native; no forced `v0.0/` mimicry</td></tr>
     <tr><td><code>docs/</code></td><td>Status, support, repo-shape, verification, and historical-input routing</td><td>Stable public docs only</td></tr>
     <tr><td><code>proofs/</code></td><td>Proof routing, reference snapshot, rerun targets, log targets</td><td>Historical proof custody remains explicit</td></tr>
-    <tr><td><code>artifacts/</code></td><td>Secondary runtime output area</td><td>Not treated as the primary public proof surface</td></tr>
   </tbody>
 </table>
 
