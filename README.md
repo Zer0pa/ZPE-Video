@@ -143,6 +143,8 @@ pytest tests/test_codec.py</code></pre>
   </tbody>
 </table>
 
+<p><strong>Observability:</strong> <a href="https://www.comet.com/zer0pa/zpe-video/view/new/panels">Comet dashboard</a> (public)</p>
+
 <p>
   <img src=".github/assets/readme/zpe-masthead-option-3-3.gif" alt="ZPE Video Masthead Option 3.3" width="100%">
 </p>
