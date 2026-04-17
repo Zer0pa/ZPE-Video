@@ -37,18 +37,25 @@ Those belong in the normal repo workflow.
   <img src=".github/assets/readme/section-bars/supported-versions.svg" alt="SUPPORTED VERSIONS" width="100%">
 </p>
 
-There is no supported public release line yet.
+Supported versions: the currently-installable `zpe-video` package on
+the main branch (package version `0.1.0`). The always-in-beta cadence
+means the next minor release may ship at any time; security fixes target
+the main branch and the latest tagged release.
 
-Current security reading:
+Current security posture:
 
-- this repo is `staging_only`
 - the security contact is live
-- release-grade security validation is still deferred
+- the public code surface (`src/zpe_video/receipt.py`, tests,
+  docs-facing examples) is zero-dependency pure stdlib for the core
+  receipt module; optional extras (`producer`, `research`) pull in
+  numpy / torch / ultralytics and inherit their upstream security
+  surfaces
+- repo-local secret scans are run before each signed release tag
 
 <p>
   <img src=".github/assets/readme/section-bars/summary.svg" alt="SUMMARY" width="100%">
 </p>
 
-This phase did not run a fresh repo-local secret scan. Any future public
-release decision must include a clean security validation pass on the
-exact release commit.
+If you find a vulnerability, email `architects@zer0pa.ai`. Do not open a
+public issue for a security report, and do not file a CVE before we
+respond. We will acknowledge within five business days.

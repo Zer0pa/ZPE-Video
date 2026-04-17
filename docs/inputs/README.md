@@ -6,8 +6,16 @@
   <img src="../../.github/assets/readme/section-bars/engineering-references.svg" alt="ENGINEERING REFERENCES" width="100%">
 </p>
 
-This directory contains historical input packs and status packets that
-support the repo's public story.
+This directory contains historical (pre-0.1.0) input packs and status
+packets from prior research phases. They are retained for traceability.
+
+**Current authority for the v0.1.0 shipping product is not here.** See:
+
+- [`../WEDGE.md`](../WEDGE.md) — the defended commercial wedge
+- [`../STATUS.md`](../STATUS.md) — current shipping state
+- [`../TRANSPARENCY_JOURNEY.md`](../TRANSPARENCY_JOURNEY.md) — current
+  research ledger including every kill verdict
+- [`../transparency/`](../transparency/) — reproducible evidence bundle
 
 <table width="100%" border="1" bordercolor="#b8c0ca" cellpadding="0" cellspacing="0">
   <thead>

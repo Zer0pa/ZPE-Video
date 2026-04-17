@@ -6,34 +6,47 @@
   <img src=".github/assets/readme/section-bars/summary.svg" alt="SUMMARY" width="100%">
 </p>
 
-This repo is evidence-gated and non-release until the actual gate is met.
+This repo follows the always-in-beta cadence: ship when there is real
+utility, improve continuously. v0.1.0 is shipping on the basis of the
+perception-receipt wedge (see [`docs/WEDGE.md`](docs/WEDGE.md)), and
+subsequent releases follow the same evidence discipline.
 
-No public release action should happen from the current state.
+Tagged releases are cut by the maintainer from the main branch. The
+procedure below applies to any cut after v0.1.0.
 
 <p>
   <img src=".github/assets/readme/section-bars/setup-and-verification.svg" alt="SETUP AND VERIFICATION" width="100%">
 </p>
 
-All of the following must be true before any public release or visibility
-change:
+All of the following must be true for a tagged release:
 
-1. The exact commit has a current operator greenlight.
-2. Active path portability defects are closed.
-3. The dependency contract is stable and documented.
-4. A clean rerun is executed from the repo itself.
-5. The proof index is updated with clean repo-generated evidence.
-6. Blind-clone verification succeeds.
-7. Security validation succeeds on the exact release commit.
+1. The exact commit has maintainer approval.
+2. `python -m pytest tests -v` passes on Python 3.11, 3.12, 3.13.
+3. `examples/02_cross_writer.py` prints `cross-writer wedge: VERIFIED`.
+4. `python -m build` produces a clean wheel and sdist.
+5. The wheel installs into a fresh venv and `import zpe_video` succeeds
+   with zero optional extras.
+6. `CHANGELOG.md` has an entry for this version.
+7. `CITATION.cff` and `pyproject.toml` versions match the tag.
+8. Repo-local secret scan passes on the release commit.
+9. Any new claim in the README or in `docs/WEDGE.md` is backed by a
+   plan + summary + machine-readable artifact in
+   [`docs/transparency/`](docs/transparency/).
 
 <p>
   <img src=".github/assets/readme/section-bars/scope-discipline.svg" alt="SCOPE DISCIPLINE" width="100%">
 </p>
 
-Current release state is below gate because:
+What a release ships:
 
-- the governing science gate is still red
-- the staged proof snapshot is mixed
-- a fresh repo-local run-of-record does not yet exist
-- blind-clone verification has not been run
+- one pip-installable wheel + sdist
+- no breaking changes to `src/zpe_video/receipt.py` public API or to
+  the wire format without a major-version bump
+- the full transparency bundle for any new research phase that
+  contributed a claim
 
-If evidence conflicts, the repo stays non-release.
+What a release does not ship:
+
+- broadened product claims without new transparency artifacts
+- performance numbers without the harness that produced them
+- features marked "coming soon" — always-in-beta means live, not promised

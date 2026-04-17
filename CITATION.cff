@@ -1,33 +1,39 @@
 cff-version: 1.2.0
 message: >-
-  If you use ZPE Video in your research or rely on its proof corpus or
-  documentation routes, please cite this software record.
+  If you use ZPE Video in your work, please cite this software record.
 type: software
-title: "ZPE Video: Zero-Point Encoding Video Workstream"
+title: "ZPE Video: Perception Receipts for AI Video Pipelines"
 authors:
   - given-names: Zer0pa
     family-names: Architect-Prime
   - name: Zer0pa Labs
-version: 0.0.0
-date-released: "2026-03-23"
+version: 0.1.0
+date-released: "2026-04-17"
 repository-code: https://github.com/Zer0pa/ZPE-Video
 url: https://github.com/Zer0pa/ZPE-Video
-license: LicenseRef-Zer0pa-SAL-5.1
+license: LicenseRef-Zer0pa-SAL-6.2
 abstract: >-
-  ZPE Video is the live repository for the Zero-Point Encoding video
-  workstream. It preserves the current Python package surface, the current
-  proof-custody subset, and the current falsification-led status of the
-  lane. The latest staged truth is the `09.3.2` portal-local
-  state-machine continuation, which improved the best defended sparse
-  VIRAT facility-crossing point to 37.50 percent suppression at 96.30
-  percent recall and still retired that surface for instability.
+  ZPE Video is a compact, deterministic binary format for recording what a
+  detector and tracker saw in a video. Under default settings, every
+  conforming writer in any language emits byte-identical output, making the
+  SHA-256 of a receipt a stable cryptographic reference to what the model
+  saw. The core library is pure stdlib; the wire format is implementable in
+  under 100 lines of any language with stdlib struct, zlib, and crc32
+  primitives. Applications include C2PA-style AI-perception credentials,
+  regulated chain-of-custody for detector output, video-LLM object-memory
+  caches with integrity requirements, and cross-platform
+  training-data provenance for vision pipelines.
 keywords:
-  - video encoding
-  - signal processing
-  - falsifiability-first
-  - evidence discipline
-  - surveillance analysis
-  - primitive state machine
+  - video
+  - perception
+  - receipts
+  - provenance
+  - C2PA
+  - chain-of-custody
+  - video-LLM
+  - object-memory
+  - deterministic-binary
+  - cross-writer-hash-stability
   - zero-point encoding
 preferred-citation:
   type: article

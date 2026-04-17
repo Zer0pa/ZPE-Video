@@ -6,7 +6,8 @@
   <img src="../.github/assets/readme/section-bars/proof-corpus.svg" alt="PROOF CORPUS" width="100%">
 </p>
 
-This directory is the proof-routing surface for ZPE Video.
+This directory holds the historical (pre-0.1.0) proof-custody surface
+for ZPE Video. It is retained for research-journey traceability.
 
 <table width="100%" border="1" bordercolor="#b8c0ca" cellpadding="0" cellspacing="0">
   <thead>
@@ -16,10 +17,10 @@ This directory is the proof-routing surface for ZPE Video.
     </tr>
   </thead>
   <tbody>
-    <tr><td><code>PROOF_INDEX.md</code></td><td>Current proof routes and snapshot limits</td></tr>
-    <tr><td><code>reference/</code></td><td>Historical reference snapshot copied from the outer workspace</td></tr>
-    <tr><td><code>logs/</code></td><td>Target location for repo-owned run logs</td></tr>
-    <tr><td><code>reruns/</code></td><td>Target location for future clean reruns</td></tr>
+    <tr><td><code>PROOF_INDEX.md</code></td><td>Index and limits for the historical <code>reference/</code> snapshot</td></tr>
+    <tr><td><code>reference/2026-03-09_workspace_snapshot/</code></td><td>Dated evidence-custody snapshot from pre-0.1.0 research phases</td></tr>
+    <tr><td><code>logs/</code></td><td>Optional target location for future repo-owned run logs</td></tr>
+    <tr><td><code>reruns/</code></td><td>Optional target location for future clean reruns</td></tr>
   </tbody>
 </table>
 
@@ -27,6 +28,9 @@ This directory is the proof-routing surface for ZPE Video.
   <img src="../.github/assets/readme/section-bars/what-this-directory-is-not.svg" alt="WHAT THIS DIRECTORY IS NOT" width="100%">
 </p>
 
-This directory is not evidence that the lane is green.
-It is the routing surface for what evidence exists and what evidence is
-still missing.
+**Current v0.1.0 evidence is not here.** See
+[`../docs/transparency/`](../docs/transparency/) for the reproducible
+bundle that backs every claim in
+[`../docs/WEDGE.md`](../docs/WEDGE.md), including the harnesses,
+plans, summaries, and machine-readable result JSON for every kill and
+defend verdict from the wedge-discovery phase.

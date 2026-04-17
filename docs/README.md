@@ -23,12 +23,18 @@ indexes for the live repo. The proof corpus lives in
     </tr>
   </thead>
   <tbody>
-    <tr><td><code>docs/STATUS.md</code></td><td>Current staged truth, current blockers, and exact latest numbers</td></tr>
-    <tr><td><code>docs/ARCHITECTURE.md</code></td><td>Package/runtime map and repo-boundary notes</td></tr>
-    <tr><td><code>docs/VERIFICATION.md</code></td><td>Low-cost checks allowed now and deferred verification still required later</td></tr>
-    <tr><td><code>docs/REPO_SHAPE.md</code></td><td>Public repo-organization contract</td></tr>
+    <tr><td><code>docs/WEDGE.md</code></td><td>The commercial wedge rationale, buyer shapes, and explicit non-claims</td></tr>
+    <tr><td><code>docs/WIRE_FORMAT.md</code></td><td>Byte-level specification for third-party re-implementation</td></tr>
+    <tr><td><code>docs/QUICKSTART.md</code></td><td>Five-minute onboarding with three runnable examples</td></tr>
+    <tr><td><code>docs/ARCHITECTURE.md</code></td><td>Package surface map; public receipt API plus legacy research harness</td></tr>
+    <tr><td><code>docs/STATUS.md</code></td><td>Current shipping state and scope coordinates</td></tr>
+    <tr><td><code>docs/TRANSPARENCY_JOURNEY.md</code></td><td>Phase-by-phase verdict ledger including every kill verdict</td></tr>
+    <tr><td><code>docs/transparency/</code></td><td>Reproducible evidence bundle (harnesses + plans + summaries + JSON)</td></tr>
+    <tr><td><code>docs/VERIFICATION.md</code></td><td>Low-cost sanity checks for the v0.1.0 package</td></tr>
+    <tr><td><code>docs/REPO_SHAPE.md</code></td><td>Public repo-organization contract and stability guarantees</td></tr>
     <tr><td><code>docs/PUBLIC_AUDIT_SNAPSHOT_STAMP.md</code></td><td>Current public snapshot coordinates and authority routes</td></tr>
-    <tr><td><code>docs/inputs/README.md</code></td><td>Historical input packs, status notes, and review-pack routes</td></tr>
+    <tr><td><code>docs/_reorientation/2026-04-17/</code></td><td>Reorientation pass artifacts: NOVELTY_CARD, FIX_LOG, OPEN_QUESTIONS</td></tr>
+    <tr><td><code>docs/inputs/README.md</code></td><td>Historical (pre-0.1.0) input packs, status notes, and review-pack routes</td></tr>
   </tbody>
 </table>
 

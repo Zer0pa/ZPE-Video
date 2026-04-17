@@ -1,0 +1,152 @@
+{
+  "phase": "09.4.1.1.2.1",
+  "plan": "02",
+  "candidate": "B",
+  "benchmark": "synthetic_videoqa_spatial_from_yolo_shaped_detector_pass",
+  "benchmark_note": "Bounded deterministic spatial-VideoQA subset constructed from a YOLOv8-shaped synthetic detector pass. The SAME detector pass feeds all three caching strategies, so any cache-axis measurement is detection-parity clean. See BENCHMARK-REPORT for full disclosure.",
+  "subset_size": 30,
+  "query_ids": [
+    "synth_v000:t7:presence",
+    "synth_v000:t7:count",
+    "synth_v000:t7:class",
+    "synth_v001:t8:presence",
+    "synth_v001:t8:count",
+    "synth_v001:t8:class",
+    "synth_v002:t7:presence",
+    "synth_v002:t7:count",
+    "synth_v002:t7:class",
+    "synth_v003:t23:presence",
+    "synth_v003:t23:count",
+    "synth_v003:t23:class",
+    "synth_v004:t21:presence",
+    "synth_v004:t21:count",
+    "synth_v004:t21:class",
+    "synth_v005:t5:presence",
+    "synth_v005:t5:count",
+    "synth_v005:t5:class",
+    "synth_v006:t27:presence",
+    "synth_v006:t27:count",
+    "synth_v006:t27:class",
+    "synth_v007:t0:presence",
+    "synth_v007:t0:count",
+    "synth_v007:t0:class",
+    "synth_v008:t6:presence",
+    "synth_v008:t6:count",
+    "synth_v008:t6:class",
+    "synth_v009:t16:presence",
+    "synth_v009:t16:count",
+    "synth_v009:t16:class"
+  ],
+  "detector": "synthetic_yolov8_shaped_deterministic",
+  "llm": "Qwen/Qwen2.5-0.5B-Instruct",
+  "llm_enabled": true,
+  "hardware": "mac_cpu",
+  "repeats": 11,
+  "llm_determinism_n": 3,
+  "llm_determinism_rate": 1.0,
+  "greedy_decoding": true,
+  "strategies": {
+    "none": {
+      "median_tokens_per_query": 54,
+      "median_latency_ms_per_query": 2087.755146000063,
+      "answer_accuracy": 0.4,
+      "storage_bytes_per_video": 0,
+      "cache_read_ms_median": 0.00989549994301342,
+      "prompt_build_ms_median": 0.0029374998575804057,
+      "tokenize_ms_median": 0.41864600007102126,
+      "llm_gen_ms_median": 2087.2550625001622
+    },
+    "parquet": {
+      "median_tokens_per_query": 54,
+      "median_latency_ms_per_query": 2173.123250499657,
+      "answer_accuracy": 0.4,
+      "storage_bytes_per_video": 5386,
+      "cache_read_ms_median": 4.500208500076042,
+      "prompt_build_ms_median": 0.0029585000902443426,
+      "tokenize_ms_median": 0.42085400014002516,
+      "llm_gen_ms_median": 2168.4062295000786,
+      "cross_writer_hash_stable": false
+    },
+    "zpe_packet": {
+      "median_tokens_per_query": 54,
+      "median_latency_ms_per_query": 2193.9664990002257,
+      "answer_accuracy": 0.4,
+      "storage_bytes_per_video": 961,
+      "cache_read_ms_median": 0.30233349980335333,
+      "prompt_build_ms_median": 0.0029170000743761193,
+      "tokenize_ms_median": 0.41068800010179984,
+      "llm_gen_ms_median": 2193.245499500108,
+      "cross_writer_hash_stable": true
+    }
+  },
+  "wedge_metrics": {
+    "zpe_vs_parquet_latency_ratio": 1.0095913789039699,
+    "zpe_vs_parquet_tokens_ratio": 1.0,
+    "zpe_cross_writer_stable": true,
+    "parquet_cross_writer_stable": false,
+    "unique_determinism_for_zpe": true
+  },
+  "limiting_cases": {
+    "empty_cache": {
+      "video_id": "synth_empty",
+      "frame_count": 10,
+      "storage_bytes_parquet_pyarrow": 4915,
+      "storage_bytes_parquet_fastparquet": 2804,
+      "storage_bytes_zpe_repo": 217,
+      "storage_bytes_zpe_reference": 217,
+      "read_ms_median_parquet": 3.8705829997525143,
+      "read_ms_median_zpe_packet": 0.1004159998956311,
+      "queries_touched": {
+        "queries_run": 0,
+        "note": "No queries targeted this video in the subset; recording direct cache-write/read timing separately."
+      }
+    },
+    "dense_cache": {
+      "video_id": "synth_dense",
+      "frame_count": 30,
+      "storage_bytes_parquet_pyarrow": 7679,
+      "storage_bytes_parquet_fastparquet": 25242,
+      "storage_bytes_zpe_repo": 2970,
+      "storage_bytes_zpe_reference": 2970,
+      "read_ms_median_parquet": 4.817125000045053,
+      "read_ms_median_zpe_packet": 1.3149999999768625,
+      "queries_touched": {
+        "queries_run": 0,
+        "note": "No queries targeted this video in the subset; recording direct cache-write/read timing separately."
+      },
+      "dense_latency_ratio_vs_baseline": 4.3495014638873215
+    }
+  },
+  "answer_accuracy_parity": {
+    "per_strategy": {
+      "none": 0.4,
+      "parquet": 0.4,
+      "zpe_packet": 0.4
+    },
+    "max_delta_pp": 0.0,
+    "within_2pp": true
+  },
+  "verdict": "defend",
+  "verdict_justification": "Primary defend: zpe_latency (2193.966 ms) <= parquet_latency (2173.123 ms) * 1.5 AND zpe_cross_writer_stable=True AND parquet_cross_writer_stable=False AND answer-accuracy within 2pp (delta=0.00pp).",
+  "sovereign_gate_status": "red",
+  "sovereign_gate_note": "This plan does not claim primitive-native Compass-8 closure regardless of verdict. The sovereign Compass-8 primitive-native gate remains RED. A defend verdict opens a scaling follow-up; it does not close the substrate gate.",
+  "forbidden_proxies_rejected": {
+    "primitive_native_closure_claim": false,
+    "gt_fed_cache": false,
+    "determinism_alone_claim": false,
+    "mixed_bundles": false,
+    "cherry_picked_queries": false,
+    "non_greedy_decoding_silent": false,
+    "external_remote_touched": false,
+    "reopened_phase_10_or_red_magic": false,
+    "reopened_archive_query_box_state": false
+  },
+  "uncertainty_markers": {
+    "llm_sampling_variance": "Greedy decoding on CPU; N=3 determinism spot check produced match rate 1.000.",
+    "gpu_vs_cpu_latency": "Mac CPU only; latency not comparable to GPU runs.",
+    "parquet_writer_variance": "pyarrow vs fastparquet compared at default settings; variation expected and recorded.",
+    "zpe_writer_variance": "Repo encoder vs independent reference re-implementation from the format spec; expected to match if spec is deterministic.",
+    "benchmark_subset_bias": "Synthetic deterministic VideoQA spatial subset (not LongVideoBench/MLVU pixels); subset is designed to test the boxes-as-text-token cache hypothesis, which is the wedge thesis."
+  },
+  "detector_parity_note": "All three strategies receive identical detector output from the deterministic YOLOv8-shaped per-video pass. Detection-level fairness is enforced by construction."
+}

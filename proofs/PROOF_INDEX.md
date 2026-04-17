@@ -6,16 +6,19 @@
   <img src="../.github/assets/readme/section-bars/proof-corpus.svg" alt="PROOF CORPUS" width="100%">
 </p>
 
-Current staged proof surface:
+Historical (pre-0.1.0) proof surface:
 
 - <code>proofs/reference/2026-03-09_workspace_snapshot/</code>
 
-Current proof reading:
+Historical proof reading:
 
-- provenance: copied from the outer workspace on `2026-03-09`
-- status: historical custody snapshot
-- current staged truth route: `09.3.2 = retire_surface`
-- cleanliness: mixed, because `resource_inventory.json` reflects a later partial probe
+- provenance: copied from the outer workspace on <code>2026-03-09</code>
+- status: dated evidence-custody snapshot from pre-0.1.0 research phases
+- cleanliness: mixed (<code>resource_inventory.json</code> reflects a later partial probe)
+
+**Current v0.1.0 evidence route:** [`../docs/transparency/`](../docs/transparency/)
+— reproducible bundle (harnesses, plans, summaries, machine-readable
+result JSON) backing every claim in [`../docs/WEDGE.md`](../docs/WEDGE.md).
 
 <p>
   <img src="../.github/assets/readme/section-bars/engineering-references.svg" alt="ENGINEERING REFERENCES" width="100%">

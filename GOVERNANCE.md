@@ -26,9 +26,13 @@ Governance baseline:
 - Negative results are first-class artifacts.
 - A local or narrow improvement does not count as a repo-level win if the governing gate remains red.
 
-The current governing example is `09.3.2`: the portal-local state
-machine produced a real improvement and still closed as
-`retire_surface`.
+Concrete examples: Phase 08 closed as `comparator_gate_failed` against
+AV1/VVC/learned baselines; Phase 09.4.1.1.2 closed as
+`zpe_packet_beaten_by_commodity_format` on fair-baseline archive query;
+Phase 09.4.1.1.2.1-A closed as `kill` when the mean-importance control
+matched the ROI lane. Every kill verdict is preserved in full under
+[`docs/transparency/`](docs/transparency/) alongside the single defended
+wedge (Candidate B, perception-receipt cross-writer hash stability).
 
 <p>
   <img src=".github/assets/readme/section-bars/mode-semantics.svg" alt="MODE SEMANTICS" width="100%">
@@ -42,12 +46,12 @@ machine produced a real improvement and still closed as
     </tr>
   </thead>
   <tbody>
-    <tr><td><code>staging_only</code></td><td>The repo is a live staging and evidence surface, not a public release surface.</td></tr>
-    <tr><td><code>bounded_signal_only</code></td><td>Real local signal exists, but it does not yet clear the governing acceptance gate.</td></tr>
+    <tr><td><code>always-in-beta</code></td><td>The repo ships products when they have utility. What installs today works; what installs next month may be materially better. Cadence is continuous, not milestoned. Not an apology, not an excuse.</td></tr>
+    <tr><td><code>defend</code></td><td>A claim passed the plan-contract acceptance test with explicit kill criteria and independent-method verification.</td></tr>
+    <tr><td><code>kill</code></td><td>A claim failed its plan-contract kill criterion. Recorded verbatim; not softened.</td></tr>
+    <tr><td><code>bounded_signal_only</code></td><td>A phase produced real local signal but did not clear its own acceptance gate. Neither defend nor kill; recorded as-is.</td></tr>
     <tr><td><code>retire_surface</code></td><td>A bounded investigation was completed and the tested surface should not receive more tuning under the same contract.</td></tr>
-    <tr><td><code>not_green</code></td><td>The authoritative gate remains red.</td></tr>
-    <tr><td><code>mixed_snapshot</code></td><td>The proof set is historically valuable but not a clean current run-of-record.</td></tr>
-    <tr><td><code>in_progress</code></td><td>The workstream is still being actively refined and should not be read as closed.</td></tr>
+    <tr><td><code>mixed_snapshot</code></td><td>A proof set is historically valuable but not a clean current run-of-record.</td></tr>
   </tbody>
 </table>
 
@@ -57,17 +61,21 @@ machine produced a real improvement and still closed as
 
 The repo is allowed to claim:
 
-- exact phase outcomes
-- exact metrics from explicit artifacts
-- exact file and proof routes
+- exact phase outcomes with citation to PLAN + SUMMARY + machine-readable result
+- exact metrics from explicit artifacts (a file path, not a rewritten number)
+- exact file and proof routes (every path in a claim must resolve via `ls`)
 - exact current blockers
+- one narrow defended commercial wedge (perception receipts; see
+  [`docs/WEDGE.md`](docs/WEDGE.md)) with cited evidence
 
 The repo is not allowed to claim:
 
-- GO or release readiness without a current supporting artifact trail
-- a commercial wedge where the governing science gate is still red
-- generalized superiority from a narrow or retired surface
+- broad product superiority from a narrow defended surface
+- generalized superiority from a retired or killed surface
 - proof freshness that the artifacts do not actually have
+- "primitive-native" or "Compass-8" product-architecture framing for this
+  codec; this codec does not use Compass-8 directional encoding (see
+  [`docs/_reorientation/2026-04-17/NOVELTY_CARD.md`](docs/_reorientation/2026-04-17/NOVELTY_CARD.md))
 
 <p>
   <img src=".github/assets/readme/section-bars/escalation-path.svg" alt="ESCALATION PATH" width="100%">

@@ -17,13 +17,16 @@ repo.
     </tr>
   </thead>
   <tbody>
-    <tr><td>Stamp date</td><td><code>2026-03-23</code></td></tr>
-    <tr><td>Current staged truth</td><td><code>09.3.2 = retire_surface</code></td></tr>
+    <tr><td>Stamp date</td><td><code>2026-04-17</code></td></tr>
+    <tr><td>Package version</td><td><code>0.1.0</code></td></tr>
+    <tr><td>Posture</td><td><code>always-in-beta</code> (useful now, improving continuously)</td></tr>
+    <tr><td>Defended commercial wedge</td><td>Perception-receipt cross-writer hash stability under defaults</td></tr>
     <tr><td>Current status route</td><td><code>docs/STATUS.md</code></td></tr>
-    <tr><td>Current proof index route</td><td><code>proofs/PROOF_INDEX.md</code></td></tr>
-    <tr><td>Current proof custody subset</td><td><code>proofs/reference/2026-03-09_workspace_snapshot/</code></td></tr>
-    <tr><td>Current status note</td><td><code>docs/inputs/status-notes/2026-03-23_phase09_3_2_retire_surface/</code></td></tr>
-    <tr><td>Current repo-hardening phase</td><td><code>09.4 = in_progress</code></td></tr>
+    <tr><td>Commercial wedge route</td><td><code>docs/WEDGE.md</code></td></tr>
+    <tr><td>Transparency bundle route</td><td><code>docs/transparency/</code></td></tr>
+    <tr><td>Research journey route</td><td><code>docs/TRANSPARENCY_JOURNEY.md</code></td></tr>
+    <tr><td>Wire format spec</td><td><code>docs/WIRE_FORMAT.md</code></td></tr>
+    <tr><td>Historical proof snapshot</td><td><code>proofs/reference/2026-03-09_workspace_snapshot/</code> (pre-0.1.0, dated)</td></tr>
   </tbody>
 </table>
 

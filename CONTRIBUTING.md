@@ -24,17 +24,17 @@ Working rules:
 Run the low-cost checks first:
 
 ```bash
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install --upgrade pip
 python3 -m pip install -e ".[dev]"
 python3 -m compileall src scripts
-pytest tests/test_codec.py
+python3 -m pytest tests -v
+python3 examples/02_cross_writer.py   # expect: "cross-writer wedge: VERIFIED"
 python3 - <<'PY'
-import sys
-sys.path.insert(0, "src")
-from zpe_video import Wave1Pipeline
-print(Wave1Pipeline)
+import zpe_video
+print("version:", zpe_video.__version__)
+print("public:", sorted(zpe_video.__all__))
 PY
 ```
 
@@ -67,7 +67,12 @@ required.
 </p>
 
 - Repo cleanup is valuable.
-- Repo cleanup is not a scientific pass.
-- If the governing metric remains red, the repo must still say so.
+- Repo cleanup is not a research pass.
+- Claims in docs must match the current code, tests, and artifacts — if
+  a kill verdict is recorded in [`docs/transparency/`](docs/transparency/),
+  the README and docs must not quietly reframe it as a win.
+- This codec does not use Compass-8 / 8-primitive directional encoding.
+  Do not add framing that claims it does (see
+  [`docs/_reorientation/2026-04-17/NOVELTY_CARD.md`](docs/_reorientation/2026-04-17/NOVELTY_CARD.md)).
 
 `LICENSE` is the legal source of truth for contributions and usage.

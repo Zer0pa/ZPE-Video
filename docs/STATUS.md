@@ -6,12 +6,13 @@
   <img src="../.github/assets/readme/section-bars/summary.svg" alt="SUMMARY" width="100%">
 </p>
 
-Current staged truth:
+Current state (2026-04-17):
 
-- repo posture: <code>staging_only</code>
-- broad wedge state: <code>not_green</code>
-- latest narrow-surface verdict: <code>09.3.2 = retire_surface</code>
-- live repo-hardening phase: <code>09.4 = in_progress</code>
+- Package version: <code>0.1.0</code>
+- Posture: <code>always-in-beta</code> (useful now, improving continuously)
+- Selected commercial wedge: perception-receipt format for AI video pipelines
+- Compass-8 / 8-primitive architecture: <code>not used by this codec</code> (see <a href="_reorientation/2026-04-17/NOVELTY_CARD.md"><code>NOVELTY_CARD.md</code></a>)
+- Most recent research phase: <code>09.4.1.1.2.1 = parallel_bounded_wedge_discovery</code>
 
 <p>
   <img src="../.github/assets/readme/section-bars/lane-status-snapshot.svg" alt="LANE STATUS SNAPSHOT" width="100%">
@@ -25,12 +26,15 @@ Current staged truth:
     </tr>
   </thead>
   <tbody>
-    <tr><td>Best defended `09.3.2` full-surface point</td><td><code>37.50%</code> suppression at <code>96.30%</code> recall</td></tr>
-    <tr><td>Clip-level breakage</td><td>One clip falls to <code>5/6 = 83.33%</code> recall</td></tr>
-    <tr><td>LOOCV weakness</td><td>Holdouts still fail at <code>6/9</code> and <code>2/3</code> recall</td></tr>
-    <tr><td>Current proof snapshot</td><td><code>proofs/reference/2026-03-09_workspace_snapshot/</code></td></tr>
-    <tr><td>Current status note</td><td><code>docs/inputs/status-notes/2026-03-23_phase09_3_2_retire_surface/</code></td></tr>
-    <tr><td>Current package sanity</td><td><code>tests/test_codec.py</code> passes; package import is clean</td></tr>
+    <tr><td>Public wedge claim</td><td>Cross-writer bit-exact AI-perception receipts (<a href="WEDGE.md">WEDGE.md</a>)</td></tr>
+    <tr><td>Public wedge evidence</td><td>Phase 09.4.1.1.2.1 Candidate B — defend (<a href="transparency/phase9_4_1_1_2_1_candidate_b_video_llm_object_memory/">transparency bundle</a>)</td></tr>
+    <tr><td>Archive-query wedge</td><td>killed on fair commercial baseline (Phase 09.4.1.1.2)</td></tr>
+    <tr><td>ROI / foveated sidecar wedge</td><td>killed; lift is non-flat-QP property, not packet-derived (Phase 09.4.1.1.2.1-A)</td></tr>
+    <tr><td>Universal video-codec superiority claim</td><td>killed on comparator expansion (Phase 08)</td></tr>
+    <tr><td>State-layer enrichment (trajectory features)</td><td>defended as engineering insight, not as ZPE-specific wedge (Phase 09.4.1.1.2.1-C)</td></tr>
+    <tr><td>Compass-8 primitive-native substrate thesis</td><td>historical; tested and not closed as a product goal for this codec (see <a href="TRANSPARENCY_JOURNEY.md"><code>TRANSPARENCY_JOURNEY.md</code></a>)</td></tr>
+    <tr><td>Public test surface</td><td><code>tests/test_receipt.py</code> (20) + <code>tests/test_codec.py</code> (2); all pass on Python 3.11/3.12/3.13</td></tr>
+    <tr><td>Package install</td><td><code>pip install -e '.[dev]'</code> from source; no upstream deps for the core receipt surface</td></tr>
   </tbody>
 </table>
 
@@ -40,24 +44,21 @@ Current staged truth:
 
 This repo can establish:
 
-- the current package surface
-- the current proof routes
-- the exact `09.3.2` retirement outcome
-- the fact that the scientific journey is still active
+- The exact byte format of the perception receipt (see [`WIRE_FORMAT.md`](WIRE_FORMAT.md))
+- Cross-writer bit-exactness under default settings, pinned by
+  [`tests/test_receipt.py::test_cross_writer_independent_implementation_matches`](../tests/test_receipt.py)
+- Storage and cache-read economics vs default-Parquet on a bounded
+  VideoQA subset (see
+  [`transparency/phase9_4_1_1_2_1_candidate_b_video_llm_object_memory/summary.json`](transparency/phase9_4_1_1_2_1_candidate_b_video_llm_object_memory/summary.json))
+- The full falsification journey behind the selected wedge
+  (see [`TRANSPARENCY_JOURNEY.md`](TRANSPARENCY_JOURNEY.md))
 
-This repo cannot establish:
+This repo does not establish:
 
-- a defended commercial video wedge
-- a fresh clean repo-local run-of-record
-- public release readiness
-
-<p>
-  <img src="../.github/assets/readme/section-bars/scope-discipline.svg" alt="SCOPE DISCIPLINE" width="100%">
-</p>
-
-The correct public reading is:
-
-- signal exists
-- the tested surveillance surface was retired honestly
-- the next science move must pivot by evidence
-- repo hardening is not a scientific greenlight
+- Universal video-codec superiority
+- Buyer-visible end-to-end speedup (LLM generation dominates; receipt
+  speed is a storage/memory property)
+- That Parquet cannot be tuned to match (it can under non-default
+  patterns; the wedge is specifically about default settings)
+- The Compass-8 / 8-primitive architecture (this codec does not use it;
+  see [`_reorientation/2026-04-17/NOVELTY_CARD.md`](_reorientation/2026-04-17/NOVELTY_CARD.md))

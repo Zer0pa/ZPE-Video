@@ -1,0 +1,816 @@
+{
+  "phase": "09.4.1.1.2.1-parallel-bounded-wedge-discovery-three-hypotheses-run-in-wave-parallel-no-pre-selection",
+  "plan": "01",
+  "candidate": "A",
+  "surface": {
+    "surface": "virat-subset",
+    "reason": "VIRAT facility-crossing subset used as held-out slice (1280x720, 24 fps, real surveillance content with human+vehicle content). CompressAI-Vision COCO subset was considered but its evaluation toolchain does not install cleanly on Python 3.11 Mac within the ~1-day budget. VIRAT is the carried-forward cohort from phase 09.4.1.1.1 and is appropriate for the bounded VCM surface.",
+    "max_frames_per_clip": 48,
+    "frame_stride": 2
+  },
+  "detector": {
+    "name": "YOLOv8m",
+    "conf": 0.25,
+    "iou": 0.45,
+    "weights_path": "/tmp/zpe_candidate_a_venv/yolov8m.pt",
+    "weights_size_bytes": 52136884,
+    "weights_sha256_head": "bf262a06aab93927c605b41640ccd17839087324211954275155640319004504"
+  },
+  "encoder": {
+    "name": "libx265",
+    "preset": "medium",
+    "crf_sweep": [
+      30,
+      34
+    ],
+    "zones_mode": "temporal_frame_qp_delta",
+    "zones_note": "libx265 public zones parameter is temporal-only; per-MB spatial QP-delta is not exposed. ROI shape is reduced to per-frame scalar importance and zero-mean QP delta per frame. This is the documented rectangular-region fallback allowed by the plan.",
+    "zero_mean_delta": true,
+    "delta_scale": 6.0
+  },
+  "error_budget": {
+    "encode_repeats": 1,
+    "detector_repeats": 1,
+    "extract_cost_frames": 10,
+    "matched_bitrate_tolerance_pct": 2.0
+  },
+  "clip_meta": {
+    "VIRAT_S_010004_06_000547_000715": {
+      "width": 1280,
+      "height": 720,
+      "fps": 23.97,
+      "sampled_frames": 48,
+      "packet_bytes": 960,
+      "packet_sha256": "b01ce97b9552c07876351faedc83998cb896d056a2c5d84947140283e9bc7ac2",
+      "per_frame_box_counts": [
+        4,
+        4,
+        4,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5,
+        5,
+        5,
+        5,
+        4,
+        4,
+        3,
+        4,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    "VIRAT_S_010004_08_000811_000920": {
+      "width": 1280,
+      "height": 720,
+      "fps": 23.97,
+      "sampled_frames": 48,
+      "packet_bytes": 633,
+      "packet_sha256": "90f96c3a7904585e4c3a46c2f3318b2c3cfb3f19ab239cc5a3c9921b145161b0",
+      "per_frame_box_counts": [
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        4,
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        3,
+        4,
+        4,
+        4
+      ]
+    },
+    "VIRAT_S_010203_06_000620_000760": {
+      "width": 1280,
+      "height": 720,
+      "fps": 23.97,
+      "sampled_frames": 48,
+      "packet_bytes": 622,
+      "packet_sha256": "005c2ab6bfd9e78cc8048e6cc929d41e41d619fe73da3f1271d1ed90ec85b548",
+      "per_frame_box_counts": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        2,
+        2,
+        3,
+        3,
+        3
+      ]
+    }
+  },
+  "lanes": {
+    "VIRAT_S_010004_06_000547_000715": {
+      "flat": {
+        "qp_sweep": [
+          30,
+          34
+        ],
+        "bytes": [
+          177852,
+          100320
+        ],
+        "encode_wall_ms": [
+          3610.044240951538,
+          3236.3638877868652
+        ],
+        "mAP50_median": [
+          0.7758391203703704,
+          0.8020833333333334
+        ],
+        "mAP50_stderr": [
+          0.0,
+          0.0
+        ],
+        "mAP50_runs": [
+          [
+            0.7758391203703704
+          ],
+          [
+            0.8020833333333334
+          ]
+        ]
+      },
+      "roi_guided": {
+        "qp_sweep": [
+          30,
+          34
+        ],
+        "bytes": [
+          370091,
+          212828
+        ],
+        "encode_wall_ms": [
+          4274.166107177734,
+          3806.452989578247
+        ],
+        "mAP50_median": [
+          0.9302083333333334,
+          0.8446759259259261
+        ],
+        "mAP50_stderr": [
+          0.0,
+          0.0
+        ],
+        "mAP50_runs": [
+          [
+            0.9302083333333334
+          ],
+          [
+            0.8446759259259261
+          ]
+        ]
+      },
+      "mean_importance": {
+        "qp_sweep": [
+          30,
+          34
+        ],
+        "bytes": [
+          370091,
+          212828
+        ],
+        "encode_wall_ms": [
+          4271.672010421753,
+          4018.4731483459473
+        ],
+        "mAP50_median": [
+          0.9302083333333334,
+          0.8446759259259261
+        ],
+        "mAP50_stderr": [
+          0.0,
+          0.0
+        ],
+        "mAP50_runs": [
+          [
+            0.9302083333333334
+          ],
+          [
+            0.8446759259259261
+          ]
+        ]
+      }
+    },
+    "VIRAT_S_010004_08_000811_000920": {
+      "flat": {
+        "qp_sweep": [
+          30,
+          34
+        ],
+        "bytes": [
+          191842,
+          98647
+        ],
+        "encode_wall_ms": [
+          4019.852876663208,
+          3531.5890312194824
+        ],
+        "mAP50_median": [
+          0.7854456018518517,
+          0.46440972222222215
+        ],
+        "mAP50_stderr": [
+          0.0,
+          0.0
+        ],
+        "mAP50_runs": [
+          [
+            0.7854456018518517
+          ],
+          [
+            0.46440972222222215
+          ]
+        ]
+      },
+      "roi_guided": {
+        "qp_sweep": [
+          30,
+          34
+        ],
+        "bytes": [
+          489672,
+          240502
+        ],
+        "encode_wall_ms": [
+          5170.099973678589,
+          4306.354761123657
+        ],
+        "mAP50_median": [
+          0.8653067129629631,
+          0.8078703703703702
+        ],
+        "mAP50_stderr": [
+          0.0,
+          0.0
+        ],
+        "mAP50_runs": [
+          [
+            0.8653067129629631
+          ],
+          [
+            0.8078703703703702
+          ]
+        ]
+      },
+      "mean_importance": {
+        "qp_sweep": [
+          30,
+          34
+        ],
+        "bytes": [
+          489672,
+          240502
+        ],
+        "encode_wall_ms": [
+          5118.858814239502,
+          4266.022205352783
+        ],
+        "mAP50_median": [
+          0.8653067129629631,
+          0.8078703703703702
+        ],
+        "mAP50_stderr": [
+          0.0,
+          0.0
+        ],
+        "mAP50_runs": [
+          [
+            0.8653067129629631
+          ],
+          [
+            0.8078703703703702
+          ]
+        ]
+      }
+    },
+    "VIRAT_S_010203_06_000620_000760": {
+      "flat": {
+        "qp_sweep": [
+          30,
+          34
+        ],
+        "bytes": [
+          107459,
+          55653
+        ],
+        "encode_wall_ms": [
+          3819.4239139556885,
+          3815.9358501434326
+        ],
+        "mAP50_median": [
+          0.857638888888889,
+          0.8159722222222222
+        ],
+        "mAP50_stderr": [
+          0.0,
+          0.0
+        ],
+        "mAP50_runs": [
+          [
+            0.857638888888889
+          ],
+          [
+            0.8159722222222222
+          ]
+        ]
+      },
+      "roi_guided": {
+        "qp_sweep": [
+          30,
+          34
+        ],
+        "bytes": [
+          305899,
+          137048
+        ],
+        "encode_wall_ms": [
+          6174.64017868042,
+          4689.945220947266
+        ],
+        "mAP50_median": [
+          0.9276620370370369,
+          0.8373842592592592
+        ],
+        "mAP50_stderr": [
+          0.0,
+          0.0
+        ],
+        "mAP50_runs": [
+          [
+            0.9276620370370369
+          ],
+          [
+            0.8373842592592592
+          ]
+        ]
+      },
+      "mean_importance": {
+        "qp_sweep": [
+          30,
+          34
+        ],
+        "bytes": [
+          305899,
+          137048
+        ],
+        "encode_wall_ms": [
+          5362.727880477905,
+          4410.818099975586
+        ],
+        "mAP50_median": [
+          0.9276620370370369,
+          0.8373842592592592
+        ],
+        "mAP50_stderr": [
+          0.0,
+          0.0
+        ],
+        "mAP50_runs": [
+          [
+            0.9276620370370369
+          ],
+          [
+            0.8373842592592592
+          ]
+        ]
+      }
+    }
+  },
+  "matched_bitrate": [
+    {
+      "clip_id": "VIRAT_S_010004_06_000547_000715",
+      "lane": "roi_guided",
+      "qp": 30,
+      "total_bytes": 370091,
+      "flat_bracket_bytes": [
+        177852,
+        177852
+      ],
+      "flat_bracket_mAP50": [
+        0.7758391203703704,
+        0.7758391203703704
+      ],
+      "flat_interp_linear_mAP50": 0.7758391203703704,
+      "flat_interp_log_mAP50": 0.7758391203703704,
+      "roi_mAP50": 0.9302083333333334,
+      "roi_mAP50_stderr": 0.0,
+      "relative_gain_linear_pct": 19.897064856599417,
+      "relative_gain_log_pct": 19.897064856599417,
+      "mean_mAP50": 0.9302083333333334,
+      "mean_relative_gain_linear_pct": 19.897064856599417
+    },
+    {
+      "clip_id": "VIRAT_S_010004_06_000547_000715",
+      "lane": "roi_guided",
+      "qp": 34,
+      "total_bytes": 212828,
+      "flat_bracket_bytes": [
+        177852,
+        177852
+      ],
+      "flat_bracket_mAP50": [
+        0.7758391203703704,
+        0.7758391203703704
+      ],
+      "flat_interp_linear_mAP50": 0.7758391203703704,
+      "flat_interp_log_mAP50": 0.7758391203703704,
+      "roi_mAP50": 0.8446759259259261,
+      "roi_mAP50_stderr": 0.0,
+      "relative_gain_linear_pct": 8.872561817029073,
+      "relative_gain_log_pct": 8.872561817029073,
+      "mean_mAP50": 0.8446759259259261,
+      "mean_relative_gain_linear_pct": 8.872561817029073
+    },
+    {
+      "clip_id": "VIRAT_S_010004_08_000811_000920",
+      "lane": "roi_guided",
+      "qp": 30,
+      "total_bytes": 489672,
+      "flat_bracket_bytes": [
+        191842,
+        191842
+      ],
+      "flat_bracket_mAP50": [
+        0.7854456018518517,
+        0.7854456018518517
+      ],
+      "flat_interp_linear_mAP50": 0.7854456018518517,
+      "flat_interp_log_mAP50": 0.7854456018518517,
+      "roi_mAP50": 0.8653067129629631,
+      "roi_mAP50_stderr": 0.0,
+      "relative_gain_linear_pct": 10.167618345920095,
+      "relative_gain_log_pct": 10.167618345920095,
+      "mean_mAP50": 0.8653067129629631,
+      "mean_relative_gain_linear_pct": 10.167618345920095
+    },
+    {
+      "clip_id": "VIRAT_S_010004_08_000811_000920",
+      "lane": "roi_guided",
+      "qp": 34,
+      "total_bytes": 240502,
+      "flat_bracket_bytes": [
+        191842,
+        191842
+      ],
+      "flat_bracket_mAP50": [
+        0.7854456018518517,
+        0.7854456018518517
+      ],
+      "flat_interp_linear_mAP50": 0.7854456018518517,
+      "flat_interp_log_mAP50": 0.7854456018518517,
+      "roi_mAP50": 0.8078703703703702,
+      "roi_mAP50_stderr": 0.0,
+      "relative_gain_linear_pct": 2.855037760176825,
+      "relative_gain_log_pct": 2.855037760176825,
+      "mean_mAP50": 0.8078703703703702,
+      "mean_relative_gain_linear_pct": 2.855037760176825
+    },
+    {
+      "clip_id": "VIRAT_S_010203_06_000620_000760",
+      "lane": "roi_guided",
+      "qp": 30,
+      "total_bytes": 305899,
+      "flat_bracket_bytes": [
+        107459,
+        107459
+      ],
+      "flat_bracket_mAP50": [
+        0.857638888888889,
+        0.857638888888889
+      ],
+      "flat_interp_linear_mAP50": 0.857638888888889,
+      "flat_interp_log_mAP50": 0.857638888888889,
+      "roi_mAP50": 0.9276620370370369,
+      "roi_mAP50_stderr": 0.0,
+      "relative_gain_linear_pct": 8.164642375168663,
+      "relative_gain_log_pct": 8.164642375168663,
+      "mean_mAP50": 0.9276620370370369,
+      "mean_relative_gain_linear_pct": 8.164642375168663
+    },
+    {
+      "clip_id": "VIRAT_S_010203_06_000620_000760",
+      "lane": "roi_guided",
+      "qp": 34,
+      "total_bytes": 137048,
+      "flat_bracket_bytes": [
+        107459,
+        107459
+      ],
+      "flat_bracket_mAP50": [
+        0.857638888888889,
+        0.857638888888889
+      ],
+      "flat_interp_linear_mAP50": 0.857638888888889,
+      "flat_interp_log_mAP50": 0.857638888888889,
+      "roi_mAP50": 0.8373842592592592,
+      "roi_mAP50_stderr": 0.0,
+      "relative_gain_linear_pct": -2.361673414305008,
+      "relative_gain_log_pct": -2.361673414305008,
+      "mean_mAP50": 0.8373842592592592,
+      "mean_relative_gain_linear_pct": -2.361673414305008
+    }
+  ],
+  "extract_cost_ms_per_frame": {
+    "median": 664.7223234176636,
+    "p90": 789.8287773132324,
+    "sample_count": 30,
+    "per_clip": [
+      {
+        "median_ms_per_frame": 641.6856050491333,
+        "p90_ms_per_frame": 650.0842571258545
+      },
+      {
+        "median_ms_per_frame": 664.7223234176636,
+        "p90_ms_per_frame": 684.3583583831787
+      },
+      {
+        "median_ms_per_frame": 727.4305820465088,
+        "p90_ms_per_frame": 789.8287773132324
+      }
+    ]
+  },
+  "extract_adjusted_relative_gain_pct": 7.932541956764844,
+  "limiting_cases": {
+    "empty_packet": {
+      "bpp_delta_pct_worst": 172.64026446633517,
+      "bpp_delta_pct_values": [
+        111.31397762743251,
+        149.8764286801423,
+        172.64026446633517
+      ],
+      "mAP50_delta_mean": 0.15174575617283956,
+      "mAP50_delta_values": [
+        0.10625000000000007,
+        0.28880208333333346,
+        0.06018518518518512
+      ]
+    },
+    "saturated_packet": {
+      "bpp_delta_pct_worst": 172.64026446633517,
+      "bpp_delta_pct_values": [
+        111.31397762743251,
+        149.8764286801423,
+        172.64026446633517
+      ],
+      "mAP50_delta_mean": 0.15174575617283956,
+      "mAP50_delta_values": [
+        0.10625000000000007,
+        0.28880208333333346,
+        0.06018518518518512
+      ]
+    },
+    "single_small_box": {
+      "relative_gain_pct_mean": 24.31933465946299,
+      "relative_gain_pct_values": [
+        13.835719668425027,
+        51.70430998756737,
+        7.417974322396568
+      ]
+    }
+  },
+  "limiting_cases_per_clip": {
+    "VIRAT_S_010004_06_000547_000715": {
+      "empty_packet": {
+        "qp": 32,
+        "flat_bytes": 133914,
+        "roi_bytes": 282979,
+        "bpp_flat": 0.024217664930555556,
+        "bpp_roi": 0.05117531105324074,
+        "bpp_delta_pct": 111.31397762743251,
+        "flat_mAP50": 0.7679398148148149,
+        "roi_mAP50": 0.874189814814815,
+        "mAP50_delta": 0.10625000000000007
+      },
+      "saturated_packet": {
+        "qp": 32,
+        "flat_bytes": 133914,
+        "roi_bytes": 282979,
+        "bpp_flat": 0.024217664930555556,
+        "bpp_roi": 0.05117531105324074,
+        "bpp_delta_pct": 111.31397762743251,
+        "flat_mAP50": 0.7679398148148149,
+        "roi_mAP50": 0.874189814814815,
+        "mAP50_delta": 0.10625000000000007
+      },
+      "single_small_box": {
+        "qp": 32,
+        "flat_bytes": 133914,
+        "roi_bytes": 282979,
+        "bpp_flat": 0.024217664930555556,
+        "bpp_roi": 0.05117531105324074,
+        "bpp_delta_pct": 111.31397762743251,
+        "flat_mAP50": 0.7679398148148149,
+        "roi_mAP50": 0.874189814814815,
+        "relative_gain_pct": 13.835719668425027
+      }
+    },
+    "VIRAT_S_010004_08_000811_000920": {
+      "empty_packet": {
+        "qp": 32,
+        "flat_bytes": 137977,
+        "roi_bytes": 344772,
+        "bpp_flat": 0.024952437789351852,
+        "bpp_roi": 0.062350260416666664,
+        "bpp_delta_pct": 149.8764286801423,
+        "flat_mAP50": 0.5585648148148148,
+        "roi_mAP50": 0.8473668981481483,
+        "mAP50_delta": 0.28880208333333346
+      },
+      "saturated_packet": {
+        "qp": 32,
+        "flat_bytes": 137977,
+        "roi_bytes": 344772,
+        "bpp_flat": 0.024952437789351852,
+        "bpp_roi": 0.062350260416666664,
+        "bpp_delta_pct": 149.8764286801423,
+        "flat_mAP50": 0.5585648148148148,
+        "roi_mAP50": 0.8473668981481483,
+        "mAP50_delta": 0.28880208333333346
+      },
+      "single_small_box": {
+        "qp": 32,
+        "flat_bytes": 137977,
+        "roi_bytes": 344772,
+        "bpp_flat": 0.024952437789351852,
+        "bpp_roi": 0.062350260416666664,
+        "bpp_delta_pct": 149.8764286801423,
+        "flat_mAP50": 0.5585648148148148,
+        "roi_mAP50": 0.8473668981481483,
+        "relative_gain_pct": 51.70430998756737
+      }
+    },
+    "VIRAT_S_010203_06_000620_000760": {
+      "empty_packet": {
+        "qp": 32,
+        "flat_bytes": 75019,
+        "roi_bytes": 204532,
+        "bpp_flat": 0.013566804108796297,
+        "bpp_roi": 0.03698857060185185,
+        "bpp_delta_pct": 172.64026446633517,
+        "flat_mAP50": 0.8113425925925926,
+        "roi_mAP50": 0.8715277777777777,
+        "mAP50_delta": 0.06018518518518512
+      },
+      "saturated_packet": {
+        "qp": 32,
+        "flat_bytes": 75019,
+        "roi_bytes": 204532,
+        "bpp_flat": 0.013566804108796297,
+        "bpp_roi": 0.03698857060185185,
+        "bpp_delta_pct": 172.64026446633517,
+        "flat_mAP50": 0.8113425925925926,
+        "roi_mAP50": 0.8715277777777777,
+        "mAP50_delta": 0.06018518518518512
+      },
+      "single_small_box": {
+        "qp": 32,
+        "flat_bytes": 75019,
+        "roi_bytes": 204532,
+        "bpp_flat": 0.013566804108796297,
+        "bpp_roi": 0.03698857060185185,
+        "bpp_delta_pct": 172.64026446633517,
+        "flat_mAP50": 0.8113425925925926,
+        "roi_mAP50": 0.8715277777777777,
+        "relative_gain_pct": 7.417974322396568
+      }
+    }
+  },
+  "control_comparison": {
+    "roi_vs_mean_ratio": 1.0,
+    "roi_exceeds_2x_control": false,
+    "control_mean_relative_gain_linear_pct": 7.932541956764844,
+    "roi_mean_relative_gain_linear_pct": 7.932541956764844
+  },
+  "verdict": "kill",
+  "verdict_justification": "roi_vs_mean_ratio=1.0 does not exceed 2x (control lane matches or beats ROI).",
+  "sovereign_gate_status": "red",
+  "sovereign_gate_boundary": "This plan is a bounded box-level bitrate-allocation sidecar experiment on incumbent libx265. It does not claim primitive-native Compass-8 closure regardless of verdict. The sovereign Compass-8 primitive-native gate remains red.",
+  "forbidden_proxies_rejected": [
+    "No GT-fed ROI: maps derived from packet extracted by ingest-time YOLOv8m run (extract cost accounted)",
+    "No ap_proxy: mAP@50 on YOLOv8m is the only utility metric",
+    "No mixed bundles: each lane isolates exactly one intervention",
+    "No cherry-picking: full held-out slice reported with per-clip rows",
+    "No external GitHub remote touches",
+    "No reopening of Phase 10 or Red Magic",
+    "No reopening of archive-query on box-state"
+  ],
+  "versions": {
+    "numpy": "1.26.4",
+    "cv2": "4.11.0",
+    "ultralytics": "8.4.38",
+    "ffmpeg_libx265": "available"
+  },
+  "wall_clock_s": 1623.5484521389008
+}
