@@ -66,7 +66,7 @@ Raw struct + zlib is smaller in raw bytes but has no per-frame CRC32, no schema,
 | Field | Value |
 |-------|-------|
 | Verdict | STAGED |
-| Commit SHA | pre-commit (to be stamped on commit) |
+| Commit SHA | 89aa742 |
 | Confidence | 22/22 tests pass; v0.1.0 wheel + sdist build clean; 1 wedge defended, 2 killed, full evidence shipped |
 | Source | [`docs/WEDGE.md`](docs/WEDGE.md) |
 
