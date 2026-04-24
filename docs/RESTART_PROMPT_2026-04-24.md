@@ -9,10 +9,11 @@ any pre-existing local files. The authorities are GitHub and Hugging Face only.
 - GitHub repo: `https://github.com/Zer0pa/ZPE-Video`
 - Current recovery PR: `https://github.com/Zer0pa/ZPE-Video/pull/2`
 - Recovery branch: `reorientation/2026-04-17`
-- Current recovery commit: `cad0b2994dfb26bd7c659c4a053a49ebc3dbe03c`
+- Recovery branch before this prompt correction: `bd5415e76aa9abd3081c21297c1cba224ae34fb1`
 - Current custody commits:
   - `f833bd8` - `custody: harden video receipt core`
   - `cad0b29` - `fix: make receipt benchmark proof deterministic`
+  - `bd5415e` - `custody: add video restart prompt`
 
 ## Clone And Restore
 
@@ -25,8 +26,8 @@ git checkout reorientation/2026-04-17
 git pull --ff-only origin reorientation/2026-04-17
 ```
 
-If PR #2 has already merged, use `main` instead and verify that commit
-`cad0b2994dfb26bd7c659c4a053a49ebc3dbe03c` or its merge equivalent is present.
+If PR #2 has already merged, use `main` instead and verify that the receipt-core
+custody commits above, this restart prompt, and the authority packet are present.
 
 ## Verify Repo Recovery
 
@@ -75,37 +76,48 @@ small proof files needed to resume:
 
 ## Hugging Face Custody Surface
 
-Zer0pa org HF writes failed during emergency custody with `403 Forbidden`.
-The emergency fallback is private Hugging Face storage under the authenticated
-`Architect-Prime` account. Migrate these repos to the Zer0pa org when org-write
-auth is repaired.
+Use the existing private Zer0pa org Hugging Face repos. The repo IDs are
+case-sensitive. Do not use lowercase `zpe-video-*` repo IDs for this lane.
 
 Artifact/dataset custody:
 
-- HF dataset: `Architect-Prime/zpe-video-artifacts`
-- URL: `https://huggingface.co/datasets/Architect-Prime/zpe-video-artifacts`
+- HF dataset: `Zer0pa/ZPE-Video-artifacts`
+- URL: `https://huggingface.co/datasets/Zer0pa/ZPE-Video-artifacts`
 - Contains:
-  - `.custody_staging/artifacts` upload at repo root, including `runpod/` and
-    `local/` evidence bundles.
-  - `custody_staging/scratch/`
+  - `local/` analysis packets, receipt-adjacent reports, and small archives.
+  - `runpod/` evidence bundles, including `zpe_video_lab`, `zpe_video_phase03`,
+    `CompressAI-Vision`, cycle-8 budget images, UVG frames, VIRAT annotations,
+    and RunPod reports.
   - `zpe_video_lab_worktree/` excluding `.git`, caches, and bytecode.
+  - `restart_prompts/ZPE-Video_RESTART_PROMPT_2026-04-24.md`.
 
 Model/checkpoint custody:
 
-- HF model repo: `Architect-Prime/zpe-video-models`
-- URL: `https://huggingface.co/Architect-Prime/zpe-video-models`
-- Contains `.custody_staging/models`, including RT-DETR weights and cycle-8
-  checkpoint artifacts.
+- HF model repo: `Zer0pa/ZPE-Video-models`
+- URL: `https://huggingface.co/Zer0pa/ZPE-Video-models`
+- Contains RT-DETR weights, YOLO weights, graph model checkpoints, and cycle-8
+  checkpoint artifacts under `runpod/zpe_video_lab/...`.
+
+Verified live HF paths on 2026-04-24:
+
+- `runpod/zpe_video_lab/data/cycle8_zpe_budgets/b1000/images/train/000000013774_b1000.png`
+- `runpod/zpe_video_lab/data/cycle8_zpe_budgets/b8000/images/train/000000425925_b8000.png`
+- `runpod/zpe_video_lab/data/uvg_beauty/frames_480p/frame_0005.png`
+- `local/strokegat_cycle4_sync.tar.gz`
+- `local/database.xml`
+- `runpod/zpe_video_lab/reports/h_c2_stroke_gat_results.json`
+- `runpod/zpe_video_lab/python/rtdetr-l.pt`
+- `runpod/zpe_video_lab/reports/cycle8_track_a_runs/domain_adapt_mixed/weights/best.pt`
 
 Restore HF artifacts only when needed:
 
 ```bash
 hf auth whoami
-hf download Architect-Prime/zpe-video-artifacts --type dataset --local-dir hf_zpe_video_artifacts
-hf download Architect-Prime/zpe-video-models --type model --local-dir hf_zpe_video_models
+hf download Zer0pa/ZPE-Video-artifacts --type dataset --local-dir hf_zpe_video_artifacts
+hf download Zer0pa/ZPE-Video-models --type model --local-dir hf_zpe_video_models
 ```
 
-Do not pull the 11+ GB artifact repo unless the next task explicitly needs old
+Do not pull the multi-GB artifact repo unless the next task explicitly needs old
 RunPod/local research bundles.
 
 ## Disk Hygiene After Restart
@@ -127,4 +139,3 @@ uploaded to HF.
 Resume from GitHub PR #2. If the user asks for release/merge readiness, inspect
 the PR checks first. If the user asks for large historical evidence, restore the
 specific HF subset instead of downloading everything.
-
