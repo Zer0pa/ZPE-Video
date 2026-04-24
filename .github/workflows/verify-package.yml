@@ -7,18 +7,25 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build-and-import:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.11"
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: uv.lock
       - name: Build sdist and wheel
-        run: |
-          python -m pip install --upgrade pip build
-          python -m build
+        run: uv build
       - name: Verify wheel import surface
         run: |
           python -m venv .venv-wheel
@@ -28,11 +35,13 @@ jobs:
           python - <<'PY'
           import zpe_video
           expected = {
-              "Box", "CrossWriterMismatch", "PerceptionReceipt",
-              "ReceiptCorrupted", "Wave1Pipeline", "WIRE_MAGIC",
-              "WIRE_VERSION", "__version__",
-              "decode_receipt", "encode_receipt", "read_receipt",
-              "receipt_hash", "verify_receipt", "write_receipt",
+              "Box", "CrossWriterMismatch", "MANIFEST_ASSERTION",
+              "MANIFEST_PROFILE", "PerceptionReceipt", "ReceiptCorrupted",
+              "ReceiptManifest", "Wave1Pipeline", "WIRE_MAGIC",
+              "WIRE_VERSION", "__version__", "build_receipt_manifest",
+              "decode_manifest", "decode_receipt", "encode_receipt",
+              "manifest_hash", "read_receipt", "receipt_hash",
+              "verify_manifest_binding", "verify_receipt", "write_receipt",
           }
           assert set(zpe_video.__all__) == expected, (
               "public API changed unexpectedly: "
@@ -42,24 +51,24 @@ jobs:
           PY
       - name: Run repo-local unit tests
         run: |
-          python -m venv .venv-dev
-          . .venv-dev/bin/activate
-          python -m pip install --upgrade pip
-          python -m pip install -e '.[dev]'
-          python -m pytest tests -v
+          uv sync --extra dev
+          uv run pytest tests -v
 
   cross-writer-receipt-smoke:
     name: Cross-writer receipt smoke
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.11"
-      - name: Install
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -e '.[dev]'
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - name: Sync dev environment
+        run: uv sync --extra dev
       - name: Pin the commercial wedge
-        run: |
-          python -m pytest tests/test_receipt.py::test_cross_writer_independent_implementation_matches -v
+        run: uv run pytest tests/test_receipt.py::test_cross_writer_independent_implementation_matches -v

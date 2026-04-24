@@ -159,7 +159,9 @@ header only:
 - No writer identifier, version string, or provenance metadata in the
   blob itself. Provenance belongs in the enclosing envelope (e.g., a
   C2PA manifest, a signed wrapper) that **references the receipt by
-  hash**.
+  hash**. The companion `zpe_video.manifest` module implements this
+  pattern as deterministic external JSON; it is not part of the receipt
+  wire bytes.
 - No confidence scores. The receipt records what the model **decided**,
   not how certain it was.
 - No class dictionary. The integer `label` value is caller-defined; the
@@ -195,3 +197,8 @@ The functions exposed by that module (`encode_receipt`,
 `read_receipt`, `PerceptionReceipt`, `Box`) are the stable public API.
 The internal `_encode_frame_payload` / `_decode_frame_payload` functions
 are implementation details and may change between versions.
+
+Manifest binding helpers live in
+[`src/zpe_video/manifest.py`](../src/zpe_video/manifest.py). They bind to
+receipt bytes by SHA-256 and byte length without changing this wire
+format.

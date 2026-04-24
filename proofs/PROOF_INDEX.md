@@ -6,6 +6,11 @@
   <img src="../.github/assets/readme/section-bars/proof-corpus.svg" alt="PROOF CORPUS" width="100%">
 </p>
 
+Current receipt-core proof surface:
+
+- <code>proofs/manifests/CURRENT_AUTHORITY_PACKET.md</code>
+- <code>proofs/manifests/current_authority_packet.json</code>
+
 Historical (pre-0.1.0) proof surface:
 
 - <code>proofs/reference/2026-03-09_workspace_snapshot/</code>
@@ -19,6 +24,8 @@ Historical proof reading:
 **Current v0.1.0 evidence route:** [`../docs/transparency/`](../docs/transparency/)
 — reproducible bundle (harnesses, plans, summaries, machine-readable
 result JSON) backing every claim in [`../docs/WEDGE.md`](../docs/WEDGE.md).
+The current authority-bundle hash is regenerated with
+`python scripts/authority_bundle.py` from the repository root.
 
 <p>
   <img src="../.github/assets/readme/section-bars/engineering-references.svg" alt="ENGINEERING REFERENCES" width="100%">
@@ -30,6 +37,8 @@ Key files:
 - `proofs/reference/2026-03-09_workspace_snapshot/claim_status_delta.md`
 - `proofs/reference/2026-03-09_workspace_snapshot/handoff_manifest.json`
 - `proofs/reference/2026-03-09_workspace_snapshot/quality_gate_scorecard.json`
+- `proofs/manifests/CURRENT_AUTHORITY_PACKET.md`
+- `proofs/manifests/current_authority_packet.json`
 
 <p>
   <img src="../.github/assets/readme/section-bars/out-of-scope.svg" alt="OUT OF SCOPE" width="100%">
@@ -37,8 +46,8 @@ Key files:
 
 What is still missing:
 
-- repo-generated clean rerun logs
-- clean-clone replay outputs
-- release-grade validation artifacts
+- public Zenodo DOI minting
+- live PyPI release with PEP 740 attestation
+- live release SBOM artifact
 
-Those belong to later verification and release phases.
+Those belong to the first tagged release after this hardening pass.

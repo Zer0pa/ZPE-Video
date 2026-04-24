@@ -8,21 +8,24 @@ download, no network egress. Pure-stdlib core surface.
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -e '.[dev]'
+python -m pip install --upgrade pip uv
+uv sync --extra dev
 ```
 
 Optional extras:
 
 ```bash
 # To ingest raw video via YOLOv8m into a receipt
-python -m pip install -e '.[producer]'
+uv sync --extra producer
 
 # To run the legacy research harness
-python -m pip install -e '.[research]'
+uv sync --extra research
+
+# To regenerate the receipt-core benchmark and authority bundle
+uv sync --extra benchmark
 
 # Everything
-python -m pip install -e '.[all]'
+uv sync --extra all
 ```
 
 Python 3.11, 3.12, or 3.13. No OS-specific dependencies for the core
@@ -137,10 +140,13 @@ verify_receipt(blob_a, expected_peer_blob=blob_b)
 ## Run the tests
 
 ```bash
-pytest tests/test_receipt.py -v
+uv run pytest tests -v
+uv run python scripts/receipt_core_benchmark.py
+uv run python scripts/authority_bundle.py --check
 ```
 
-Expect 20 tests to pass.
+Expect 29 tests to pass. The benchmark should report `"verdict": "pass"`;
+the authority-bundle check should report `authority packet is current`.
 
 ## Next
 

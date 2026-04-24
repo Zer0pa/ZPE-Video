@@ -17,6 +17,11 @@ Perception receipts for AI video pipelines. Cross-writer bit-exact under default
 
 ZPE Video is a compact, deterministic binary format for recording what a detector and tracker saw in a video. The format's one unique structural property is **cross-writer bit-exactness under default settings**: given identical per-frame box state, every conforming writer — in any language — emits the same bytes, so the SHA-256 of a receipt is a stable cryptographic reference to "what the model saw." The core library is pure stdlib; the wire format is implementable in under 100 lines of any language with `struct` / `zlib` / `crc32` primitives. Full research history, including every falsified broader claim, ships in [`docs/transparency/`](docs/transparency/).
 
+| Field | Value |
+|-------|-------|
+| Architecture | VIDEO_RECEIPT_STREAM |
+| Encoding | VIDEO_PERCEPTION_RECEIPT_V1 |
+
 ## Key Metrics
 
 | Metric | Value | Baseline |
@@ -24,9 +29,9 @@ ZPE Video is a compact, deterministic binary format for recording what a detecto
 | CROSS_WRITER_HASH_STABLE | TRUE | vs default-Parquet FALSE |
 | STORAGE_VS_DEFAULT_PARQUET | 0.18× | vs default-Parquet 1.00× |
 | CACHE_READ_VS_DEFAULT_PARQUET | 0.067× | vs default-Parquet 1.00× |
-| TEST_PASS_RATE | 22/22 | full repo test suite |
+| RECEIPT_MANIFEST_BINDING | TRUE | C2PA-style hash reference; receipt bytes unchanged |
 
-> Source: [`docs/transparency/phase9_4_1_1_2_1_candidate_b_video_llm_object_memory/summary.json`](docs/transparency/phase9_4_1_1_2_1_candidate_b_video_llm_object_memory/summary.json)
+> Source: [`docs/transparency/phase9_4_1_1_2_1_candidate_b_video_llm_object_memory/summary.json`](docs/transparency/phase9_4_1_1_2_1_candidate_b_video_llm_object_memory/summary.json) and [`docs/transparency/phase09_4_1_1_2_2_receipt_core_provenance_benchmark/summary.json`](docs/transparency/phase09_4_1_1_2_2_receipt_core_provenance_benchmark/summary.json)
 
 ## Competitive Benchmarks
 
@@ -66,9 +71,9 @@ Raw struct + zlib is smaller in raw bytes but has no per-frame CRC32, no schema,
 | Field | Value |
 |-------|-------|
 | Verdict | STAGED |
-| Commit SHA | 89aa742 |
-| Confidence | 22/22 tests pass; v0.1.0 wheel + sdist build clean; 1 wedge defended, 2 killed, full evidence shipped |
-| Source | [`docs/WEDGE.md`](docs/WEDGE.md) |
+| Commit SHA | d68a3da2ab8e |
+| Confidence | 100% |
+| Source | [`proofs/manifests/CURRENT_AUTHORITY_PACKET.md`](proofs/manifests/CURRENT_AUTHORITY_PACKET.md) |
 
 ## Tests and Verification
 
@@ -87,7 +92,19 @@ Raw struct + zlib is smaller in raw bytes but has no per-frame CRC32, no schema,
 | V_11 | Seed changes bytes but not decoded content | PASS |
 | V_12 | Legacy codec smoke (`tests/test_codec.py`) | PASS |
 
-> Source: run `python -m pytest tests -v`. All 22 tests pass on Python 3.11, 3.12, 3.13.
+> Source: run `uv run pytest tests -v`. All 29 tests pass on Python 3.11 locally; CI runs Python 3.11, 3.12, 3.13.
+
+Receipt-core execution checks:
+
+```bash
+python scripts/receipt_core_benchmark.py
+```
+
+Expected: `verdict` is `pass`; generated artifacts land under
+[`docs/transparency/phase09_4_1_1_2_2_receipt_core_provenance_benchmark/`](docs/transparency/phase09_4_1_1_2_2_receipt_core_provenance_benchmark/).
+This benchmark verifies receipt cross-writer byte identity, C2PA-style
+manifest binding, baseline disclosure, and explicit non-claims. It does
+not execute Phase 10 or prove primitive-native closure.
 
 ## Proof Anchors
 
@@ -105,8 +122,13 @@ Raw struct + zlib is smaller in raw bytes but has no per-frame CRC32, no schema,
 | [`docs/transparency/phase9_4_1_1_2_fair_baseline/summary.json`](docs/transparency/phase9_4_1_1_2_fair_baseline/summary.json) | VERIFIED |
 | [`docs/transparency/research_ledger/VERDICT-SYNTHESIS.md`](docs/transparency/research_ledger/VERDICT-SYNTHESIS.md) | VERIFIED |
 | [`docs/transparency/research_ledger/ranked_hypothesis_ladder.md`](docs/transparency/research_ledger/ranked_hypothesis_ladder.md) | VERIFIED |
+| [`docs/transparency/phase09_4_1_1_2_2_receipt_core_provenance_benchmark/summary.json`](docs/transparency/phase09_4_1_1_2_2_receipt_core_provenance_benchmark/summary.json) | VERIFIED |
+| [`proofs/manifests/CURRENT_AUTHORITY_PACKET.md`](proofs/manifests/CURRENT_AUTHORITY_PACKET.md) | VERIFIED |
+| [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) | VERIFIED |
 | [`src/zpe_video/receipt.py`](src/zpe_video/receipt.py) | VERIFIED |
+| [`src/zpe_video/manifest.py`](src/zpe_video/manifest.py) | VERIFIED |
 | [`tests/test_receipt.py`](tests/test_receipt.py) | VERIFIED |
+| [`tests/test_manifest.py`](tests/test_manifest.py) | VERIFIED |
 | [`CHANGELOG.md`](CHANGELOG.md) | VERIFIED |
 
 ## Repo Shape
@@ -117,9 +139,9 @@ Raw struct + zlib is smaller in raw bytes but has no per-frame CRC32, no schema,
 | Package Version | `0.1.0` |
 | Python Compat | 3.11 / 3.12 / 3.13 |
 | Core Runtime Deps | 0 (stdlib only) |
-| Proof Anchors | 15 |
+| Proof Anchors | 20 |
 | Modality Lanes | 1 (video perception receipts) |
-| Test Suite | 22 tests, all PASS |
+| Test Suite | 29 tests, all PASS |
 | Authority Source | [`docs/WEDGE.md`](docs/WEDGE.md) |
 | Wire Format Spec | [`docs/WIRE_FORMAT.md`](docs/WIRE_FORMAT.md) |
 | Compass-8 / 8-primitive architecture | NOT USED by this codec (see [`docs/_reorientation/2026-04-17/NOVELTY_CARD.md`](docs/_reorientation/2026-04-17/NOVELTY_CARD.md)) |
@@ -131,13 +153,13 @@ git clone https://github.com/Zer0pa/ZPE-Video.git
 cd ZPE-Video
 python3.11 -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -e '.[dev]'
-python -m pytest tests -v
-python examples/02_cross_writer.py   # expected: "cross-writer wedge: VERIFIED"
+python -m pip install --upgrade pip uv
+uv sync --extra dev
+uv run pytest tests -v
+uv run python examples/02_cross_writer.py   # expected: "cross-writer wedge: VERIFIED"
 ```
 
-Expected: 22/22 tests pass; the cross-writer example prints `cross-writer wedge: VERIFIED` with byte-identical output from the library and an independent from-spec encoder.
+Expected: 29/29 tests pass; the cross-writer example prints `cross-writer wedge: VERIFIED` with byte-identical output from the library and an independent from-spec encoder.
 
 ---
 

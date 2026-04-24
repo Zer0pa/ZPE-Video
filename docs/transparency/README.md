@@ -17,6 +17,7 @@ docs/transparency/
 ├── phase9_4_1_1_2_1_candidate_a_roi_sidecar/             # Candidate A: kill
 ├── phase9_4_1_1_2_1_candidate_b_video_llm_object_memory/ # Candidate B: defend (the wedge)
 ├── phase9_4_1_1_2_1_candidate_c_primitive_semantic_enrichment/ # Candidate C: defend-with-caveat
+├── phase09_4_1_1_2_2_receipt_core_provenance_benchmark/  # receipt-core C2PA-style follow-up
 └── research_ledger/
     ├── VERDICT-SYNTHESIS.md
     ├── ranked_hypothesis_ladder.md
@@ -59,6 +60,10 @@ python docs/transparency/phase9_4_1_1_2_fair_baseline/harness.py
 python -m pip install pandas pyarrow fastparquet torch transformers
 python docs/transparency/phase9_4_1_1_2_1_candidate_b_video_llm_object_memory/harness.py --smoke
 
+# Receipt-core provenance benchmark (commercial follow-up; no Phase 10 claim)
+python -m pip install -e ".[dev]"
+python scripts/receipt_core_benchmark.py
+
 # Candidate C (primitive-semantic enrichment; tiny CPU job)
 python -m pip install scikit-learn lightgbm torch transformers pillow
 python docs/transparency/phase9_4_1_1_2_1_candidate_c_primitive_semantic_enrichment/harness.py --smoke
@@ -94,6 +99,8 @@ python docs/transparency/phase9_4_1_1_2_1_candidate_a_roi_sidecar/harness.py --s
   be backed by a new executable experiment under a new phase directory
   in the outer `.gpd/phases/` tree.
 - Kill verdicts stay. They are why the defend verdict is trustworthy.
+- Receipt-core pass artifacts do not upgrade the sovereign primitive-native
+  gate; they only support the commercial receipt wedge.
 
 ## Where the outer project artifacts live
 

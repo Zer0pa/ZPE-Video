@@ -135,7 +135,9 @@ def _generate_sequence(
         else:
             invert = False
             shift = 0
-        frame = _render_frame(background, width, height, boxes, luminance_shift=shift, invert=invert)
+        frame = _render_frame(
+            background, width, height, boxes, luminance_shift=shift, invert=invert
+        )
         frames.append(frame)
         gt_boxes.append(boxes)
 

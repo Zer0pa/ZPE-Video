@@ -75,9 +75,9 @@ import hashlib
 import io
 import struct
 import zlib
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Iterable, Sequence
 
 __all__ = [
     "Box",
@@ -186,17 +186,14 @@ class PerceptionReceipt:
 
     def __post_init__(self) -> None:
         if self.frame_count < 0 or self.frame_count > 0xFFFF:
-            raise ValueError(
-                f"frame_count {self.frame_count} out of range [0, 65535]"
-            )
+            raise ValueError(f"frame_count {self.frame_count} out of range [0, 65535]")
         if self.width < 0 or self.width > 0xFFFF:
             raise ValueError(f"width {self.width} out of range [0, 65535]")
         if self.height < 0 or self.height > 0xFFFF:
             raise ValueError(f"height {self.height} out of range [0, 65535]")
         if len(self.frames) != int(self.frame_count):
             raise ValueError(
-                f"frames length {len(self.frames)} does not match "
-                f"frame_count {self.frame_count}"
+                f"frames length {len(self.frames)} does not match frame_count {self.frame_count}"
             )
 
     @classmethod
@@ -206,7 +203,7 @@ class PerceptionReceipt:
         width: int,
         height: int,
         frames: Sequence[Sequence[Box]],
-    ) -> "PerceptionReceipt":
+    ) -> PerceptionReceipt:
         """Construct from a plain list-of-lists, coercing inner sequences to tuples."""
         frames_norm = tuple(tuple(frame) for frame in frames)
         return cls(
@@ -225,7 +222,7 @@ class PerceptionReceipt:
         return encode_receipt(self, seed=seed)
 
     @classmethod
-    def from_bytes(cls, blob: bytes) -> "PerceptionReceipt":
+    def from_bytes(cls, blob: bytes) -> PerceptionReceipt:
         """Parse a receipt from a byte string. Verifies all CRC32s."""
         return decode_receipt(blob)
 
@@ -271,9 +268,7 @@ def encode_receipt(
         payload = _encode_frame_payload(boxes, prev_by_id)
         compressed = zlib.compress(payload, level=_ZLIB_LEVEL)
         crc = zlib.crc32(compressed) & 0xFFFFFFFF
-        stream.write(
-            _FRAME_STRUCT.pack(int(frame_index), 1, len(compressed), int(crc))
-        )
+        stream.write(_FRAME_STRUCT.pack(int(frame_index), 1, len(compressed), int(crc)))
         stream.write(compressed)
         # sorted canonical box state for next-frame delta base
         prev_by_id = {int(b.box_id): b for b in sorted(boxes, key=lambda b: b.box_id)}
@@ -293,17 +288,12 @@ def decode_receipt(blob: bytes) -> PerceptionReceipt:
     """
     if len(blob) < _HEADER_STRUCT.size:
         raise ReceiptCorrupted("receipt is shorter than the header size")
-    magic, version, width, height, frame_count, _seed = _HEADER_STRUCT.unpack_from(
-        blob, 0
-    )
+    magic, version, width, height, frame_count, _seed = _HEADER_STRUCT.unpack_from(blob, 0)
     if magic != WIRE_MAGIC:
-        raise ReceiptCorrupted(
-            f"bad magic: got {magic!r}, expected {WIRE_MAGIC!r}"
-        )
+        raise ReceiptCorrupted(f"bad magic: got {magic!r}, expected {WIRE_MAGIC!r}")
     if version != WIRE_VERSION:
         raise ReceiptCorrupted(
-            f"unsupported wire version {version}; this library supports "
-            f"version {WIRE_VERSION}"
+            f"unsupported wire version {version}; this library supports version {WIRE_VERSION}"
         )
 
     offset = _HEADER_STRUCT.size
@@ -312,29 +302,20 @@ def decode_receipt(blob: bytes) -> PerceptionReceipt:
 
     for expected_index in range(int(frame_count)):
         if offset + _FRAME_STRUCT.size > len(blob):
-            raise ReceiptCorrupted(
-                f"truncated frame header at frame {expected_index}"
-            )
-        frame_index, _mode, payload_len, crc_expected = _FRAME_STRUCT.unpack_from(
-            blob, offset
-        )
+            raise ReceiptCorrupted(f"truncated frame header at frame {expected_index}")
+        frame_index, _mode, payload_len, crc_expected = _FRAME_STRUCT.unpack_from(blob, offset)
         offset += _FRAME_STRUCT.size
         if frame_index != expected_index:
             raise ReceiptCorrupted(
-                f"non-monotonic frame_index at position {expected_index}: "
-                f"got {frame_index}"
+                f"non-monotonic frame_index at position {expected_index}: got {frame_index}"
             )
         end = offset + int(payload_len)
         if end > len(blob):
-            raise ReceiptCorrupted(
-                f"truncated frame payload at frame {frame_index}"
-            )
+            raise ReceiptCorrupted(f"truncated frame payload at frame {frame_index}")
         compressed = blob[offset:end]
         offset = end
         if (zlib.crc32(compressed) & 0xFFFFFFFF) != int(crc_expected):
-            raise ReceiptCorrupted(
-                f"CRC32 mismatch at frame {frame_index}"
-            )
+            raise ReceiptCorrupted(f"CRC32 mismatch at frame {frame_index}")
         try:
             payload = zlib.decompress(compressed)
         except zlib.error as exc:
@@ -346,9 +327,7 @@ def decode_receipt(blob: bytes) -> PerceptionReceipt:
         prev_by_id = {int(b.box_id): b for b in sorted(boxes, key=lambda b: b.box_id)}
 
     if offset != len(blob):
-        raise ReceiptCorrupted(
-            f"trailing {len(blob) - offset} byte(s) after last frame"
-        )
+        raise ReceiptCorrupted(f"trailing {len(blob) - offset} byte(s) after last frame")
 
     return PerceptionReceipt(
         width=int(width),
@@ -407,7 +386,9 @@ def verify_receipt(
 # ---------------------------------------------------------------------------
 
 
-def write_receipt(receipt: PerceptionReceipt, path: str | Path, *, seed: int = _RECEIPT_SEED_DEFAULT) -> int:
+def write_receipt(
+    receipt: PerceptionReceipt, path: str | Path, *, seed: int = _RECEIPT_SEED_DEFAULT
+) -> int:
     """Encode a receipt and write it to disk. Returns the byte count written."""
     blob = encode_receipt(receipt, seed=seed)
     Path(path).write_bytes(blob)
@@ -438,8 +419,7 @@ def _encode_frame_payload(
     sorted_boxes = sorted(list(boxes), key=lambda b: int(b.box_id))
     if len(sorted_boxes) > 255:
         raise ValueError(
-            f"more than 255 boxes in a frame ({len(sorted_boxes)}); wire "
-            "format capacity exceeded"
+            f"more than 255 boxes in a frame ({len(sorted_boxes)}); wire format capacity exceeded"
         )
     out = bytearray()
     out.append(len(sorted_boxes))
@@ -513,7 +493,5 @@ def _decode_frame_payload(
         else:
             raise ReceiptCorrupted(f"unknown box mode byte {mode}")
     if off != len(payload):
-        raise ReceiptCorrupted(
-            f"trailing {len(payload) - off} byte(s) in frame payload"
-        )
+        raise ReceiptCorrupted(f"trailing {len(payload) - off} byte(s) in frame payload")
     return boxes

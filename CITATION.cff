@@ -4,14 +4,13 @@ message: >-
 type: software
 title: "ZPE Video: Perception Receipts for AI Video Pipelines"
 authors:
-  - given-names: Zer0pa
-    family-names: Architect-Prime
-  - name: Zer0pa Labs
+  - name: Zer0pa (Pty) Ltd
+    email: architects@zer0pa.ai
 version: 0.1.0
-date-released: "2026-04-17"
+date-released: "2026-04-24"
 repository-code: https://github.com/Zer0pa/ZPE-Video
 url: https://github.com/Zer0pa/ZPE-Video
-license: LicenseRef-Zer0pa-SAL-6.2
+license: LicenseRef-Zer0pa-SAL-7.0
 abstract: >-
   ZPE Video is a compact, deterministic binary format for recording what a
   detector and tracker saw in a video. Under default settings, every
@@ -39,9 +38,8 @@ preferred-citation:
   type: article
   title: ZPE Architecture Originating Publication (Defensive Prior-Art Disclosure)
   authors:
-    - given-names: Zer0pa
-      family-names: Architect-Prime
-    - name: Zer0pa Labs
+    - name: Zer0pa (Pty) Ltd
+      email: architects@zer0pa.ai
   year: 2026
   url: https://github.com/Zer0pa/ZPE-Video
 identifiers:

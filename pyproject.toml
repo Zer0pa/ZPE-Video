@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=69", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
 
 [project]
 name = "zpe-video"
@@ -8,9 +8,9 @@ version = "0.1.0"
 description = "ZPE Video — perception receipts for AI pipelines. Deterministic, cross-writer-stable, CRC-protected binary records of what a detector+tracker saw in a video."
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
-license = {file = "LICENSE"}
+license = "LicenseRef-Zer0pa-SAL-7.0"
 authors = [
-  {name = "Zer0pa", email = "architects@zer0pa.ai"},
+  {name = "Zer0pa (Pty) Ltd", email = "architects@zer0pa.ai"},
 ]
 keywords = [
   "video",
@@ -67,9 +67,17 @@ research = [
   "opencv-python-headless>=4.10",
 ]
 
+# Reproducibility and receipt-core benchmark controls. These are not runtime
+# dependencies of the core receipt package.
+benchmark = [
+  "fastparquet>=2024.11",
+  "pandas>=2.2,<3",
+  "pyarrow>=17",
+]
+
 # Everything a contributor likely wants
 all = [
-  "zpe-video[dev,producer,research]",
+  "zpe-video[dev,producer,research,benchmark]",
 ]
 
 [project.urls]
@@ -79,11 +87,22 @@ Issues = "https://github.com/Zer0pa/ZPE-Video/issues"
 Changelog = "https://github.com/Zer0pa/ZPE-Video/blob/main/CHANGELOG.md"
 Documentation = "https://github.com/Zer0pa/ZPE-Video/tree/main/docs"
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.hatch.build.targets.wheel]
+packages = ["src/zpe_video"]
 
-[tool.setuptools.package-data]
-zpe_video = ["py.typed"]
+[tool.hatch.build.targets.sdist]
+include = [
+  "/CHANGELOG.md",
+  "/CITATION.cff",
+  "/LICENSE",
+  "/README.md",
+  "/docs",
+  "/examples",
+  "/proofs",
+  "/scripts",
+  "/src",
+  "/tests",
+]
 
 [tool.pytest.ini_options]
 minversion = "8.0"

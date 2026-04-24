@@ -54,6 +54,13 @@ stable, binary artifact to point at: the receipt hash is stable across
 platforms and implementations, so the credential remains valid even when
 the assertion blob is regenerated downstream by a different pipeline.
 
+The current receipt-core follow-up implements this as an external manifest
+binding in `src/zpe_video/manifest.py`: the manifest stores receipt
+SHA-256, byte length, wire magic/version, and caller content id, but does
+not mutate or embed the receipt bytes. The manifest can be signed or
+embedded by downstream C2PA tooling while the receipt blob remains the
+stable authority surface.
+
 ### Regulated chain-of-custody for detector output
 
 Police body-worn-camera workflows, legal discovery, and insurance-fraud
@@ -128,6 +135,8 @@ disclosure. No result has been hidden.
 - Read [`WIRE_FORMAT.md`](WIRE_FORMAT.md) to re-implement the spec.
 - Read [`QUICKSTART.md`](QUICKSTART.md) for the three-example onboarding.
 - Check [`ARCHITECTURE.md`](ARCHITECTURE.md) for the package surface.
+- Run `python scripts/receipt_core_benchmark.py` to regenerate the
+  receipt-core provenance and manifest-binding benchmark.
 - Every experiment and verdict is checked into this repo at
   [`docs/transparency/`](transparency/).
 

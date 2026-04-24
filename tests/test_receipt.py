@@ -16,12 +16,12 @@ from pathlib import Path
 import pytest
 
 from zpe_video import (
+    WIRE_MAGIC,
+    WIRE_VERSION,
     Box,
     CrossWriterMismatch,
     PerceptionReceipt,
     ReceiptCorrupted,
-    WIRE_MAGIC,
-    WIRE_VERSION,
     decode_receipt,
     encode_receipt,
     read_receipt,
@@ -29,8 +29,6 @@ from zpe_video import (
     verify_receipt,
     write_receipt,
 )
-from zpe_video.receipt import _encode_frame_payload  # type: ignore[attr-defined]
-
 
 # ---------------------------------------------------------------------------
 # Fixtures
@@ -41,11 +39,15 @@ def _small_receipt() -> PerceptionReceipt:
     """3 frames, 2 tracks, mild motion. Covers absolute + delta + reordering."""
     frames = [
         # frame 0: two tracks, sorted by id
-        [Box(box_id=1, x=10, y=20, w=40, h=60, label=1),
-         Box(box_id=3, x=200, y=50, w=30, h=55, label=2)],
+        [
+            Box(box_id=1, x=10, y=20, w=40, h=60, label=1),
+            Box(box_id=3, x=200, y=50, w=30, h=55, label=2),
+        ],
         # frame 1: same two tracks, small motion (delta)
-        [Box(box_id=3, x=205, y=51, w=30, h=55, label=2),  # intentionally reordered
-         Box(box_id=1, x=11, y=21, w=40, h=60, label=1)],
+        [
+            Box(box_id=3, x=205, y=51, w=30, h=55, label=2),  # intentionally reordered
+            Box(box_id=1, x=11, y=21, w=40, h=60, label=1),
+        ],
         # frame 2: only track 1 present, motion continues
         [Box(box_id=1, x=14, y=22, w=40, h=60, label=1)],
     ]
@@ -58,7 +60,10 @@ def _empty_receipt() -> PerceptionReceipt:
 
 def _single_frame_empty() -> PerceptionReceipt:
     return PerceptionReceipt(
-        width=320, height=240, frame_count=1, frames=((),),
+        width=320,
+        height=240,
+        frame_count=1,
+        frames=((),),
     )
 
 
@@ -112,12 +117,10 @@ def test_same_input_yields_same_bytes():
 def test_reordered_input_yields_same_bytes():
     """Box order within a frame must not affect output bytes."""
     frames_a = [
-        [Box(box_id=1, x=10, y=10, w=20, h=20),
-         Box(box_id=2, x=50, y=50, w=20, h=20)],
+        [Box(box_id=1, x=10, y=10, w=20, h=20), Box(box_id=2, x=50, y=50, w=20, h=20)],
     ]
     frames_b = [
-        [Box(box_id=2, x=50, y=50, w=20, h=20),
-         Box(box_id=1, x=10, y=10, w=20, h=20)],
+        [Box(box_id=2, x=50, y=50, w=20, h=20), Box(box_id=1, x=10, y=10, w=20, h=20)],
     ]
     a = PerceptionReceipt.from_frames(width=320, height=240, frames=frames_a)
     b = PerceptionReceipt.from_frames(width=320, height=240, frames=frames_b)
@@ -137,8 +140,12 @@ def test_cross_writer_independent_implementation_matches():
     buf = bytearray()
     buf += struct.pack(
         "<6sBHHHI",
-        WIRE_MAGIC, WIRE_VERSION,
-        receipt.width, receipt.height, receipt.frame_count, 0,
+        WIRE_MAGIC,
+        WIRE_VERSION,
+        receipt.width,
+        receipt.height,
+        receipt.frame_count,
+        0,
     )
     prev: dict[int, Box] = {}
     for idx, frame in enumerate(receipt.frames):
@@ -151,8 +158,7 @@ def test_cross_writer_independent_implementation_matches():
             prev_box = prev.get(int(box.box_id))
             if prev_box is None:
                 payload.append(0)
-                payload += struct.pack("<HHHH",
-                                       int(box.x), int(box.y), int(box.w), int(box.h))
+                payload += struct.pack("<HHHH", int(box.x), int(box.y), int(box.w), int(box.h))
             else:
                 dx = int(box.x) - int(prev_box.x)
                 dy = int(box.y) - int(prev_box.y)
@@ -283,7 +289,10 @@ def test_too_many_boxes_in_frame_raises():
     # 256 boxes exceeds the 255 wire-format cap
     too_many = tuple(Box(box_id=i % 256, x=0, y=0, w=1, h=1) for i in range(256))
     receipt = PerceptionReceipt(
-        width=320, height=240, frame_count=1, frames=(too_many,),
+        width=320,
+        height=240,
+        frame_count=1,
+        frames=(too_many,),
     )
     with pytest.raises(ValueError, match="255 boxes"):
         encode_receipt(receipt)

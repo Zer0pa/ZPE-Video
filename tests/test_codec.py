@@ -1,18 +1,17 @@
 from __future__ import annotations
 
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
-import sys
-
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from zpe_video.codec import decode_sequence, encode_sequence
-from zpe_video.constants import GATE_SEEDS
-from zpe_video.fixtures import generate_proxy_corpus
-from zpe_video.metrics import sha256_file
+from zpe_video.codec import decode_sequence, encode_sequence  # noqa: E402
+from zpe_video.constants import GATE_SEEDS  # noqa: E402
+from zpe_video.fixtures import generate_proxy_corpus  # noqa: E402
+from zpe_video.metrics import sha256_file  # noqa: E402
 
 
 class CodecTests(unittest.TestCase):

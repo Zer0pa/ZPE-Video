@@ -30,8 +30,14 @@ Closes # (if applicable)
 </p>
 
 - [ ] `python3 -m compileall src scripts` passes
-- [ ] `pytest tests/test_codec.py` passes, or failures are documented
-- [ ] `from zpe_video import Wave1Pipeline` imports cleanly
+- [ ] `python3 -m pytest tests -v` passes, or failures are documented
+- [ ] `python3 examples/02_cross_writer.py` prints `cross-writer wedge: VERIFIED`
+- [ ] `python3 scripts/receipt_core_benchmark.py` passes if receipt, manifest, benchmark, or proof language changed
+- [ ] Import surface check passes:
+      `python3 - <<'PY'
+      import zpe_video
+      print(sorted(zpe_video.__all__))
+      PY`
 - [ ] If behaviour changed, exact evidence paths are attached below
 - [ ] If behaviour did not change, I stated why evidence is not required
 
@@ -65,3 +71,4 @@ If no evidence is required, explain why:
 
 - [ ] This PR does not inflate the scientific state beyond what the artifacts support
 - [ ] This PR does not convert repo cleanup into a green claim
+- [ ] This PR does not claim Phase 10 execution, Red Magic runtime validation, or sovereign primitive-native closure

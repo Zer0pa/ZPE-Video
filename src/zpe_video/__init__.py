@@ -22,6 +22,9 @@ Primary API
 - :func:`~zpe_video.receipt.verify_receipt`
 - :func:`~zpe_video.receipt.read_receipt`
 - :func:`~zpe_video.receipt.write_receipt`
+- :class:`~zpe_video.manifest.ReceiptManifest`
+- :func:`~zpe_video.manifest.build_receipt_manifest`
+- :func:`~zpe_video.manifest.verify_manifest_binding`
 
 Internal research harness (unstable, not part of the public wedge):
 
@@ -30,13 +33,23 @@ Internal research harness (unstable, not part of the public wedge):
 
 from __future__ import annotations
 
+from .manifest import (
+    MANIFEST_ASSERTION,
+    MANIFEST_PROFILE,
+    ReceiptManifest,
+    build_receipt_manifest,
+    decode_manifest,
+    manifest_hash,
+    verify_manifest_binding,
+)
+from .pipeline import Wave1Pipeline
 from .receipt import (
+    WIRE_MAGIC,
+    WIRE_VERSION,
     Box,
     CrossWriterMismatch,
     PerceptionReceipt,
     ReceiptCorrupted,
-    WIRE_MAGIC,
-    WIRE_VERSION,
     decode_receipt,
     encode_receipt,
     read_receipt,
@@ -44,23 +57,29 @@ from .receipt import (
     verify_receipt,
     write_receipt,
 )
-from .pipeline import Wave1Pipeline
 
 __version__ = "0.1.0"
 
 __all__ = [
     "Box",
     "CrossWriterMismatch",
+    "MANIFEST_ASSERTION",
+    "MANIFEST_PROFILE",
     "PerceptionReceipt",
+    "ReceiptManifest",
     "ReceiptCorrupted",
     "Wave1Pipeline",
     "WIRE_MAGIC",
     "WIRE_VERSION",
     "__version__",
+    "build_receipt_manifest",
     "decode_receipt",
+    "decode_manifest",
     "encode_receipt",
+    "manifest_hash",
     "read_receipt",
     "receipt_hash",
+    "verify_manifest_binding",
     "verify_receipt",
     "write_receipt",
 ]
