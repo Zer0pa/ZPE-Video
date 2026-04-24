@@ -1,5 +1,5 @@
 {
-  "bundle_sha256": "1c0fbe147685a6fbca606d55dd9d4d210446d961b7d8d5034f4e24f716311597",
+  "bundle_sha256": "bde8d94dc3c6edb4029f3dc17bb85e787d27bfce60f0975dd0722b88377ca897",
   "commercial_receipt_core_verdict": "PASS",
   "files": [
     {
@@ -34,8 +34,8 @@
     },
     {
       "path": "docs/transparency/phase09_4_1_1_2_2_receipt_core_provenance_benchmark/summary.json",
-      "sha256": "c02c83422f68c51ec41de0b9abf6fce27ee1fc392811d2307a72b99b9732f01e",
-      "size": 9180
+      "sha256": "f92103cb0763be52fa42c391ab369f47e58ac4d3533e78f28af156b227a70111",
+      "size": 9046
     },
     {
       "path": "docs/transparency/phase09_4_1_1_2_2_receipt_core_provenance_benchmark/manifest_binding.json",

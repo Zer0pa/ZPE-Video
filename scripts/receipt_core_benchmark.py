@@ -13,7 +13,6 @@ import argparse
 import csv
 import hashlib
 import json
-import platform
 import struct
 import sys
 import zlib
@@ -369,8 +368,6 @@ def run_benchmark(output_dir: Path) -> dict[str, Any]:
         "phase": PHASE_ID,
         "phase_name": PHASE_NAME,
         "benchmark": "receipt_core_provenance_manifest_binding",
-        "python": sys.version,
-        "platform": platform.platform(),
         "case_count": len(cases),
         "cases": cases,
         "summary": {

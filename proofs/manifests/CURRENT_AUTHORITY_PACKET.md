@@ -5,7 +5,7 @@
 - Predicate type: `https://zer0pa.ai/predicates/zpe-video-receipt/v1`
 - Commercial receipt-core verdict: `PASS`
 - Sovereign gate status: `red`
-- Bundle SHA-256: `1c0fbe147685a6fbca606d55dd9d4d210446d961b7d8d5034f4e24f716311597`
+- Bundle SHA-256: `bde8d94dc3c6edb4029f3dc17bb85e787d27bfce60f0975dd0722b88377ca897`
 
 The bundle hash covers the canonical sorted list of authority files below. It is
 a repo-local receipt-chain anchor; it does not claim Phase 10 closure.
@@ -18,7 +18,7 @@ a repo-local receipt-chain anchor; it does not claim Phase 10 closure.
 | `docs/WEDGE.md` | `e5351d07aca59e0bed9c70b83171d36c43f651940ec9cce11af115712b030545` | 8313 |
 | `docs/WIRE_FORMAT.md` | `332323234629d68ad5887d83ae171bf79cec37a6cafeb0b1dc849b021d8fd09d` | 7723 |
 | `docs/VERIFICATION.md` | `757648d06a715823472ad1c827bb81df666295de7f41fdb98d407858af1404de` | 2137 |
-| `docs/transparency/phase09_4_1_1_2_2_receipt_core_provenance_benchmark/summary.json` | `c02c83422f68c51ec41de0b9abf6fce27ee1fc392811d2307a72b99b9732f01e` | 9180 |
+| `docs/transparency/phase09_4_1_1_2_2_receipt_core_provenance_benchmark/summary.json` | `f92103cb0763be52fa42c391ab369f47e58ac4d3533e78f28af156b227a70111` | 9046 |
 | `docs/transparency/phase09_4_1_1_2_2_receipt_core_provenance_benchmark/manifest_binding.json` | `653868865b08b7d52901173e85ae7b982ab19d00919b2ee7419e328c439fc710` | 965 |
 | `docs/transparency/phase09_4_1_1_2_2_receipt_core_provenance_benchmark/baseline_table.csv` | `9f9f1906dd6e1cff0ecfd699bd0118dec683f67df82c63e5057d27c8f563030e` | 3972 |
 | `src/zpe_video/receipt.py` | `a692a002f740a2ddfc45196d4d43aa2ab78c6877601e992f4e4deac53722cd0d` | 17501 |
