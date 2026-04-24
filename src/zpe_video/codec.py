@@ -14,6 +14,7 @@ VERSION = 1
 HEADER_STRUCT = struct.Struct("<6sBHHHI")
 FRAME_STRUCT = struct.Struct("<HBII")
 
+
 def _encode_payload(boxes: list[Box], prev_by_id: dict[int, Box]) -> bytes:
     payload = bytearray()
     if len(boxes) > 255:
@@ -258,6 +259,8 @@ def decode_sequence(stream_path: str, tolerate_corruption: bool = True) -> Decod
         )
 
 
-def decode_payload_for_machine_mode(payload_compressed: bytes, prev_by_id: dict[int, Box]) -> list[Box]:
+def decode_payload_for_machine_mode(
+    payload_compressed: bytes, prev_by_id: dict[int, Box]
+) -> list[Box]:
     payload = zlib.decompress(payload_compressed)
     return _decode_payload(payload, prev_by_id)

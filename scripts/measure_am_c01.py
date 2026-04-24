@@ -9,7 +9,7 @@ import shutil
 import subprocess
 import sys
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import numpy as np
@@ -17,7 +17,7 @@ from PIL import Image
 
 
 def _now_utc() -> str:
-    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    return datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def _sha256_bytes(payload: bytes) -> str:
@@ -63,18 +63,29 @@ def _resolve_datasets_root(repo_root: Path) -> Path:
     for candidate in candidates:
         if candidate.exists():
             return candidate
-    raise FileNotFoundError("No datasets root found. Checked repo and workspace dataset directories.")
+    raise FileNotFoundError(
+        "No datasets root found. Checked repo and workspace dataset directories."
+    )
 
 
 def _load_modules(repo_root: Path) -> tuple[object, ...]:
     sys.path.insert(0, str(repo_root / "src"))
     from zpe_video.codec import decode_sequence, encode_sequence
-    from zpe_video.detector import TorchvisionCocoDetector, VISDRONE_TO_EVAL_LABEL
-    from zpe_video.models import Box, SequenceData
+    from zpe_video.detector import VISDRONE_TO_EVAL_LABEL, TorchvisionCocoDetector
     from zpe_video.metrics import iou
+    from zpe_video.models import Box, SequenceData
     from zpe_video.vision import reconstruct_frame
 
-    return Box, SequenceData, TorchvisionCocoDetector, VISDRONE_TO_EVAL_LABEL, encode_sequence, decode_sequence, reconstruct_frame, iou
+    return (
+        Box,
+        SequenceData,
+        TorchvisionCocoDetector,
+        VISDRONE_TO_EVAL_LABEL,
+        encode_sequence,
+        decode_sequence,
+        reconstruct_frame,
+        iou,
+    )
 
 
 def _scale_box(box: object, *, scale_x: float, scale_y: float, Box: object) -> object:
@@ -116,7 +127,9 @@ def _load_visdrone_subset(
         image = Image.open(image_path).convert("RGB")
         width, height = image.size
         boxes: list[object] = []
-        for line_idx, line in enumerate(ann_path.read_text(encoding="utf-8", errors="ignore").splitlines()):
+        for line_idx, line in enumerate(
+            ann_path.read_text(encoding="utf-8", errors="ignore").splitlines()
+        ):
             parts = [part.strip() for part in line.split(",")]
             if len(parts) < 8:
                 continue
@@ -176,14 +189,18 @@ def _predict_many(detector: object, frames: list[np.ndarray]) -> list[list[objec
     return [detector.predict(frame) for frame in frames]
 
 
-def _assign_track_ids(predictions: list[list[object]], *, Box: object, iou: object, match_threshold: float = 0.3) -> list[list[object]]:
+def _assign_track_ids(
+    predictions: list[list[object]], *, Box: object, iou: object, match_threshold: float = 0.3
+) -> list[list[object]]:
     tracked: list[list[object]] = []
     previous: list[object] = []
     next_box_id = 0
     for frame_predictions in predictions:
         current: list[object] = []
         unused_previous = set(range(len(previous)))
-        ordered_predictions = sorted(frame_predictions, key=lambda box: (-float(box.confidence), box.label, box.x, box.y))
+        ordered_predictions = sorted(
+            frame_predictions, key=lambda box: (-float(box.confidence), box.label, box.x, box.y)
+        )
         for box in ordered_predictions:
             best_prev_idx = -1
             best_score = 0.0
@@ -232,7 +249,9 @@ def _compute_average_precision(tp: np.ndarray, fp: np.ndarray, total_gt: int) ->
     return float(np.mean(np.asarray(precision_envelope, dtype=np.float64)))
 
 
-def _compute_map50(gt_frames: list[list[object]], pred_frames: list[list[object]], *, iou: object) -> tuple[float, dict[str, float]]:
+def _compute_map50(
+    gt_frames: list[list[object]], pred_frames: list[list[object]], *, iou: object
+) -> tuple[float, dict[str, float]]:
     class_labels = sorted({box.label for frame in gt_frames for box in frame})
     per_class_ap: dict[str, float] = {}
     for label in class_labels:
@@ -250,7 +269,10 @@ def _compute_map50(gt_frames: list[list[object]], pred_frames: list[list[object]
                     predictions.append((frame_idx, float(box.confidence), box))
         predictions.sort(key=lambda item: item[1], reverse=True)
 
-        matched = {frame_idx: [False] * len(frame_boxes) for frame_idx, frame_boxes in enumerate(gt_by_frame)}
+        matched = {
+            frame_idx: [False] * len(frame_boxes)
+            for frame_idx, frame_boxes in enumerate(gt_by_frame)
+        }
         tp: list[float] = []
         fp: list[float] = []
         for frame_idx, _, prediction in predictions:
@@ -298,7 +320,9 @@ def _load_png_frames(frame_dir: Path) -> list[np.ndarray]:
     return frames
 
 
-def _encode_h265(repo_root: Path, artifact_root: Path, rgb_frames: list[np.ndarray], *, frame_rate: int) -> tuple[list[np.ndarray], int, Path]:
+def _encode_h265(
+    repo_root: Path, artifact_root: Path, rgb_frames: list[np.ndarray], *, frame_rate: int
+) -> tuple[list[np.ndarray], int, Path]:
     tmp_root = artifact_root / "tmp" / "h265"
     input_dir = tmp_root / "in_frames"
     output_dir = tmp_root / "out_frames"
@@ -330,7 +354,9 @@ def _encode_h265(repo_root: Path, artifact_root: Path, rgb_frames: list[np.ndarr
         cwd=repo_root,
     )
     if encode_result.returncode != 0:
-        raise RuntimeError(encode_result.stderr.strip() or encode_result.stdout.strip() or "H265_ENCODE_FAILED")
+        raise RuntimeError(
+            encode_result.stderr.strip() or encode_result.stdout.strip() or "H265_ENCODE_FAILED"
+        )
 
     decode_result = _run(
         [
@@ -345,7 +371,9 @@ def _encode_h265(repo_root: Path, artifact_root: Path, rgb_frames: list[np.ndarr
         cwd=repo_root,
     )
     if decode_result.returncode != 0:
-        raise RuntimeError(decode_result.stderr.strip() or decode_result.stdout.strip() or "H265_DECODE_FAILED")
+        raise RuntimeError(
+            decode_result.stderr.strip() or decode_result.stdout.strip() or "H265_DECODE_FAILED"
+        )
 
     return _load_png_frames(output_dir), int(video_path.stat().st_size), video_path
 
@@ -422,14 +450,20 @@ def _frame_manifest(frames: list[LoadedFrame]) -> list[dict[str, object]]:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run parity-clean AM-C01 H0 measurement on Mac CPU.")
-    parser.add_argument("--frame-count", type=int, default=20, help="Number of VisDrone frames to evaluate.")
+    parser = argparse.ArgumentParser(
+        description="Run parity-clean AM-C01 H0 measurement on Mac CPU."
+    )
+    parser.add_argument(
+        "--frame-count", type=int, default=20, help="Number of VisDrone frames to evaluate."
+    )
     parser.add_argument(
         "--artifact-dir",
         default="artifacts/2026-03-13_am_c01_h0",
         help="Artifact directory relative to repo root.",
     )
-    parser.add_argument("--score-threshold", type=float, default=0.05, help="Detector score threshold.")
+    parser.add_argument(
+        "--score-threshold", type=float, default=0.05, help="Detector score threshold."
+    )
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[1]
@@ -463,7 +497,9 @@ def main() -> int:
     source_boxes = _assign_track_ids(baseline_predictions, Box=Box, iou=iou)
 
     baseline_map50, baseline_per_class = _compute_map50(gt_frames, baseline_predictions, iou=iou)
-    h265_frames, h265_bitrate_bytes, h265_path = _encode_h265(repo_root, artifact_root, rgb_frames, frame_rate=24)
+    h265_frames, h265_bitrate_bytes, h265_path = _encode_h265(
+        repo_root, artifact_root, rgb_frames, frame_rate=24
+    )
     h265_predictions = _predict_many(detector, h265_frames[: len(gt_frames)])
     h265_map50, h265_per_class = _compute_map50(gt_frames, h265_predictions, iou=iou)
 
@@ -483,7 +519,9 @@ def main() -> int:
     zpe_map50, zpe_per_class = _compute_map50(gt_frames, zpe_predictions, iou=iou)
 
     detection_retention = (zpe_map50 / baseline_map50) if baseline_map50 > 0 else 0.0
-    bitrate_ratio = (zpe_bitrate_bytes / float(h265_bitrate_bytes)) if h265_bitrate_bytes > 0 else float("inf")
+    bitrate_ratio = (
+        (zpe_bitrate_bytes / float(h265_bitrate_bytes)) if h265_bitrate_bytes > 0 else float("inf")
+    )
     passed = detection_retention >= 0.95 and bitrate_ratio <= 0.02
 
     script_path = Path(__file__).resolve()
@@ -497,7 +535,9 @@ def main() -> int:
         "frame_names": [frame.name for frame in frames],
         "detector_model": detector.model_id,
         "detector_score_threshold": float(args.score_threshold),
-        "detector_model_sha256": _sha256_file(model_path) if model_path and model_path.exists() else None,
+        "detector_model_sha256": _sha256_file(model_path)
+        if model_path and model_path.exists()
+        else None,
         "metric_name": "mAP@50",
         "baseline_metric": float(baseline_map50),
         "baseline_per_class_ap50": baseline_per_class,
@@ -551,8 +591,12 @@ def main() -> int:
 
     measurement_path = artifact_root / "am_c01_measurement.json"
     custody_path = artifact_root / "am_c01_custody_manifest.json"
-    measurement_path.write_text(json.dumps(measurement, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    custody_path.write_text(json.dumps(custody_manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    measurement_path.write_text(
+        json.dumps(measurement, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    custody_path.write_text(
+        json.dumps(custody_manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     print(json.dumps(measurement, indent=2, sort_keys=True))
     return 0 if passed else 1
 

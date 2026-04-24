@@ -5,11 +5,10 @@ import importlib
 import json
 import os
 import shutil
-import struct
 import subprocess
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -56,7 +55,7 @@ class Wave1Pipeline:
         self.snapshots_root.mkdir(parents=True, exist_ok=True)
 
     def _now(self) -> str:
-        return datetime.now(timezone.utc).isoformat()
+        return datetime.now(UTC).isoformat()
 
     def _log(self, message: str) -> None:
         with self.command_log_path.open("a", encoding="utf-8") as f:
@@ -181,8 +180,13 @@ class Wave1Pipeline:
         else:
             status = "IMPRACTICAL"
             imp_code = default_imp
-            failed = next((item for item in attempts if item.get("return_code") != 0), attempts[-1] if attempts else {})
-            error_signature = failed.get("stderr_tail") or failed.get("stdout_tail") or "NO_ERROR_OUTPUT"
+            failed = next(
+                (item for item in attempts if item.get("return_code") != 0),
+                attempts[-1] if attempts else {},
+            )
+            error_signature = (
+                failed.get("stderr_tail") or failed.get("stdout_tail") or "NO_ERROR_OUTPUT"
+            )
             comparability = "high: equivalence unproven"
 
         return {
@@ -237,7 +241,11 @@ class Wave1Pipeline:
                         "--ignore-requires-python",
                         "git+https://github.com/InterDigitalInc/CompressAI-Vision.git",
                     ],
-                    [py, "-c", "import importlib.util,sys;sys.exit(0 if importlib.util.find_spec('compressai_vision') else 1)"],
+                    [
+                        py,
+                        "-c",
+                        "import importlib.util,sys;sys.exit(0 if importlib.util.find_spec('compressai_vision') else 1)",
+                    ],
                 ],
                 "fallback": "proxy AP harness only",
                 "default_imp": "IMP-COMPUTE",
@@ -264,7 +272,7 @@ class Wave1Pipeline:
                             "curl -fsSLI https://media.xiph.org/video/derf/ && "
                             f"'{py}' -c \"from pathlib import Path; import sys; "
                             "p=Path('datasets/XIPH/raw_downloads/akiyo_cif.y4m'); "
-                            "sys.exit(0 if p.exists() and p.stat().st_size>1000000 else 1)\""
+                            'sys.exit(0 if p.exists() and p.stat().st_size>1000000 else 1)"'
                         ),
                     ]
                 ],
@@ -348,7 +356,12 @@ class Wave1Pipeline:
                 "claim_linkage": ["VID-C004"],
                 "commands": [
                     ["curl", "-fsSLI", "https://hevc.hhi.fraunhofer.de/"],
-                    ["curl", "-L", "--fail", "http://wftp3.itu.int/av-arch/jctvc-site/bitstream_exchange/draft_conformance/"],
+                    [
+                        "curl",
+                        "-L",
+                        "--fail",
+                        "http://wftp3.itu.int/av-arch/jctvc-site/bitstream_exchange/draft_conformance/",
+                    ],
                     [
                         py,
                         "-c",
@@ -376,7 +389,9 @@ class Wave1Pipeline:
                 "resource_id": "kinetics400_dataset",
                 "source_reference": "https://github.com/cvdfoundation/kinetics-dataset",
                 "claim_linkage": ["VID-C004", "VID-C006"],
-                "commands": [["git", "ls-remote", "https://github.com/cvdfoundation/kinetics-dataset"]],
+                "commands": [
+                    ["git", "ls-remote", "https://github.com/cvdfoundation/kinetics-dataset"]
+                ],
                 "fallback": "proxy action-video fixtures",
                 "default_imp": "IMP-ACCESS",
                 "requires_gpu": True,
@@ -457,7 +472,7 @@ class Wave1Pipeline:
                             "from basicsr.archs.rrdbnet_arch import RRDBNet; "
                             "m=RRDBNet(num_in_ch=3,num_out_ch=3,num_feat=64,num_block=2,num_grow_ch=32,scale=2); "
                             "u=RealESRGANer(scale=2,model_path=None,model=m,tile=0,tile_pad=10,pre_pad=0,half=False); "
-                            "print(type(u).__name__)\""
+                            'print(type(u).__name__)"'
                         ),
                     ],
                 ],
@@ -516,7 +531,9 @@ class Wave1Pipeline:
             "resource_attempts": results,
         }
 
-    def _collect_impracticality_decisions(self, attempts: dict[str, Any]) -> tuple[list[dict[str, Any]], bool]:
+    def _collect_impracticality_decisions(
+        self, attempts: dict[str, Any]
+    ) -> tuple[list[dict[str, Any]], bool]:
         decisions: list[dict[str, Any]] = []
         valid = True
         for item in attempts["resource_attempts"]:
@@ -577,10 +594,11 @@ class Wave1Pipeline:
             )
         return {"timestamp_utc": self._now(), "items": matrix}
 
-    def _runpod_artifacts(self, attempts: dict[str, Any]) -> tuple[dict[str, Any], str, dict[str, Any]]:
+    def _runpod_artifacts(
+        self, attempts: dict[str, Any]
+    ) -> tuple[dict[str, Any], str, dict[str, Any]]:
         needs_runpod = any(
-            item["status"] == "IMPRACTICAL"
-            and item["impracticality_code"] == "IMP-COMPUTE"
+            item["status"] == "IMPRACTICAL" and item["impracticality_code"] == "IMP-COMPUTE"
             for item in attempts["resource_attempts"]
         )
         deferred_resources = [
@@ -668,7 +686,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             "Decoder_RealESRGAN",
             "Decoder_MMagic",
         }
-        decoder_attempts = [a for a in attempts.get("resource_attempts", []) if a.get("resource_id") in decoder_ids]
+        decoder_attempts = [
+            a for a in attempts.get("resource_attempts", []) if a.get("resource_id") in decoder_ids
+        ]
 
         refs = {
             "Decoder_OpenCV_Inpaint": {
@@ -735,7 +755,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             json.dump(payload, f, indent=2, sort_keys=True)
             f.write("\n")
 
-    def _run_command(self, cmd: list[str], cwd: Path | None = None) -> subprocess.CompletedProcess[str]:
+    def _run_command(
+        self, cmd: list[str], cwd: Path | None = None
+    ) -> subprocess.CompletedProcess[str]:
         self._log(f"CMD {' '.join(cmd)}")
         return subprocess.run(
             cmd,
@@ -789,9 +811,13 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                 "source_reference": "ffmpeg libx265 local binary",
                 "planned_usage": "incumbent H.265 baseline comparator",
                 "evidence_artifact": str(self.artifact_root / "video_compression_benchmark.json"),
-                "substitution": "none" if ffmpeg_available and ffmpeg_x265 else "zlib-size proxy baseline",
+                "substitution": "none"
+                if ffmpeg_available and ffmpeg_x265
+                else "zlib-size proxy baseline",
                 "comparability_impact": (
-                    "none" if ffmpeg_available and ffmpeg_x265 else "high: no direct H.265 comparability"
+                    "none"
+                    if ffmpeg_available and ffmpeg_x265
+                    else "high: no direct H.265 comparability"
                 ),
             },
             "dcvc": {
@@ -824,9 +850,13 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                 "planned_usage": "perceptual distance metric",
                 "evidence_artifact": str(self.artifact_root / "video_generative_eval.json"),
                 "substitution": (
-                    "none" if self._detect_python_module("lpips") else "LPIPS proxy (L1 + gradient delta)"
+                    "none"
+                    if self._detect_python_module("lpips")
+                    else "LPIPS proxy (L1 + gradient delta)"
                 ),
-                "comparability_impact": "none" if self._detect_python_module("lpips") else "high: metric non-equivalence",
+                "comparability_impact": "none"
+                if self._detect_python_module("lpips")
+                else "high: metric non-equivalence",
             },
             "spade_or_vid2vid": {
                 "available": (self.repo_root / "decoders/spade_decoder").exists()
@@ -847,11 +877,15 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                 "planned_usage": "benchmark dataset requirement from PRD Appendix B",
                 "evidence_artifact": str(self.artifact_root / "concept_resource_traceability.json"),
                 "substitution": f"deterministic {key}_proxy fixtures" if not available else "none",
-                "comparability_impact": "high: external validity reduced" if not available else "none",
+                "comparability_impact": "high: external validity reduced"
+                if not available
+                else "none",
             }
 
         baseline_inventory = {
-            "python_version": self._run_command([self.python_executable, "--version"]).stdout.strip()
+            "python_version": self._run_command(
+                [self.python_executable, "--version"]
+            ).stdout.strip()
             or self._run_command([self.python_executable, "--version"]).stderr.strip(),
             "ffmpeg_version_head": (ffmpeg_probe.stdout + ffmpeg_probe.stderr).splitlines()[:3],
             "ffmpeg_x265_detected": ffmpeg_x265,
@@ -885,7 +919,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                     str(self.artifact_root / "falsification_results.md"),
                 ],
             },
-            "x265_encoder_signature": x265_probe_output.splitlines()[:20] if x265_probe_output else [],
+            "x265_encoder_signature": x265_probe_output.splitlines()[:20]
+            if x265_probe_output
+            else [],
         }
 
     def gate_a(self) -> bool:
@@ -912,7 +948,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             "gap_closure_md_exists": gap_closure_md.exists(),
             "md_sha256": sha256_file(str(net_new_pack_md)) if net_new_pack_md.exists() else None,
             "pdf_sha256": sha256_file(str(net_new_pack_pdf)) if net_new_pack_pdf.exists() else None,
-            "gap_closure_md_sha256": sha256_file(str(gap_closure_md)) if gap_closure_md.exists() else None,
+            "gap_closure_md_sha256": sha256_file(str(gap_closure_md))
+            if gap_closure_md.exists()
+            else None,
             "md_bytes": net_new_pack_md.stat().st_size if net_new_pack_md.exists() else 0,
             "pdf_bytes": net_new_pack_pdf.stat().st_size if net_new_pack_pdf.exists() else 0,
             "gap_closure_md_bytes": gap_closure_md.stat().st_size if gap_closure_md.exists() else 0,
@@ -922,7 +960,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
         decisions, decisions_valid = self._collect_impracticality_decisions(attempts)
         claim_resource_map = self._max_claim_resource_map(attempts)
         gap_matrix = self._net_new_gap_matrix(attempts)
-        runpod_manifest, runpod_exec_plan, runpod_dataset_manifest = self._runpod_artifacts(attempts)
+        runpod_manifest, runpod_exec_plan, runpod_dataset_manifest = self._runpod_artifacts(
+            attempts
+        )
 
         inventory = self._resource_inventory()
         inventory["env_bootstrap"] = env_bootstrap
@@ -976,7 +1016,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             "planned_usage": "commercial-safe metric stack",
             "evidence_artifact": str(self.artifact_root / "max_resource_validation_log.md"),
             "substitution": resource_index["ffmpeg_quality_metrics_stack"]["fallback"],
-            "comparability_impact": resource_index["ffmpeg_quality_metrics_stack"]["comparability_impact"],
+            "comparability_impact": resource_index["ffmpeg_quality_metrics_stack"][
+                "comparability_impact"
+            ],
         }
         inventory["resources"]["kinetics400_dataset"] = {
             "available": resource_index["kinetics400_dataset"]["status"] == "EXECUTED",
@@ -992,7 +1034,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             "planned_usage": "commercial-safe inpaint decoder alternative",
             "evidence_artifact": str(self.artifact_root / "internet_evidence_log.md"),
             "substitution": resource_index["Decoder_OpenCV_Inpaint"]["fallback"],
-            "comparability_impact": resource_index["Decoder_OpenCV_Inpaint"]["comparability_impact"],
+            "comparability_impact": resource_index["Decoder_OpenCV_Inpaint"][
+                "comparability_impact"
+            ],
         }
         inventory["resources"]["decoder_scikitimage_inpaint"] = {
             "available": resource_index["Decoder_ScikitImage_Inpaint"]["status"] == "EXECUTED",
@@ -1000,7 +1044,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             "planned_usage": "commercial-safe inpaint decoder alternative",
             "evidence_artifact": str(self.artifact_root / "internet_evidence_log.md"),
             "substitution": resource_index["Decoder_ScikitImage_Inpaint"]["fallback"],
-            "comparability_impact": resource_index["Decoder_ScikitImage_Inpaint"]["comparability_impact"],
+            "comparability_impact": resource_index["Decoder_ScikitImage_Inpaint"][
+                "comparability_impact"
+            ],
         }
         inventory["resources"]["decoder_realesrgan"] = {
             "available": resource_index["Decoder_RealESRGAN"]["status"] == "EXECUTED",
@@ -1025,7 +1071,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             "decoder_realesrgan",
             "decoder_mmagic",
         ]
-        validated_alternatives = [k for k in decoder_candidates if inventory["resources"][k]["available"]]
+        validated_alternatives = [
+            k for k in decoder_candidates if inventory["resources"][k]["available"]
+        ]
         selected_decoder = ""
         if "decoder_opencv_inpaint" in validated_alternatives:
             selected_decoder = "opencv_telea"
@@ -1040,8 +1088,12 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             "source_reference": "commercial-safe decoder alternatives",
             "planned_usage": "C006 generative closure without NC SPADE/vid2vid dependency",
             "evidence_artifact": str(self.artifact_root / "internet_evidence_log.md"),
-            "substitution": "deterministic box-fill reconstruction" if not validated_alternatives else "none",
-            "comparability_impact": "high: no validated commercial-safe decoder" if not validated_alternatives else "none",
+            "substitution": "deterministic box-fill reconstruction"
+            if not validated_alternatives
+            else "none",
+            "comparability_impact": "high: no validated commercial-safe decoder"
+            if not validated_alternatives
+            else "none",
             "validated_alternatives": validated_alternatives,
             "selected_decoder_mode": selected_decoder,
         }
@@ -1085,7 +1137,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
         self._write_text("max_resource_validation_log.md", "\n".join(validation_lines))
 
         self._write_json("max_claim_resource_map.json", claim_resource_map)
-        self._write_json("impracticality_decisions.json", {"timestamp_utc": self._now(), "decisions": decisions})
+        self._write_json(
+            "impracticality_decisions.json", {"timestamp_utc": self._now(), "decisions": decisions}
+        )
         self._write_json("net_new_gap_closure_matrix.json", gap_matrix)
         self._write_internet_evidence_log(attempts)
 
@@ -1127,7 +1181,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             and e_g3_imp_valid
             and e_g4_runpod_complete
         )
-        self._snapshot_gate("A", "PASS" if pass_ok else "FAIL", {"resource_inventory": "resource_inventory.json"})
+        self._snapshot_gate(
+            "A", "PASS" if pass_ok else "FAIL", {"resource_inventory": "resource_inventory.json"}
+        )
         self._log("GATE_A_END")
         return pass_ok
 
@@ -1164,7 +1220,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
         output_video = run_root / "baseline_h265.mp4"
 
         for idx, frame in enumerate(sequence.frames, start=1):
-            self._write_pgm_frame(in_frames / f"frame_{idx:04d}.pgm", sequence.width, sequence.height, frame)
+            self._write_pgm_frame(
+                in_frames / f"frame_{idx:04d}.pgm", sequence.width, sequence.height, frame
+            )
 
         encode_cmd = [
             "ffmpeg",
@@ -1249,7 +1307,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                     "errors": decoded.errors,
                 }
             )
-        self._write_json("gate_b_summary.json", {"samples": sample_records, "timestamp_utc": self._now()})
+        self._write_json(
+            "gate_b_summary.json", {"samples": sample_records, "timestamp_utc": self._now()}
+        )
         pass_ok = all(not record["errors"] for record in sample_records)
         self._snapshot_gate("B", "PASS" if pass_ok else "FAIL", {"summary": "gate_b_summary.json"})
         self._log("GATE_B_END")
@@ -1311,14 +1371,7 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
 
         # Entropy-aware estimate for predictive motion-token coding.
         zpe_bits = 0
-        for _dir, mag, run_len in runs:
-            mag_class = 0
-            if mag >= 2:
-                mag_class = 1
-            if mag >= 4:
-                mag_class = 2
-            if mag >= 8:
-                mag_class = 3
+        for _dir, _mag, run_len in runs:
             run_len_bits = max(1, int((run_len + 1).bit_length() - 1))
             zpe_bits += 3 + 2 + run_len_bits + 1  # direction + mag class + run + mode flag
 
@@ -1331,7 +1384,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             "run_count": len(runs),
         }
 
-    def _detection_predictions_from_frames(self, sequence: SequenceData, frames: list[bytes]) -> list[list[Box]]:
+    def _detection_predictions_from_frames(
+        self, sequence: SequenceData, frames: list[bytes]
+    ) -> list[list[Box]]:
         predictions: list[list[Box]] = []
         for frame in frames:
             predictions.append(
@@ -1378,7 +1433,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             ann_path = annotations_dir / f"{image_path.stem}.txt"
             boxes: list[Box] = []
             if ann_path.exists():
-                for line_idx, line in enumerate(ann_path.read_text(encoding="utf-8", errors="ignore").splitlines()):
+                for line_idx, line in enumerate(
+                    ann_path.read_text(encoding="utf-8", errors="ignore").splitlines()
+                ):
                     parts = [p.strip() for p in line.split(",")]
                     if len(parts) < 8:
                         continue
@@ -1514,7 +1571,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                 import numpy as np  # type: ignore
 
                 image = np.frombuffer(base, dtype=np.uint8).reshape(height, width)
-                sketch = np.frombuffer(render_sketch(width, height, boxes), dtype=np.uint8).reshape(height, width)
+                sketch = np.frombuffer(render_sketch(width, height, boxes), dtype=np.uint8).reshape(
+                    height, width
+                )
                 mask = (sketch > 0).astype(np.uint8) * 255
                 flag = cv2.INPAINT_TELEA if mode == "opencv_telea" else cv2.INPAINT_NS
                 out = cv2.inpaint(image, mask, 3, flag)
@@ -1526,8 +1585,13 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                 import numpy as np  # type: ignore
                 from skimage.restoration import inpaint  # type: ignore
 
-                image = np.frombuffer(base, dtype=np.uint8).reshape(height, width).astype("float32") / 255.0
-                sketch = np.frombuffer(render_sketch(width, height, boxes), dtype=np.uint8).reshape(height, width)
+                image = (
+                    np.frombuffer(base, dtype=np.uint8).reshape(height, width).astype("float32")
+                    / 255.0
+                )
+                sketch = np.frombuffer(render_sketch(width, height, boxes), dtype=np.uint8).reshape(
+                    height, width
+                )
                 mask = sketch > 0
                 out = inpaint.inpaint_biharmonic(image, mask, channel_axis=None)
                 clipped = np.clip(out * 255.0, 0, 255).astype("uint8")
@@ -1557,16 +1621,21 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
         if not (self._detect_python_module("lpips") and self._detect_python_module("torch")):
             return mean_value(proxy_values), proxy_values, "lpips_proxy"
         try:
+            import lpips  # type: ignore
             import numpy as np  # type: ignore
             import torch  # type: ignore
-            import lpips  # type: ignore
 
             metric = lpips.LPIPS(net="alex")
             metric.eval()
             true_values: list[float] = []
 
             def _to_tensor(frame_bytes: bytes) -> Any:
-                arr = np.frombuffer(frame_bytes, dtype=np.uint8).reshape(1, 1, height, width).astype("float32") / 255.0
+                arr = (
+                    np.frombuffer(frame_bytes, dtype=np.uint8)
+                    .reshape(1, 1, height, width)
+                    .astype("float32")
+                    / 255.0
+                )
                 t = torch.from_numpy(arr).repeat(1, 3, 1, 1)
                 return (t * 2.0) - 1.0
 
@@ -1576,7 +1645,11 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                     true_values.append(value)
             return mean_value(true_values), true_values, "lpips_alex"
         except Exception as exc:  # pragma: no cover - runtime fallback path
-            return mean_value(proxy_values), proxy_values, f"lpips_proxy_fallback_{type(exc).__name__}"
+            return (
+                mean_value(proxy_values),
+                proxy_values,
+                f"lpips_proxy_fallback_{type(exc).__name__}",
+            )
 
     def gate_c(self) -> bool:
         self._log("GATE_C_START")
@@ -1594,9 +1667,13 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             str(self.samples_root / f"{compression_seq.name}_compression_c.zpvid"),
             seed=GATE_SEEDS["C"],
         )
-        h265_compression = self._ffmpeg_h265_encode_decode(compression_seq, "compression_h265", qp=22)
+        h265_compression = self._ffmpeg_h265_encode_decode(
+            compression_seq, "compression_h265", qp=22
+        )
         if h265_compression["available"]:
-            compression_ratio = h265_compression["size_bytes"] / float(encoded_compression.stream_bytes)
+            compression_ratio = h265_compression["size_bytes"] / float(
+                encoded_compression.stream_bytes
+            )
         else:
             fallback_baseline = sum(len(frame) for frame in compression_seq.frames)
             compression_ratio = fallback_baseline / float(encoded_compression.stream_bytes)
@@ -1606,10 +1683,14 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             "threshold": CLAIM_THRESHOLDS["VID-C001"],
             "operator": ">=",
             "primary_metric_value": compression_ratio,
-            "h265_size_bytes": h265_compression["size_bytes"] if h265_compression["available"] else None,
+            "h265_size_bytes": h265_compression["size_bytes"]
+            if h265_compression["available"]
+            else None,
             "zpe_size_bytes": encoded_compression.stream_bytes,
             "stretch_target_70x_pass": compression_ratio >= 70.0,
-            "baseline_mode": "ffmpeg_libx265" if h265_compression["available"] else "raw_size_proxy",
+            "baseline_mode": "ffmpeg_libx265"
+            if h265_compression["available"]
+            else "raw_size_proxy",
             "sequence": compression_seq.name,
             "dataset_mode": compression_seq.dataset_tag,
             "pass_threshold": self._metric_pass("VID-C001", compression_ratio),
@@ -1624,7 +1705,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
         decoded_visdrone = decode_sequence(encoded_visdrone.stream_path, tolerate_corruption=True)
         h265_visdrone = self._ffmpeg_h265_encode_decode(visdrone, f"{visdrone.name}_h265", qp=22)
         if h265_visdrone["available"] and h265_visdrone["decoded_frames"]:
-            baseline_pred = self._detection_predictions_from_frames(visdrone, h265_visdrone["decoded_frames"])
+            baseline_pred = self._detection_predictions_from_frames(
+                visdrone, h265_visdrone["decoded_frames"]
+            )
         else:
             baseline_pred = self._detection_predictions_from_frames(visdrone, visdrone.frames)
         zpe_pred = decoded_visdrone.decoded_boxes
@@ -1709,13 +1792,17 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
         self._write_json("video_latency_benchmark.json", latency_json)
 
         xiph_seq = self._load_xiph_derf_sequence(max_frames=36)
-        generative_seq = xiph_seq or (visdrone if "PROXY" not in visdrone.dataset_tag.upper() else virat)
+        generative_seq = xiph_seq or (
+            visdrone if "PROXY" not in visdrone.dataset_tag.upper() else virat
+        )
         encoded_generative = encode_sequence(
             generative_seq,
             str(self.samples_root / f"{generative_seq.name}_generative_c.zpvid"),
             seed=GATE_SEEDS["C"],
         )
-        decoded_generative = decode_sequence(encoded_generative.stream_path, tolerate_corruption=True)
+        decoded_generative = decode_sequence(
+            encoded_generative.stream_path, tolerate_corruption=True
+        )
         decoder_mode, decoder_source = self._select_c006_decoder_mode()
         decoder_runtime_notes: list[str] = []
         reconstructed_frames: list[bytes] = []
@@ -1773,7 +1860,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
         }
         self._write_json("video_generative_eval.json", generative_json)
 
-        encoded_virat = encode_sequence(virat, str(self.samples_root / "virat_proxy_c.zpvid"), seed=GATE_SEEDS["C"])
+        encoded_virat = encode_sequence(
+            virat, str(self.samples_root / "virat_proxy_c.zpvid"), seed=GATE_SEEDS["C"]
+        )
         decoded_virat = decode_sequence(encoded_virat.stream_path, tolerate_corruption=True)
         mse_values: list[float] = []
         for idx in range(min(len(decoded_virat.sketch_frames), virat.frame_count)):
@@ -1854,7 +1943,11 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             rows=[
                 [
                     "FFmpeg-H265",
-                    bool(comparator_state.get("ffmpeg_h265", {}).get("available", h265_compression["available"])),
+                    bool(
+                        comparator_state.get("ffmpeg_h265", {}).get(
+                            "available", h265_compression["available"]
+                        )
+                    ),
                     "compression_ratio_vs_h265",
                     f"{compression_ratio:.6f}",
                     ">=50.0",
@@ -1907,7 +2000,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                 machine_json["pass_threshold"],
             ]
         )
-        self._snapshot_gate("C", "PASS" if pass_ok else "FAIL", {"metrics_root": str(self.artifact_root)})
+        self._snapshot_gate(
+            "C", "PASS" if pass_ok else "FAIL", {"metrics_root": str(self.artifact_root)}
+        )
         self._log("GATE_C_END")
         return pass_ok
 
@@ -1923,7 +2018,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
         decoded_adv = decode_sequence(encoded_adv.stream_path, tolerate_corruption=True)
         h265_adv = self._ffmpeg_h265_encode_decode(adversarial, "adversarial_h265", qp=22)
         if h265_adv["available"] and h265_adv["decoded_frames"]:
-            baseline_pred = self._detection_predictions_from_frames(adversarial, h265_adv["decoded_frames"])
+            baseline_pred = self._detection_predictions_from_frames(
+                adversarial, h265_adv["decoded_frames"]
+            )
         else:
             baseline_pred = self._detection_predictions_from_frames(adversarial, adversarial.frames)
         zpe_pred = decoded_adv.decoded_boxes
@@ -1984,7 +2081,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             }
         )
 
-        uncaught_crash_rate = (uncaught_crashes / len(malformed_cases)) * 100.0 if malformed_cases else 100.0
+        uncaught_crash_rate = (
+            (uncaught_crashes / len(malformed_cases)) * 100.0 if malformed_cases else 100.0
+        )
         dt2_pass = uncaught_crash_rate == 0.0
 
         scene_psnr_values = []
@@ -2061,9 +2160,15 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
 
         dt_summary = {
             "dt1_kill_gate_detection_ratio": {"value": kill_ratio, "pass": dt1_pass},
-            "dt2_malformed_uncaught_crash_rate_percent": {"value": uncaught_crash_rate, "pass": dt2_pass},
+            "dt2_malformed_uncaught_crash_rate_percent": {
+                "value": uncaught_crash_rate,
+                "pass": dt2_pass,
+            },
             "dt3_scene_change_sketch_psnr_db": {"value": scene_psnr, "pass": dt3_pass},
-            "dt4_determinism_identical_hashes": {"value": determinism_pass, "pass": determinism_pass},
+            "dt4_determinism_identical_hashes": {
+                "value": determinism_pass,
+                "pass": determinism_pass,
+            },
             "dt5_latency_stress_p95_ms": {"value": stress_p95, "pass": dt5_pass},
             "malformed_case_details": malformed_cases,
         }
@@ -2092,7 +2197,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                 "resource_id": "visdrone2019_dataset",
                 "license": "CC BY-NC-SA (non-commercial)",
                 "claims": ["VID-C002", "VID-C006"],
-                "available": bool(resources.get("visdrone2019_dataset", {}).get("available", False)),
+                "available": bool(
+                    resources.get("visdrone2019_dataset", {}).get("available", False)
+                ),
             },
         ]
 
@@ -2101,13 +2208,17 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                 "resource_id": "decoder_opencv_inpaint",
                 "license": "Apache-2.0",
                 "claims": ["VID-C006"],
-                "available": bool(resources.get("decoder_opencv_inpaint", {}).get("available", False)),
+                "available": bool(
+                    resources.get("decoder_opencv_inpaint", {}).get("available", False)
+                ),
             },
             {
                 "resource_id": "decoder_scikitimage_inpaint",
                 "license": "BSD-3-Clause",
                 "claims": ["VID-C006"],
-                "available": bool(resources.get("decoder_scikitimage_inpaint", {}).get("available", False)),
+                "available": bool(
+                    resources.get("decoder_scikitimage_inpaint", {}).get("available", False)
+                ),
             },
             {
                 "resource_id": "decoder_realesrgan",
@@ -2159,8 +2270,12 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             "validated_decoder_alternatives": validated_alternatives,
         }
 
-    def _claim_statuses(self, resource_inventory: dict[str, Any]) -> tuple[list[dict[str, Any]], bool, dict[str, Any]]:
-        metrics = {claim_id: self._load_json(path) for claim_id, path in CLAIM_EVIDENCE_FILES.items()}
+    def _claim_statuses(
+        self, resource_inventory: dict[str, Any]
+    ) -> tuple[list[dict[str, Any]], bool, dict[str, Any]]:
+        metrics = {
+            claim_id: self._load_json(path) for claim_id, path in CLAIM_EVIDENCE_FILES.items()
+        }
         resources = resource_inventory["resources"]
         commercialization = self._commercialization_assessment(resource_inventory)
         pause_claims = set(commercialization.get("pause_claims", []))
@@ -2175,10 +2290,14 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             evidence = str(self.artifact_root / CLAIM_EVIDENCE_FILES[claim_id])
             dataset_mode = str(metric.get("dataset_mode", ""))
             baseline_mode = str(metric.get("baseline_mode", ""))
-            proxy_only_evidence = ("PROXY" in dataset_mode.upper()) or ("proxy" in baseline_mode.lower())
+            proxy_only_evidence = ("PROXY" in dataset_mode.upper()) or (
+                "proxy" in baseline_mode.lower()
+            )
             if claim_id in pause_claims:
                 status = "PAUSED_EXTERNAL"
-                reason = commercialization.get("pause_reasons", {}).get(claim_id, "Commercialization gate pause.")
+                reason = commercialization.get("pause_reasons", {}).get(
+                    claim_id, "Commercialization gate pause."
+                )
             elif missing:
                 status = "FAIL"
                 reason = f"Missing or substituted dependencies for closure: {', '.join(missing)}"
@@ -2209,10 +2328,14 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                     "evidence_path": evidence,
                 }
             )
-        return statuses, all_pass, {
-            "p0_proxy_only_blocks": p0_proxy_only_blocks,
-            "commercialization_assessment": commercialization,
-        }
+        return (
+            statuses,
+            all_pass,
+            {
+                "p0_proxy_only_blocks": p0_proxy_only_blocks,
+                "commercialization_assessment": commercialization,
+            },
+        )
 
     def _quality_scorecard(
         self,
@@ -2232,15 +2355,21 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                 "handoff_manifest.json",
             }
         ]
-        mandatory_present = all((self.artifact_root / name).exists() for name in completeness_check_files)
+        mandatory_present = all(
+            (self.artifact_root / name).exists() for name in completeness_check_files
+        )
         uncaught_crash_rate = gate_d_summary["dt2_malformed_uncaught_crash_rate_percent"]["value"]
         determinism_ok = bool(determinism_json["identical_hashes"])
         resources = resource_inventory.get("resources", {})
-        attempts = resource_inventory.get("net_new_resource_attempts", {}).get("resource_attempts", [])
+        attempts = resource_inventory.get("net_new_resource_attempts", {}).get(
+            "resource_attempts", []
+        )
         attempt_all_ok = bool(attempts) and all(bool(item.get("attempts")) for item in attempts)
         pass_claim_count = sum(1 for c in claims if c.get("post_status") == "PASS")
         efficiency_claims_ok = all(
-            c.get("post_status") == "PASS" for c in claims if c.get("claim_id") in {"VID-C005", "VID-C008"}
+            c.get("post_status") == "PASS"
+            for c in claims
+            if c.get("claim_id") in {"VID-C005", "VID-C008"}
         )
         runpod_ready_files = all(
             [
@@ -2260,7 +2389,11 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                 int(bool(resources.get("dcvc_rt", {}).get("available", False))),
             ]
         )
-        anti_toy_depth = 5 if real_stack_hits >= 6 else (4 if real_stack_hits >= 4 else (3 if real_stack_hits >= 2 else 2))
+        anti_toy_depth = (
+            5
+            if real_stack_hits >= 6
+            else (4 if real_stack_hits >= 4 else (3 if real_stack_hits >= 2 else 2))
+        )
 
         dims = {
             "engineering_completeness": 5 if mandatory_present else 2,
@@ -2307,11 +2440,15 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             "pass_claim_count": pass_claim_count,
         }
 
-    def _appendix_e_checks(self, claims: list[dict[str, Any]], claim_meta: dict[str, Any]) -> dict[str, Any]:
+    def _appendix_e_checks(
+        self, claims: list[dict[str, Any]], claim_meta: dict[str, Any]
+    ) -> dict[str, Any]:
         attempts_path = self.artifact_root / "resource_inventory.json"
         attempts_obj = {}
         if attempts_path.exists():
-            attempts_obj = self._load_json("resource_inventory.json").get("net_new_resource_attempts", {})
+            attempts_obj = self._load_json("resource_inventory.json").get(
+                "net_new_resource_attempts", {}
+            )
         attempt_items = attempts_obj.get("resource_attempts", [])
         attempted_ids = {item.get("resource_id") for item in attempt_items}
         required_e3_ids = {
@@ -2322,12 +2459,18 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             "VisDrone2019",
             "MSU_quality_benchmark",
         }
-        eg1 = required_e3_ids.issubset(attempted_ids) and all(item.get("attempts") for item in attempt_items)
+        eg1 = required_e3_ids.issubset(attempted_ids) and all(
+            item.get("attempts") for item in attempt_items
+        )
 
         p0_proxy_blocks = set(claim_meta.get("p0_proxy_only_blocks", []))
         p0_pass_from_proxy = []
         for c in claims:
-            if c["claim_id"] in CORE_P0_CLAIMS and c["post_status"] == "PASS" and c.get("proxy_only_evidence"):
+            if (
+                c["claim_id"] in CORE_P0_CLAIMS
+                and c["post_status"] == "PASS"
+                and c.get("proxy_only_evidence")
+            ):
                 p0_pass_from_proxy.append(c["claim_id"])
         eg2 = len(p0_pass_from_proxy) == 0 and len(p0_proxy_blocks) >= 0
 
@@ -2406,7 +2549,16 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             )
         self._write_text("claim_status_delta.md", "\n".join(claim_md_lines))
 
-        regression_cmd = [self.python_executable, "-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py"]
+        regression_cmd = [
+            self.python_executable,
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-p",
+            "test_*.py",
+        ]
         regression = self._run_command(regression_cmd, cwd=self.repo_root)
         regression_text = (
             f"$ {' '.join(regression_cmd)}\n"
@@ -2429,28 +2581,28 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
         open_questions_md = f"""# Concept Open Questions Resolution
 
 1. Can sketch-token mode preserve detection utility >=90% under adversarial scene changes?
-- Status: {"RESOLVED" if any(c['claim_id'] == 'VID-C002' and c['post_status'] == 'PASS' for c in claims) else 'FAIL'}
-- Evidence: `{self.artifact_root / 'video_detection_eval.json'}`, `{self.artifact_root / 'falsification_results.md'}`
+- Status: {"RESOLVED" if any(c["claim_id"] == "VID-C002" and c["post_status"] == "PASS" for c in claims) else "FAIL"}
+- Evidence: `{self.artifact_root / "video_detection_eval.json"}`, `{self.artifact_root / "falsification_results.md"}`
 - Note: claim closed as PASS/FAIL/PAUSED_EXTERNAL per final-phase closure policy.
 
 2. Is motion-vector tokenization beneficial under non-coherent motion?
-- Status: {"RESOLVED" if any(c['claim_id'] == 'VID-C004' and c['post_status'] == 'PASS' for c in claims) else 'FAIL'}
-- Evidence: `{self.artifact_root / 'video_mv_bitrate_eval.json'}`
+- Status: {"RESOLVED" if any(c["claim_id"] == "VID-C004" and c["post_status"] == "PASS" for c in claims) else "FAIL"}
+- Evidence: `{self.artifact_root / "video_mv_bitrate_eval.json"}`
 - Note: claim closed explicitly; no lingering INCONCLUSIVE states.
 
 3. Are reconstruction quality metrics stable without SPADE/vid2vid integration?
-- Status: {"PAUSED_EXTERNAL" if any(c['claim_id'] == 'VID-C006' and c['post_status'] == 'PAUSED_EXTERNAL' for c in claims) else ('RESOLVED' if any(c['claim_id'] == 'VID-C006' and c['post_status'] == 'PASS' for c in claims) else 'FAIL')}
-- Evidence: `{self.artifact_root / 'video_generative_eval.json'}`
+- Status: {"PAUSED_EXTERNAL" if any(c["claim_id"] == "VID-C006" and c["post_status"] == "PAUSED_EXTERNAL" for c in claims) else ("RESOLVED" if any(c["claim_id"] == "VID-C006" and c["post_status"] == "PASS" for c in claims) else "FAIL")}
+- Evidence: `{self.artifact_root / "video_generative_eval.json"}`
 - Note: commercialization decision recorded in `commercialization_assessment.json`.
 
 4. Which claims remain valid under dataset substitutions?
 - Status: RESOLVED
-- Evidence: `{self.artifact_root / 'claim_status_delta.md'}`
+- Evidence: `{self.artifact_root / "claim_status_delta.md"}`
 - Resolution: claims are forced to PASS/FAIL/PAUSED_EXTERNAL for final-phase closure.
 
 5. What interoperability metadata is needed for downstream integration?
 - Status: RESOLVED
-- Evidence: `{self.artifact_root / 'integration_readiness_contract.json'}`
+- Evidence: `{self.artifact_root / "integration_readiness_contract.json"}`
 - Resolution: schema versioning, artifact hashes, comparator modes, and claim evidence pointers included.
 """
         self._write_text("concept_open_questions_resolution.md", open_questions_md)
@@ -2461,30 +2613,50 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                     "item": "FFmpeg/H.265 baseline comparator",
                     "source_reference": "Concept doc Appendix 6 Component 1",
                     "planned_usage": "Compression and detection baseline",
-                    "evidence_artifact": str(self.artifact_root / "video_compression_benchmark.json"),
-                    "status": "EXECUTED" if resource_inventory["resources"]["ffmpeg_h265"]["available"] else "SUBSTITUTED",
-                    "comparability_impact": resource_inventory["resources"]["ffmpeg_h265"]["comparability_impact"],
+                    "evidence_artifact": str(
+                        self.artifact_root / "video_compression_benchmark.json"
+                    ),
+                    "status": "EXECUTED"
+                    if resource_inventory["resources"]["ffmpeg_h265"]["available"]
+                    else "SUBSTITUTED",
+                    "comparability_impact": resource_inventory["resources"]["ffmpeg_h265"][
+                        "comparability_impact"
+                    ],
                 },
                 {
                     "item": "DCVC comparator",
                     "source_reference": "Concept doc Appendix 6 Component 2",
                     "planned_usage": "Modern comparator context",
-                    "evidence_artifact": str(self.artifact_root / "concept_resource_traceability.json"),
+                    "evidence_artifact": str(
+                        self.artifact_root / "concept_resource_traceability.json"
+                    ),
                     "status": (
                         "EXECUTED"
                         if (
-                            resource_inventory["resources"].get("opendcvcs", {}).get("available", False)
-                            or resource_inventory["resources"].get("dcvc_rt", {}).get("available", False)
-                            or resource_inventory["resources"].get("dcvc", {}).get("available", False)
+                            resource_inventory["resources"]
+                            .get("opendcvcs", {})
+                            .get("available", False)
+                            or resource_inventory["resources"]
+                            .get("dcvc_rt", {})
+                            .get("available", False)
+                            or resource_inventory["resources"]
+                            .get("dcvc", {})
+                            .get("available", False)
                         )
                         else "SUBSTITUTED"
                     ),
                     "comparability_impact": (
                         "none"
                         if (
-                            resource_inventory["resources"].get("opendcvcs", {}).get("available", False)
-                            or resource_inventory["resources"].get("dcvc_rt", {}).get("available", False)
-                            or resource_inventory["resources"].get("dcvc", {}).get("available", False)
+                            resource_inventory["resources"]
+                            .get("opendcvcs", {})
+                            .get("available", False)
+                            or resource_inventory["resources"]
+                            .get("dcvc_rt", {})
+                            .get("available", False)
+                            or resource_inventory["resources"]
+                            .get("dcvc", {})
+                            .get("available", False)
                         )
                         else "modern comparator unavailable"
                     ),
@@ -2496,12 +2668,16 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                     "evidence_artifact": str(self.artifact_root / "video_detection_eval.json"),
                     "status": (
                         "EXECUTED"
-                        if resource_inventory["resources"].get("compressai_vision", {}).get("available", False)
+                        if resource_inventory["resources"]
+                        .get("compressai_vision", {})
+                        .get("available", False)
                         else "SUBSTITUTED"
                     ),
                     "comparability_impact": (
                         "none"
-                        if resource_inventory["resources"].get("compressai_vision", {}).get("available", False)
+                        if resource_inventory["resources"]
+                        .get("compressai_vision", {})
+                        .get("available", False)
                         else "VCM equivalence unproven"
                     ),
                 },
@@ -2512,22 +2688,32 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                     "evidence_artifact": str(self.artifact_root / "video_sketch_quality.json"),
                     "status": (
                         "EXECUTED"
-                        if resource_inventory["resources"].get("uvg_dataset", {}).get("available", False)
+                        if resource_inventory["resources"]
+                        .get("uvg_dataset", {})
+                        .get("available", False)
                         else "SUBSTITUTED"
                     ),
-                    "comparability_impact": resource_inventory["resources"]["uvg_dataset"]["comparability_impact"],
+                    "comparability_impact": resource_inventory["resources"]["uvg_dataset"][
+                        "comparability_impact"
+                    ],
                 },
                 {
                     "item": "VIRAT dataset",
                     "source_reference": "Concept doc Appendix 6 Component 5",
                     "planned_usage": "Surveillance compression/eval",
-                    "evidence_artifact": str(self.artifact_root / "video_compression_benchmark.json"),
+                    "evidence_artifact": str(
+                        self.artifact_root / "video_compression_benchmark.json"
+                    ),
                     "status": (
                         "EXECUTED"
-                        if resource_inventory["resources"].get("virat_dataset", {}).get("available", False)
+                        if resource_inventory["resources"]
+                        .get("virat_dataset", {})
+                        .get("available", False)
                         else "SUBSTITUTED"
                     ),
-                    "comparability_impact": resource_inventory["resources"]["virat_dataset"]["comparability_impact"],
+                    "comparability_impact": resource_inventory["resources"]["virat_dataset"][
+                        "comparability_impact"
+                    ],
                 },
                 {
                     "item": "VisDrone2023 dataset",
@@ -2536,18 +2722,26 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                     "evidence_artifact": str(self.artifact_root / "video_detection_eval.json"),
                     "status": (
                         "EXECUTED"
-                        if resource_inventory["resources"].get("visdrone_dataset", {}).get("available", False)
+                        if resource_inventory["resources"]
+                        .get("visdrone_dataset", {})
+                        .get("available", False)
                         else "SUBSTITUTED"
                     ),
-                    "comparability_impact": resource_inventory["resources"]["visdrone_dataset"]["comparability_impact"],
+                    "comparability_impact": resource_inventory["resources"]["visdrone_dataset"][
+                        "comparability_impact"
+                    ],
                 },
                 {
                     "item": "OpenCV edge/contour extraction",
                     "source_reference": "Concept doc Appendix 6 Component 7",
                     "planned_usage": "Sketch extraction",
                     "evidence_artifact": str(self.artifact_root / "video_sketch_quality.json"),
-                    "status": "EXECUTED" if resource_inventory["resources"]["opencv"]["available"] else "SUBSTITUTED",
-                    "comparability_impact": resource_inventory["resources"]["opencv"]["comparability_impact"],
+                    "status": "EXECUTED"
+                    if resource_inventory["resources"]["opencv"]["available"]
+                    else "SUBSTITUTED",
+                    "comparability_impact": resource_inventory["resources"]["opencv"][
+                        "comparability_impact"
+                    ],
                 },
                 {
                     "item": "HEVC CTC-aligned benchmark conventions",
@@ -2556,10 +2750,14 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                     "evidence_artifact": str(self.artifact_root / "video_mv_bitrate_eval.json"),
                     "status": (
                         "EXECUTED"
-                        if resource_inventory["resources"].get("hevc_ctc_dataset", {}).get("available", False)
+                        if resource_inventory["resources"]
+                        .get("hevc_ctc_dataset", {})
+                        .get("available", False)
                         else "SUBSTITUTED"
                     ),
-                    "comparability_impact": resource_inventory["resources"]["hevc_ctc_dataset"]["comparability_impact"],
+                    "comparability_impact": resource_inventory["resources"]["hevc_ctc_dataset"][
+                        "comparability_impact"
+                    ],
                 },
                 {
                     "item": "SMC++ / SPADE / vid2vid references",
@@ -2568,10 +2766,14 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                     "evidence_artifact": str(self.artifact_root / "video_generative_eval.json"),
                     "status": (
                         "EXECUTED"
-                        if resource_inventory["resources"].get("spade_or_vid2vid", {}).get("available", False)
+                        if resource_inventory["resources"]
+                        .get("spade_or_vid2vid", {})
+                        .get("available", False)
                         else "SUBSTITUTED"
                     ),
-                    "comparability_impact": resource_inventory["resources"]["spade_or_vid2vid"]["comparability_impact"],
+                    "comparability_impact": resource_inventory["resources"]["spade_or_vid2vid"][
+                        "comparability_impact"
+                    ],
                 },
             ]
         }
@@ -2623,12 +2825,12 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
 - Alternatives attempted: 4
 - Validated alternatives: {", ".join(c006_alts) if c006_alts else "none"}
 - Selected runtime mode: {c006_decoder_mode or "none"}
-- Evidence: `{self.artifact_root / 'internet_evidence_log.md'}`.
+- Evidence: `{self.artifact_root / "internet_evidence_log.md"}`.
 
 3. COM-RISK-003: C006 closure state under commercialization rule.
 - Claim status: {c006_status}
 - Decision: {"commercial-safe closure achieved" if c006_status == "PASS" else "PAUSED_EXTERNAL until safe decoder validated"}
-- Evidence: `{self.artifact_root / 'claim_status_delta.md'}`, `{self.artifact_root / 'video_generative_eval.json'}`.
+- Evidence: `{self.artifact_root / "claim_status_delta.md"}`, `{self.artifact_root / "video_generative_eval.json"}`.
 """
         self._write_text("commercialization_risk_register.md", commercialization_md)
 
@@ -2637,17 +2839,17 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
 ## Beyond-Brief Augmentations
 1. Robustness augmentation: corruption-safe `.zpvid` decode path with CRC validation and tolerant recovery.
 - malformed campaign cases: 3
-- uncaught crash rate: {gate_d_summary['dt2_malformed_uncaught_crash_rate_percent']['value']:.2f}%
-- evidence: `{self.artifact_root / 'falsification_results.md'}`
+- uncaught crash rate: {gate_d_summary["dt2_malformed_uncaught_crash_rate_percent"]["value"]:.2f}%
+- evidence: `{self.artifact_root / "falsification_results.md"}`
 
 2. Reproducibility augmentation: deterministic replay hash chain for artifact-level reproducibility.
-- replay runs: {determinism_json['run_count']}
-- identical hashes: {determinism_json['identical_hashes']}
-- evidence: `{self.artifact_root / 'determinism_replay_results.json'}`
+- replay runs: {determinism_json["run_count"]}
+- identical hashes: {determinism_json["identical_hashes"]}
+- evidence: `{self.artifact_root / "determinism_replay_results.json"}`
 
 3. Interoperability augmentation: integration contract + claim-evidence traceability package.
-- contract path: `{self.artifact_root / 'integration_readiness_contract.json'}`
-- traceability path: `{self.artifact_root / 'concept_resource_traceability.json'}`
+- contract path: `{self.artifact_root / "integration_readiness_contract.json"}`
+- traceability path: `{self.artifact_root / "concept_resource_traceability.json"}`
 """
         self._write_text("innovation_delta_report.md", innovation_md)
 
@@ -2665,7 +2867,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
         quality_pass = bool(quality_scorecard["pass"])
         nonnegotiable_ok = all(quality_scorecard["non_negotiable_gates"].values())
         acceptance_ok = all_claims_pass
-        explicit_closure_ok = all(c.get("post_status") in {"PASS", "FAIL", "PAUSED_EXTERNAL"} for c in claims)
+        explicit_closure_ok = all(
+            c.get("post_status") in {"PASS", "FAIL", "PAUSED_EXTERNAL"} for c in claims
+        )
         appendix_e_ok = all(
             [
                 appendix_e_checks["E-G1_attempt_all_resources"],
@@ -2675,8 +2879,19 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                 appendix_e_checks["E-G5_claim_updates_evidence_bound"],
             ]
         )
-        overall_go = quality_pass and nonnegotiable_ok and acceptance_ok and appendix_e_ok and regression.returncode == 0
-        gate_e_pass = nonnegotiable_ok and appendix_e_ok and explicit_closure_ok and regression.returncode == 0
+        overall_go = (
+            quality_pass
+            and nonnegotiable_ok
+            and acceptance_ok
+            and appendix_e_ok
+            and regression.returncode == 0
+        )
+        gate_e_pass = (
+            nonnegotiable_ok
+            and appendix_e_ok
+            and explicit_closure_ok
+            and regression.returncode == 0
+        )
         gate_statuses["E"] = "PASS" if gate_e_pass else "FAIL"
 
         integration_contract = {
@@ -2693,7 +2908,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
             },
             "quality_gate_pass": quality_scorecard["pass"],
             "comparator_integrity": {
-                "incumbent_baseline_present": bool(resource_inventory["resources"]["ffmpeg_h265"]["available"]),
+                "incumbent_baseline_present": bool(
+                    resource_inventory["resources"]["ffmpeg_h265"]["available"]
+                ),
                 "modern_comparator_present": bool(
                     resource_inventory["resources"].get("dcvc", {}).get("available", False)
                     or resource_inventory["resources"].get("opendcvcs", {}).get("available", False)
@@ -2701,7 +2918,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
                 ),
             },
             "appendix_e_checks": appendix_e_checks,
-            "commercialization_assessment_path": str(self.artifact_root / "commercialization_assessment.json"),
+            "commercialization_assessment_path": str(
+                self.artifact_root / "commercialization_assessment.json"
+            ),
             "notes": [
                 "Proxy datasets used where required external corpora were unavailable in-lane.",
                 "Final-phase closure uses PASS/FAIL/PAUSED_EXTERNAL status policy.",
@@ -2748,7 +2967,11 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
         handoff_manifest["manifest_self_sha256"] = sha256_file(str(handoff_path))
         self._write_json("handoff_manifest.json", handoff_manifest)
 
-        self._snapshot_gate("E", "PASS" if gate_statuses["E"] == "PASS" else "FAIL", {"manifest": "handoff_manifest.json"})
+        self._snapshot_gate(
+            "E",
+            "PASS" if gate_statuses["E"] == "PASS" else "FAIL",
+            {"manifest": "handoff_manifest.json"},
+        )
         self._log("GATE_E_END")
         return gate_statuses["E"] == "PASS"
 
@@ -2794,9 +3017,15 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
         self._log("GATE_M2_START")
         resource_inventory = self._load_json("resource_inventory.json")
         claims, _all, _meta = self._claim_statuses(resource_inventory)
-        core = [c for c in claims if c["claim_id"] in {"VID-C001", "VID-C003", "VID-C004", "VID-C006"}]
+        core = [
+            c for c in claims if c["claim_id"] in {"VID-C001", "VID-C003", "VID-C004", "VID-C006"}
+        ]
         unresolved = [c["claim_id"] for c in core if c["post_status"] == "INCONCLUSIVE"]
-        proxy_fail = [c["claim_id"] for c in core if c.get("proxy_only_evidence") and c["post_status"] == "PASS"]
+        proxy_fail = [
+            c["claim_id"]
+            for c in core
+            if c.get("proxy_only_evidence") and c["post_status"] == "PASS"
+        ]
         pass_ok = len(unresolved) == 0 and len(proxy_fail) == 0
         report = {
             "gate": "M2",
@@ -2831,7 +3060,9 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
         self._log("GATE_M4_START")
         scorecard = self._load_json("quality_gate_scorecard.json")
         e_checks = self._load_json("appendix_e_gate_checks.json")
-        gate_dependencies = {g: self._gate_status(g) for g in ["A", "B", "C", "D", "E", "M1", "M2", "M3"]}
+        gate_dependencies = {
+            g: self._gate_status(g) for g in ["A", "B", "C", "D", "E", "M1", "M2", "M3"]
+        }
         score_ok = bool(scorecard.get("pass", False))
         e_ok = all(
             [

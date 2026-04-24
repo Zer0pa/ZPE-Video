@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Support and FAQ
+    url: https://github.com/Zer0pa/ZPE-Video/blob/main/docs/SUPPORT.md
+    about: Support routing, response expectations, and common routes.
+  - name: Security vulnerability reports
+    url: https://github.com/Zer0pa/ZPE-Video/blob/main/SECURITY.md
+    about: Vulnerability reporting scope and security contact policy.
+  - name: Governance and status policy
+    url: https://github.com/Zer0pa/ZPE-Video/blob/main/GOVERNANCE.md
+    about: Evidence rules, status semantics, and claim-discipline policy.

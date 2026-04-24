@@ -1,18 +1,31 @@
-# Auditor Playbook
+<p>
+  <img src=".github/assets/readme/zpe-masthead.gif" alt="ZPE Video Masthead" width="100%">
+</p>
 
-This is the shortest honest audit path for the private ZPE Video staging repo.
+<p>
+  <img src=".github/assets/readme/section-bars/quick-start.svg" alt="QUICK START" width="100%">
+</p>
 
-It verifies structure and current known state. It does not establish release readiness.
+This is the shortest honest audit path for the `zpe-video` repo.
 
-## What You Can Verify Quickly
+It verifies structure and current shipping state of the v0.1.0
+perception-receipt surface. It does not by itself establish fitness for a
+particular downstream application.
 
-- the repo installs as a Python package
-- the package imports cleanly
-- the lightweight code surface compiles
-- the staged proof snapshot is present
-- the current known verdict is still `NO-GO`
+What you can verify quickly:
 
-## Shortest Audit Path
+- the repo installs as a Python package (`pip install -e .[dev]`)
+- the package imports cleanly with zero runtime dependencies for the
+  core receipt surface
+- the full test suite passes (22 tests: 20 receipt + 2 legacy codec)
+- the cross-writer wedge is load-bearing:
+  `pytest tests/test_receipt.py::test_cross_writer_independent_implementation_matches`
+- the full research transparency bundle is present under
+  [`docs/transparency/`](docs/transparency/), including kill verdicts
+
+<p>
+  <img src=".github/assets/readme/section-bars/setup-and-verification.svg" alt="SETUP AND VERIFICATION" width="100%">
+</p>
 
 1. Create a local environment:
 
@@ -23,45 +36,46 @@ python3 -m pip install --upgrade pip
 python3 -m pip install -e ".[dev]"
 ```
 
-2. Run near-zero-cost sanity:
+2. Run low-cost sanity:
 
 ```bash
 python3 -m compileall src scripts
+python3 -m pytest tests -v
+python3 examples/02_cross_writer.py   # expect: "cross-writer wedge: VERIFIED"
 python3 - <<'PY'
-import sys
-sys.path.insert(0, "src")
-from zpe_video import Wave1Pipeline
-print(Wave1Pipeline)
+import zpe_video
+print("version:", zpe_video.__version__)
+print("public:", sorted(zpe_video.__all__))
 PY
 ```
 
-3. Inspect the staged proof snapshot:
+3. Inspect the current authority routes:
 
-- `proofs/PROOF_INDEX.md`
-- `proofs/reference/2026-03-09_workspace_snapshot/README.md`
-- `proofs/reference/2026-03-09_workspace_snapshot/claim_status_delta.md`
-- `proofs/reference/2026-03-09_workspace_snapshot/handoff_manifest.json`
-- `proofs/reference/2026-03-09_workspace_snapshot/quality_gate_scorecard.json`
+- [`docs/STATUS.md`](docs/STATUS.md) — current shipping state
+- [`docs/WEDGE.md`](docs/WEDGE.md) — the defended commercial wedge
+- [`docs/TRANSPARENCY_JOURNEY.md`](docs/TRANSPARENCY_JOURNEY.md) — the
+  full research history including every kill verdict
+- [`docs/transparency/`](docs/transparency/) — reproducible snapshot of
+  the evidence behind each verdict
 
-4. Read the current limits before making claims:
+4. Read the limits before making claims:
 
-- `PUBLIC_AUDIT_LIMITS.md`
-- `docs/VERIFICATION.md`
-- `docs/LEGAL_BOUNDARIES.md`
+- [`PUBLIC_AUDIT_LIMITS.md`](PUBLIC_AUDIT_LIMITS.md)
+- [`docs/VERIFICATION.md`](docs/VERIFICATION.md)
+- [`docs/LEGAL_BOUNDARIES.md`](docs/LEGAL_BOUNDARIES.md)
 
-## Current Expected Truth
+<p>
+  <img src=".github/assets/readme/section-bars/scope-discipline.svg" alt="SCOPE DISCIPLINE" width="100%">
+</p>
 
-- Current repo state is private staging.
-- Current full workspace snapshot verdict is `NO-GO`.
-- The staged proof subset is historical/current-workspace evidence, not a clean rerun generated from this repo.
-- A later resource-only probe touched `resource_inventory.json`, so the copied snapshot is mixed and cannot be promoted as a clean run-of-record.
+Current expected truth:
 
-## What Is Explicitly Deferred
+- package version: `0.1.0`; posture: always-in-beta (useful now, improving continuously)
+- one defended commercial wedge: perception-receipt cross-writer hash stability (see [`docs/WEDGE.md`](docs/WEDGE.md))
+- full falsification ledger preserved under [`docs/transparency/`](docs/transparency/): archive-query wedge killed, ROI/foveated-sidecar killed, universal video-codec claim killed
+- the earlier March-2026 proof subset under `proofs/reference/2026-03-09_workspace_snapshot/` is a historical evidence-custody snapshot from pre-0.1.0 research phases; it is not a current v0.1.0 rerun
 
-- broad reruns
-- clean-clone verification
-- benchmark/performance campaigns
-- public release posture
+What this playbook does not establish on its own:
 
-Those belong to Phase 4.5 and Phase 5, not this staging phase.
-
+- fitness for a particular downstream workflow (C2PA, chain-of-custody, video-LLM memory) — those are downstream integration tests
+- independent clean-clone benchmark runs (those are separate from this repo-local sanity)

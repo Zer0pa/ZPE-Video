@@ -1,22 +1,13 @@
-# Support
+<p>
+  <img src=".github/assets/readme/zpe-masthead.gif" alt="ZPE Video Masthead" width="100%">
+</p>
 
-## Routing
+<p>
+  <img src=".github/assets/readme/section-bars/where-to-go.svg" alt="WHERE TO GO" width="100%">
+</p>
 
-| Need | Route |
-|---|---|
-| Bug report | GitHub issue in this repo |
-| Evidence/proof dispute | GitHub issue with exact file references |
-| General question | GitHub issue |
-| Security issue | `architects@zer0pa.ai` |
-| Legal/licensing question | `architects@zer0pa.ai` |
+The canonical support routing document now lives at
+<a href="docs/SUPPORT.md"><code>docs/SUPPORT.md</code></a>.
 
-## Response Quality
-
-The fastest route to a useful answer is:
-
-- exact command
-- exact file path
-- exact error or contradiction
-
-Vague reports without evidence will be pushed back for specifics.
-
+Use that file for current support routes, response expectations, and
+issue-template guidance.

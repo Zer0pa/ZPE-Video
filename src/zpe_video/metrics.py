@@ -23,7 +23,9 @@ def iou(a: Box, b: Box) -> float:
     return inter / union
 
 
-def _match_frame(gt: list[Box], pred: list[Box], iou_threshold: float = 0.5) -> tuple[int, int, int]:
+def _match_frame(
+    gt: list[Box], pred: list[Box], iou_threshold: float = 0.5
+) -> tuple[int, int, int]:
     gt_used = [False] * len(gt)
     pred_used = [False] * len(pred)
     matches = 0
@@ -49,7 +51,9 @@ def _match_frame(gt: list[Box], pred: list[Box], iou_threshold: float = 0.5) -> 
     return tp, fp, fn
 
 
-def ap_proxy(gt_frames: list[list[Box]], pred_frames: list[list[Box]], iou_threshold: float = 0.5) -> float:
+def ap_proxy(
+    gt_frames: list[list[Box]], pred_frames: list[list[Box]], iou_threshold: float = 0.5
+) -> float:
     if not gt_frames:
         return 0.0
     frame_scores: list[float] = []

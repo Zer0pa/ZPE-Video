@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: >-
+  If you use ZPE Video in your work, please cite this software record.
+type: software
+title: "ZPE Video: Perception Receipts for AI Video Pipelines"
+authors:
+  - name: Zer0pa (Pty) Ltd
+    email: architects@zer0pa.ai
+version: 0.1.0
+date-released: "2026-04-24"
+repository-code: https://github.com/Zer0pa/ZPE-Video
+url: https://github.com/Zer0pa/ZPE-Video
+license: LicenseRef-Zer0pa-SAL-7.0
+abstract: >-
+  ZPE Video is a compact, deterministic binary format for recording what a
+  detector and tracker saw in a video. Under default settings, every
+  conforming writer in any language emits byte-identical output, making the
+  SHA-256 of a receipt a stable cryptographic reference to what the model
+  saw. The core library is pure stdlib; the wire format is implementable in
+  under 100 lines of any language with stdlib struct, zlib, and crc32
+  primitives. Applications include C2PA-style AI-perception credentials,
+  regulated chain-of-custody for detector output, video-LLM object-memory
+  caches with integrity requirements, and cross-platform
+  training-data provenance for vision pipelines.
+keywords:
+  - video
+  - perception
+  - receipts
+  - provenance
+  - C2PA
+  - chain-of-custody
+  - video-LLM
+  - object-memory
+  - deterministic-binary
+  - cross-writer-hash-stability
+  - zero-point encoding
+preferred-citation:
+  type: article
+  title: ZPE Architecture Originating Publication (Defensive Prior-Art Disclosure)
+  authors:
+    - name: Zer0pa (Pty) Ltd
+      email: architects@zer0pa.ai
+  year: 2026
+  url: https://github.com/Zer0pa/ZPE-Video
+identifiers:
+  - type: url
+    value: https://github.com/Zer0pa/ZPE-Video
+    description: Live repository
