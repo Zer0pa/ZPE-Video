@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=69", "wheel"]
+requires = ["setuptools>=69,<82", "wheel>=0.43,<1"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,7 +8,8 @@ version = "0.0.0"
 description = "ZPE Video Wave-1 private staging package."
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
-license = {file = "LICENSE"}
+license = "LicenseRef-Zer0pa-SAL-6.0"
+license-files = ["LICENSE"]
 authors = [
   {name = "Zer0pa"},
 ]
@@ -21,4 +22,3 @@ dev = [
 
 [tool.setuptools.packages.find]
 where = ["src"]
-

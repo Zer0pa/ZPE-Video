@@ -5,7 +5,6 @@ import importlib
 import json
 import os
 import shutil
-import struct
 import subprocess
 import sys
 import time
@@ -1312,13 +1311,6 @@ Execute deferred GPU-heavy comparators/datasets and rerun maximalization gates.
         # Entropy-aware estimate for predictive motion-token coding.
         zpe_bits = 0
         for _dir, mag, run_len in runs:
-            mag_class = 0
-            if mag >= 2:
-                mag_class = 1
-            if mag >= 4:
-                mag_class = 2
-            if mag >= 8:
-                mag_class = 3
             run_len_bits = max(1, int((run_len + 1).bit_length() - 1))
             zpe_bits += 3 + 2 + run_len_bits + 1  # direction + mag class + run + mode flag
 

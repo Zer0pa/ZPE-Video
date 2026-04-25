@@ -4,5 +4,3 @@
 - [LEGAL_BOUNDARIES.md](LEGAL_BOUNDARIES.md): legal and asset-boundary summary
 - [VERIFICATION.md](VERIFICATION.md): minimal sanity and deferred verification map
 - [FAQ.md](FAQ.md): current-state answers
-- [inputs/README.md](inputs/README.md): Gate A input placement rules
-

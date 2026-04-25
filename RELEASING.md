@@ -22,10 +22,8 @@ Current status is below release gate because:
 
 - proof state is still `NO-GO`
 - the staged proof snapshot is mixed
-- Gate A inputs are not normalized into a clean repo-owned source
 - blind-clone verification has not been run
 
 ## Release Rule
 
 If evidence conflicts, the repo stays private.
-
