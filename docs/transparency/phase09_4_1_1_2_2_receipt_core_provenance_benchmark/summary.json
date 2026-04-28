@@ -1,0 +1,224 @@
+{
+  "benchmark": "receipt_core_provenance_manifest_binding",
+  "case_count": 3,
+  "cases": [
+    {
+      "baselines": {
+        "canonical_json": {
+          "available": true,
+          "bytes": 319,
+          "note": "canonical and stable, but no wire version or per-frame CRC",
+          "receipt_grade": false,
+          "sha256": "e743000a31f6b487f0b653a36253f5b386f2f2100a77bd2b98da8c7c688ff6d6"
+        },
+        "canonical_json_zlib": {
+          "available": true,
+          "bytes": 148,
+          "note": "canonical and compressed, but no wire version or per-frame CRC",
+          "receipt_grade": false,
+          "sha256": "973f9a5d8572c628d45108845625b64fa89b57dce6c39ca79dada87a8c3597fb"
+        },
+        "parquet_fastparquet_default": {
+          "available": true,
+          "bytes": 2226,
+          "note": "fastparquet.write defaults",
+          "receipt_grade": false,
+          "sha256": "fef6a0adb8bac7bcaf0a30f9b54f2799a8f8e4476b6889577df7e732efa24556"
+        },
+        "parquet_pyarrow_default": {
+          "available": true,
+          "bytes": 2287,
+          "note": "pyarrow.parquet.write_table defaults",
+          "receipt_grade": false,
+          "sha256": "4cd5b83c9a7cc54e24590d9bdb5c1cd821e65c0ad6e9958dc2d5b5423b605032"
+        },
+        "raw_struct_zlib": {
+          "available": true,
+          "bytes": 58,
+          "note": "small deterministic control, but no receipt envelope, no versioned schema, no per-frame CRC",
+          "receipt_grade": false,
+          "sha256": "bab05a806d3249635bbf0335e8406e570897f65857f07bed452abd229db5384e"
+        },
+        "tuned_deterministic_json_control": {
+          "available": true,
+          "bytes": 319,
+          "note": "canonical and stable, but no wire version or per-frame CRC",
+          "receipt_grade": false,
+          "sha256": "e743000a31f6b487f0b653a36253f5b386f2f2100a77bd2b98da8c7c688ff6d6"
+        },
+        "zpe_independent": {
+          "available": true,
+          "bytes": 131,
+          "receipt_grade": true,
+          "sha256": "c12845f05cbefd62a65e351d87935004df6c0069962ede1e1f68eb722d12d55a"
+        },
+        "zpe_library": {
+          "available": true,
+          "bytes": 131,
+          "receipt_grade": true,
+          "sha256": "c12845f05cbefd62a65e351d87935004df6c0069962ede1e1f68eb722d12d55a"
+        }
+      },
+      "case_id": "candidate_b_holdout_motion",
+      "content_id": "zpe-video://phase09.4.1.1.2.2/candidate_b_holdout_motion",
+      "manifest_binding_verified": true,
+      "manifest_byte_length": 430,
+      "manifest_sha256": "8aa1ed640322bda53899f8353dccb27eff2797c62b2d1b7bf85229ce2f09bf3a",
+      "receipt_bytes_identical": true,
+      "receipt_hash_stable": true,
+      "scope": "held-out object-memory motion fixture"
+    },
+    {
+      "baselines": {
+        "canonical_json": {
+          "available": true,
+          "bytes": 54,
+          "note": "canonical and stable, but no wire version or per-frame CRC",
+          "receipt_grade": false,
+          "sha256": "03647351c527c314509897a1307a74343cdc7a077781c17a303a51d710d9b8da"
+        },
+        "canonical_json_zlib": {
+          "available": true,
+          "bytes": 55,
+          "note": "canonical and compressed, but no wire version or per-frame CRC",
+          "receipt_grade": false,
+          "sha256": "b8325a3c21e1abc0ebf95a7816fa6a38cbadf82fa3d4ae38e452d0bbf8bd60c4"
+        },
+        "parquet_fastparquet_default": {
+          "available": true,
+          "bytes": 1263,
+          "note": "fastparquet.write defaults",
+          "receipt_grade": false,
+          "sha256": "098522cbe77fd39fc6175f9fbec354da936f819948b55891fb562a32771cf041"
+        },
+        "parquet_pyarrow_default": {
+          "available": true,
+          "bytes": 1154,
+          "note": "pyarrow.parquet.write_table defaults",
+          "receipt_grade": false,
+          "sha256": "6cbfd843838e9f153348be4e97e7622057e1a1adbd272bb6835e7830ddfc7cfc"
+        },
+        "raw_struct_zlib": {
+          "available": true,
+          "bytes": 14,
+          "note": "small deterministic control, but no receipt envelope, no versioned schema, no per-frame CRC",
+          "receipt_grade": false,
+          "sha256": "b1663972663dda1fcf1a16c67bdc5673f68a49dd34021a38ea0f79d21b4edbe0"
+        },
+        "tuned_deterministic_json_control": {
+          "available": true,
+          "bytes": 54,
+          "note": "canonical and stable, but no wire version or per-frame CRC",
+          "receipt_grade": false,
+          "sha256": "03647351c527c314509897a1307a74343cdc7a077781c17a303a51d710d9b8da"
+        },
+        "zpe_independent": {
+          "available": true,
+          "bytes": 17,
+          "receipt_grade": true,
+          "sha256": "19c7460abafddbf205475fbe4f023e913a0750faf84d779603175a9ed182e88a"
+        },
+        "zpe_library": {
+          "available": true,
+          "bytes": 17,
+          "receipt_grade": true,
+          "sha256": "19c7460abafddbf205475fbe4f023e913a0750faf84d779603175a9ed182e88a"
+        }
+      },
+      "case_id": "empty_receipt",
+      "content_id": "zpe-video://phase09.4.1.1.2.2/empty_receipt",
+      "manifest_binding_verified": true,
+      "manifest_byte_length": 403,
+      "manifest_sha256": "1626000d522ba8615333284f336a1975818ae2365705464b8fd0eba1c7eb18b3",
+      "receipt_bytes_identical": true,
+      "receipt_hash_stable": true,
+      "scope": "empty limiting case"
+    },
+    {
+      "baselines": {
+        "canonical_json": {
+          "available": true,
+          "bytes": 1295,
+          "note": "canonical and stable, but no wire version or per-frame CRC",
+          "receipt_grade": false,
+          "sha256": "e297f4def00700e3f0cd70c3d3a677c7cd8d05c92d45bb603e9cb4205014bfc9"
+        },
+        "canonical_json_zlib": {
+          "available": true,
+          "bytes": 277,
+          "note": "canonical and compressed, but no wire version or per-frame CRC",
+          "receipt_grade": false,
+          "sha256": "051759ba98eadde9de343d514ef031da493b7a00f3c1f98589e167bf3028e7b2"
+        },
+        "parquet_fastparquet_default": {
+          "available": true,
+          "bytes": 3305,
+          "note": "fastparquet.write defaults",
+          "receipt_grade": false,
+          "sha256": "88ca21c6894e4215f708efbe6cfd4686f91dec66bc30b699fc3603a3cf05cc54"
+        },
+        "parquet_pyarrow_default": {
+          "available": true,
+          "bytes": 2522,
+          "note": "pyarrow.parquet.write_table defaults",
+          "receipt_grade": false,
+          "sha256": "28ec6a676fb599c8efd112834f6375f70d6af6a5146e118936366b48d688ca0c"
+        },
+        "raw_struct_zlib": {
+          "available": true,
+          "bytes": 150,
+          "note": "small deterministic control, but no receipt envelope, no versioned schema, no per-frame CRC",
+          "receipt_grade": false,
+          "sha256": "0067e4326ce93647535ab9beb6cc9a61e87e432f81135a5831759b23f006370e"
+        },
+        "tuned_deterministic_json_control": {
+          "available": true,
+          "bytes": 1295,
+          "note": "canonical and stable, but no wire version or per-frame CRC",
+          "receipt_grade": false,
+          "sha256": "e297f4def00700e3f0cd70c3d3a677c7cd8d05c92d45bb603e9cb4205014bfc9"
+        },
+        "zpe_independent": {
+          "available": true,
+          "bytes": 188,
+          "receipt_grade": true,
+          "sha256": "346fbb9977246ca04c774ab04e1da4216c97a1dfa64d7561e60d616dd5394b62"
+        },
+        "zpe_library": {
+          "available": true,
+          "bytes": 188,
+          "receipt_grade": true,
+          "sha256": "346fbb9977246ca04c774ab04e1da4216c97a1dfa64d7561e60d616dd5394b62"
+        }
+      },
+      "case_id": "dense_receipt",
+      "content_id": "zpe-video://phase09.4.1.1.2.2/dense_receipt",
+      "manifest_binding_verified": true,
+      "manifest_byte_length": 404,
+      "manifest_sha256": "b8a0ab35f2f628b4a790e71321565877683f5e456a89f7f269df24e2cf9413fe",
+      "receipt_bytes_identical": true,
+      "receipt_hash_stable": true,
+      "scope": "dense multi-track limiting case"
+    }
+  ],
+  "forbidden_proxies_rejected": {
+    "parquet_never_stable_claim": false,
+    "phase_10_execution_claim": false,
+    "primitive_native_closure_claim": false,
+    "red_magic_runtime_claim": false,
+    "storage_only_claim": false
+  },
+  "phase": "09.4.1.1.2.2",
+  "phase_name": "receipt-core-provenance-benchmark-and-c2pa-readiness",
+  "sovereign_gate_note": "This benchmark supports only the commercial receipt-core wedge. It does not execute Phase 10, prove Compass-8 primitive-native closure, or qualify Red Magic runtime.",
+  "sovereign_gate_status": "red",
+  "summary": {
+    "manifest_binding_verified_all_cases": true,
+    "parquet_default_cross_writer_stable_all_cases": false,
+    "parquet_pair_available_all_cases": true,
+    "tuned_controls_close_storage_gap": true,
+    "tuned_controls_note": "raw struct + zlib can be smaller but is not receipt-grade; storage alone is not the receipt authority metric",
+    "zpe_receipt_cross_writer_stable_all_cases": true
+  },
+  "verdict": "pass"
+}

@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "default_settings_disclosure": {
+    "parquet_pyarrow": "pyarrow.parquet.write_table(table, path) with defaults",
+    "parquet_fastparquet": "fastparquet.write(path, df) with defaults",
+    "zpe_repo": "zpe_video_lab repo-style encoder; zlib level=9, sorted frames, sorted boxes by box_id, delta encoded",
+    "zpe_reference": "independent reference re-implementation from the packet format spec; zlib level=9; identical struct layout"
+  },
+  "per_video": [
+    {
+      "video_id": "synth_v000",
+      "storage_bytes_parquet_pyarrow": 5359,
+      "storage_bytes_parquet_fastparquet": 5044,
+      "storage_bytes_zpe_repo": 1124,
+      "storage_bytes_zpe_reference": 1124,
+      "hash_pyarrow": "407a25745943323a5b193e787a9565fc1c2d43d05f05e401851259541930d91a",
+      "hash_fastparquet": "2f168d4149e05f326fe31f44cfe720ea07ce2058916cd43f7fa62a1115414695",
+      "hash_repo": "48fe504cdfc2face78a7685c45a342f487ae7418f808dbf1a7690e7a5f444882",
+      "hash_reference": "48fe504cdfc2face78a7685c45a342f487ae7418f808dbf1a7690e7a5f444882",
+      "parquet_cross_writer_stable": false,
+      "zpe_cross_writer_stable": true
+    },
+    {
+      "video_id": "synth_v001",
+      "storage_bytes_parquet_pyarrow": 5415,
+      "storage_bytes_parquet_fastparquet": 4404,
+      "storage_bytes_zpe_repo": 831,
+      "storage_bytes_zpe_reference": 831,
+      "hash_pyarrow": "88c4689c2e7043431bd9193234a8e9c0fc7ebe47afe782a9bff8d756159f5023",
+      "hash_fastparquet": "ab0e4503eea7dd8c82e215f2fb3f4ef28706fa91ff6159b0257d70399871d4f0",
+      "hash_repo": "e2cc877467a4bc334714b1eaec2b6943450cb8de81dde29513ce5775802cdf00",
+      "hash_reference": "e2cc877467a4bc334714b1eaec2b6943450cb8de81dde29513ce5775802cdf00",
+      "parquet_cross_writer_stable": false,
+      "zpe_cross_writer_stable": true
+    },
+    {
+      "video_id": "synth_v002",
+      "storage_bytes_parquet_pyarrow": 5624,
+      "storage_bytes_parquet_fastparquet": 5940,
+      "storage_bytes_zpe_repo": 1261,
+      "storage_bytes_zpe_reference": 1261,
+      "hash_pyarrow": "b1f6e622f254b01cbf15f97fe246d2c1d13413639bc5048e9b7e396b7c65058a",
+      "hash_fastparquet": "22e2895b5be231c55644d0575729ab30e39b68af30ad20cf8645d9a622810f11",
+      "hash_repo": "fecc36dc5ded9ae0126ee1c4f96fb6d1685fab99deca7915ec6359d47bb2cf8a",
+      "hash_reference": "fecc36dc5ded9ae0126ee1c4f96fb6d1685fab99deca7915ec6359d47bb2cf8a",
+      "parquet_cross_writer_stable": false,
+      "zpe_cross_writer_stable": true
+    },
+    {
+      "video_id": "synth_v003",
+      "storage_bytes_parquet_pyarrow": 5184,
+      "storage_bytes_parquet_fastparquet": 3700,
+      "storage_bytes_zpe_repo": 764,
+      "storage_bytes_zpe_reference": 764,
+      "hash_pyarrow": "bcc6e58bee594d9e2b965a37405f4cbbbbe6783f585862bc187c06cd9ff1aa2a",
+      "hash_fastparquet": "1fc65160cecf41706762fadfbf39f2d77ced5053e77c09e2dacfdf7893d19038",
+      "hash_repo": "213fd6ce8f3eed3c920d9d3759926b8be49aafaa5aed4c01abcffa391947752a",
+      "hash_reference": "213fd6ce8f3eed3c920d9d3759926b8be49aafaa5aed4c01abcffa391947752a",
+      "parquet_cross_writer_stable": false,
+      "zpe_cross_writer_stable": true
+    },
+    {
+      "video_id": "synth_v004",
+      "storage_bytes_parquet_pyarrow": 5339,
+      "storage_bytes_parquet_fastparquet": 4148,
+      "storage_bytes_zpe_repo": 851,
+      "storage_bytes_zpe_reference": 851,
+      "hash_pyarrow": "312fb959761600f374b6ab253ebd01a12d20ad80fb17e7c33d1400100930538b",
+      "hash_fastparquet": "10b6e3789f56903ac3f152da4b03dbc3de8d38e8cab77bf9fd1dea50ab49bddf",
+      "hash_repo": "9a91ab5d56b74e7e253a086f0f559fbb0c6a75a00f63742fe53619062db8a1ba",
+      "hash_reference": "9a91ab5d56b74e7e253a086f0f559fbb0c6a75a00f63742fe53619062db8a1ba",
+      "parquet_cross_writer_stable": false,
+      "zpe_cross_writer_stable": true
+    },
+    {
+      "video_id": "synth_v005",
+      "storage_bytes_parquet_pyarrow": 5602,
+      "storage_bytes_parquet_fastparquet": 5748,
+      "storage_bytes_zpe_repo": 1419,
+      "storage_bytes_zpe_reference": 1419,
+      "hash_pyarrow": "5f5c532da26bfb3938bc284210dfe1ae403a1985c2e4881fbc5003363a72c21f",
+      "hash_fastparquet": "25ee5622edcc36a17914b55f1eb71ed7111a8cdd312d2a1e357abada33a190c2",
+      "hash_repo": "4cd11b465609fb175bd47ecb5ad63cd196f08ff3d18c8ff1dadd9fdec3093127",
+      "hash_reference": "4cd11b465609fb175bd47ecb5ad63cd196f08ff3d18c8ff1dadd9fdec3093127",
+      "parquet_cross_writer_stable": false,
+      "zpe_cross_writer_stable": true
+    },
+    {
+      "video_id": "synth_v006",
+      "storage_bytes_parquet_pyarrow": 5217,
+      "storage_bytes_parquet_fastparquet": 4596,
+      "storage_bytes_zpe_repo": 957,
+      "storage_bytes_zpe_reference": 957,
+      "hash_pyarrow": "eccefb3f8d8821489491d3c68856e1c5e43d90866721c47b38d6df61944dbb5a",
+      "hash_fastparquet": "c2e8df44e78d3219a6d98e0b1bed4cf994e3000f22be314318d085bdf2226695",
+      "hash_repo": "a3e53f61c274a12d1c3c7f03bdca70ba461a7d4352bcb7863ebba8c8c8018e07",
+      "hash_reference": "a3e53f61c274a12d1c3c7f03bdca70ba461a7d4352bcb7863ebba8c8c8018e07",
+      "parquet_cross_writer_stable": false,
+      "zpe_cross_writer_stable": true
+    },
+    {
+      "video_id": "synth_v007",
+      "storage_bytes_parquet_pyarrow": 5377,
+      "storage_bytes_parquet_fastparquet": 4532,
+      "storage_bytes_zpe_repo": 877,
+      "storage_bytes_zpe_reference": 877,
+      "hash_pyarrow": "ef788ca351cdab9b60d1fea44bedb87a4dcc68aea6ddd383206e7f5d296595e5",
+      "hash_fastparquet": "123afd99fd6853dea001c7349210e7dc3d0efdb2234e759624acb25fcebee761",
+      "hash_repo": "3470d53b43464f79f91ddaa7227ae0b8c29de3421a9991583421797e6e4a717e",
+      "hash_reference": "3470d53b43464f79f91ddaa7227ae0b8c29de3421a9991583421797e6e4a717e",
+      "parquet_cross_writer_stable": false,
+      "zpe_cross_writer_stable": true
+    },
+    {
+      "video_id": "synth_v008",
+      "storage_bytes_parquet_pyarrow": 5395,
+      "storage_bytes_parquet_fastparquet": 5108,
+      "storage_bytes_zpe_repo": 965,
+      "storage_bytes_zpe_reference": 965,
+      "hash_pyarrow": "4da0d500d953901dc5761b35a89ba88002159410aa9b7e79b71b4324343e31c4",
+      "hash_fastparquet": "e7e507c430923a6319bf9fe79568203a968294e11cd083ad0161e6fe9c19ffe5",
+      "hash_repo": "ddec42e565c6779c965382695a7b5954badffc5bc818f351e69988b4414a1e88",
+      "hash_reference": "ddec42e565c6779c965382695a7b5954badffc5bc818f351e69988b4414a1e88",
+      "parquet_cross_writer_stable": false,
+      "zpe_cross_writer_stable": true
+    },
+    {
+      "video_id": "synth_v009",
+      "storage_bytes_parquet_pyarrow": 5588,
+      "storage_bytes_parquet_fastparquet": 6004,
+      "storage_bytes_zpe_repo": 1264,
+      "storage_bytes_zpe_reference": 1264,
+      "hash_pyarrow": "0607d8f90fae83383adb9835c524a304ca0d5cf5617579676aff2ae6e0363bf0",
+      "hash_fastparquet": "a9ff2db8467ecd7286dd8002f3367145dfc42d0ca1183a1b934efb2adea1fb7f",
+      "hash_repo": "d515e0ac964ef2308b0bbe7b4716996bd127bb81966c4b35a490324496098100",
+      "hash_reference": "d515e0ac964ef2308b0bbe7b4716996bd127bb81966c4b35a490324496098100",
+      "parquet_cross_writer_stable": false,
+      "zpe_cross_writer_stable": true
+    },
+    {
+      "video_id": "synth_empty",
+      "storage_bytes_parquet_pyarrow": 4915,
+      "storage_bytes_parquet_fastparquet": 2804,
+      "storage_bytes_zpe_repo": 217,
+      "storage_bytes_zpe_reference": 217,
+      "hash_pyarrow": "c7786adc458631c59f3ec1e82ca749f3b77937ebc8b39a376efd973516454266",
+      "hash_fastparquet": "f70aeacb572e8f7246a8c18dd6c0150e40e3469c02bd9fa8d48cc8954dea19f0",
+      "hash_repo": "67efce8210d393c451ed8612fafcd076a144c74d473a1b5092677936b176e1d6",
+      "hash_reference": "67efce8210d393c451ed8612fafcd076a144c74d473a1b5092677936b176e1d6",
+      "parquet_cross_writer_stable": false,
+      "zpe_cross_writer_stable": true
+    },
+    {
+      "video_id": "synth_dense",
+      "storage_bytes_parquet_pyarrow": 7679,
+      "storage_bytes_parquet_fastparquet": 25242,
+      "storage_bytes_zpe_repo": 2970,
+      "storage_bytes_zpe_reference": 2970,
+      "hash_pyarrow": "370eb94decda8bbb6e867ce1f45ab7708a75ab31e17cd6946b8dadf4929084f5",
+      "hash_fastparquet": "3890b0e766a5cfd7b42d04da8b416131d7f125d60ad6a8a2155025f052abe3c1",
+      "hash_repo": "48fb4632be956bc0b8e42b854f1c0a48968b92734de2570a2841ba479a0a71f9",
+      "hash_reference": "48fb4632be956bc0b8e42b854f1c0a48968b92734de2570a2841ba479a0a71f9",
+      "parquet_cross_writer_stable": false,
+      "zpe_cross_writer_stable": true
+    }
+  ],
+  "summary": {
+    "parquet_cross_writer_stable_all_videos": false,
+    "zpe_cross_writer_stable_all_videos": true,
+    "unique_determinism_for_zpe": true
+  }
+}

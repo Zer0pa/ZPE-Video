@@ -1,0 +1,418 @@
+{
+  "phase": "09.4.1.1.2",
+  "experiment": "phase9_4_1_1_2_fair_baseline_archive_query",
+  "date": "2026-04-16",
+  "python_version": "3.14.0 (main, Oct  7 2025, 09:34:52) [Clang 17.0.0 (clang-1700.0.13.3)]",
+  "proxy_clean": {
+    "surface_name": "proxy_clean",
+    "clip_count": 3,
+    "frame_count_total": 180,
+    "gt_event_count_total": 4,
+    "representations": [
+      "zpe_packet",
+      "raw_struct_zlib",
+      "sqlite",
+      "parquet",
+      "json_gzip"
+    ],
+    "operators": [
+      "naive",
+      "hardened"
+    ],
+    "results": {
+      "zpe_packet": {
+        "naive": {
+          "storage_bytes": 7595,
+          "ingest_latency_ms_median": 2.0168760092929006,
+          "query_latency_ms_median": 2.2519999765791,
+          "events_precision": 1.0,
+          "events_recall": 1.0,
+          "events_predicted": 4,
+          "events_matched": 4,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 1.0,
+          "ingest_latency_ms_min": 1.9667499582283199,
+          "ingest_latency_ms_max": 4.2801660019904375,
+          "query_latency_ms_min": 2.232917002402246,
+          "query_latency_ms_max": 4.2268759571015835
+        },
+        "hardened": {
+          "storage_bytes": 7595,
+          "ingest_latency_ms_median": 2.0168760092929006,
+          "query_latency_ms_median": 2.2729579359292984,
+          "events_precision": 0.0,
+          "events_recall": 0.0,
+          "events_predicted": 0,
+          "events_matched": 0,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 0.0,
+          "ingest_latency_ms_min": 1.9667499582283199,
+          "ingest_latency_ms_max": 4.2801660019904375,
+          "query_latency_ms_min": 2.24791606888175,
+          "query_latency_ms_max": 2.8221249231137335
+        }
+      },
+      "raw_struct_zlib": {
+        "naive": {
+          "storage_bytes": 1077,
+          "ingest_latency_ms_median": 0.7283750455826521,
+          "query_latency_ms_median": 1.6611249302513897,
+          "events_precision": 1.0,
+          "events_recall": 1.0,
+          "events_predicted": 4,
+          "events_matched": 4,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 1.0,
+          "ingest_latency_ms_min": 0.6762500270269811,
+          "ingest_latency_ms_max": 1.0197929805144668,
+          "query_latency_ms_min": 1.6315000830218196,
+          "query_latency_ms_max": 1.9062499632127583
+        },
+        "hardened": {
+          "storage_bytes": 1077,
+          "ingest_latency_ms_median": 0.7283750455826521,
+          "query_latency_ms_median": 1.6471659764647484,
+          "events_precision": 0.0,
+          "events_recall": 0.0,
+          "events_predicted": 0,
+          "events_matched": 0,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 0.0,
+          "ingest_latency_ms_min": 0.6762500270269811,
+          "ingest_latency_ms_max": 1.0197929805144668,
+          "query_latency_ms_min": 1.6192080220207572,
+          "query_latency_ms_max": 2.085791027639061
+        }
+      },
+      "sqlite": {
+        "naive": {
+          "storage_bytes": 73728,
+          "ingest_latency_ms_median": 6.634457968175411,
+          "query_latency_ms_median": 4.040166037157178,
+          "events_precision": 1.0,
+          "events_recall": 1.0,
+          "events_predicted": 4,
+          "events_matched": 4,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 1.0,
+          "ingest_latency_ms_min": 6.16024894407019,
+          "ingest_latency_ms_max": 16.24612498562783,
+          "query_latency_ms_min": 3.9405410643666983,
+          "query_latency_ms_max": 5.199833016376942
+        },
+        "hardened": {
+          "storage_bytes": 73728,
+          "ingest_latency_ms_median": 6.634457968175411,
+          "query_latency_ms_median": 3.9007500163279474,
+          "events_precision": 0.0,
+          "events_recall": 0.0,
+          "events_predicted": 0,
+          "events_matched": 0,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 0.0,
+          "ingest_latency_ms_min": 6.16024894407019,
+          "ingest_latency_ms_max": 16.24612498562783,
+          "query_latency_ms_min": 3.8441650685854256,
+          "query_latency_ms_max": 4.634291981346905
+        }
+      },
+      "parquet": {
+        "naive": {
+          "storage_bytes": 8431,
+          "ingest_latency_ms_median": 2.4075830006040633,
+          "query_latency_ms_median": 6.22237502830103,
+          "events_precision": 1.0,
+          "events_recall": 1.0,
+          "events_predicted": 4,
+          "events_matched": 4,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 1.0,
+          "ingest_latency_ms_min": 2.148916944861412,
+          "ingest_latency_ms_max": 414.0454170992598,
+          "query_latency_ms_min": 5.724998947698623,
+          "query_latency_ms_max": 241.67395901167765
+        },
+        "hardened": {
+          "storage_bytes": 8431,
+          "ingest_latency_ms_median": 2.4075830006040633,
+          "query_latency_ms_median": 5.923416058067232,
+          "events_precision": 0.0,
+          "events_recall": 0.0,
+          "events_predicted": 0,
+          "events_matched": 0,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 0.0,
+          "ingest_latency_ms_min": 2.148916944861412,
+          "ingest_latency_ms_max": 414.0454170992598,
+          "query_latency_ms_min": 5.775831989012659,
+          "query_latency_ms_max": 6.499707116745412
+        }
+      },
+      "json_gzip": {
+        "naive": {
+          "storage_bytes": 1583,
+          "ingest_latency_ms_median": 1.3011659611947834,
+          "query_latency_ms_median": 2.2263750433921814,
+          "events_precision": 1.0,
+          "events_recall": 1.0,
+          "events_predicted": 4,
+          "events_matched": 4,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 1.0,
+          "ingest_latency_ms_min": 1.2551670079119503,
+          "ingest_latency_ms_max": 1.6810829984024167,
+          "query_latency_ms_min": 2.186249941587448,
+          "query_latency_ms_max": 3.508917987346649
+        },
+        "hardened": {
+          "storage_bytes": 1583,
+          "ingest_latency_ms_median": 1.3011659611947834,
+          "query_latency_ms_median": 2.21070897532627,
+          "events_precision": 0.0,
+          "events_recall": 0.0,
+          "events_predicted": 0,
+          "events_matched": 0,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 0.0,
+          "ingest_latency_ms_min": 1.2551670079119503,
+          "ingest_latency_ms_max": 1.6810829984024167,
+          "query_latency_ms_min": 2.1925000473856926,
+          "query_latency_ms_max": 2.7257499750703573
+        }
+      }
+    }
+  },
+  "proxy_noisy": {
+    "surface_name": "proxy_noisy",
+    "clip_count": 3,
+    "frame_count_total": 180,
+    "gt_event_count_total": 4,
+    "representations": [
+      "zpe_packet",
+      "raw_struct_zlib",
+      "sqlite",
+      "parquet",
+      "json_gzip"
+    ],
+    "operators": [
+      "naive",
+      "hardened"
+    ],
+    "results": {
+      "zpe_packet": {
+        "naive": {
+          "storage_bytes": 9367,
+          "ingest_latency_ms_median": 2.501623996067792,
+          "query_latency_ms_median": 3.5425840178504586,
+          "events_precision": 0.13793103448275862,
+          "events_recall": 1.0,
+          "events_predicted": 29,
+          "events_matched": 4,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 1.0,
+          "ingest_latency_ms_min": 2.410709043033421,
+          "ingest_latency_ms_max": 2.7271670405752957,
+          "query_latency_ms_min": 3.3157510333694518,
+          "query_latency_ms_max": 4.128540982492268
+        },
+        "hardened": {
+          "storage_bytes": 9367,
+          "ingest_latency_ms_median": 2.501623996067792,
+          "query_latency_ms_median": 3.3924170420505106,
+          "events_precision": 0.0,
+          "events_recall": 0.0,
+          "events_predicted": 0,
+          "events_matched": 0,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 0.0,
+          "ingest_latency_ms_min": 2.410709043033421,
+          "ingest_latency_ms_max": 2.7271670405752957,
+          "query_latency_ms_min": 3.234333940781653,
+          "query_latency_ms_max": 5.376874003559351
+        }
+      },
+      "raw_struct_zlib": {
+        "naive": {
+          "storage_bytes": 1885,
+          "ingest_latency_ms_median": 1.3967080158181489,
+          "query_latency_ms_median": 3.259957011323422,
+          "events_precision": 0.13793103448275862,
+          "events_recall": 1.0,
+          "events_predicted": 29,
+          "events_matched": 4,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 1.0,
+          "ingest_latency_ms_min": 0.95812400104478,
+          "ingest_latency_ms_max": 2.364206942729652,
+          "query_latency_ms_min": 2.7378330705687404,
+          "query_latency_ms_max": 4.209333041217178
+        },
+        "hardened": {
+          "storage_bytes": 1885,
+          "ingest_latency_ms_median": 1.3967080158181489,
+          "query_latency_ms_median": 2.4867079919204116,
+          "events_precision": 0.0,
+          "events_recall": 0.0,
+          "events_predicted": 0,
+          "events_matched": 0,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 0.0,
+          "ingest_latency_ms_min": 0.95812400104478,
+          "ingest_latency_ms_max": 2.364206942729652,
+          "query_latency_ms_min": 2.4639999610371888,
+          "query_latency_ms_max": 3.4205830306746066
+        }
+      },
+      "sqlite": {
+        "naive": {
+          "storage_bytes": 81920,
+          "ingest_latency_ms_median": 6.558376015163958,
+          "query_latency_ms_median": 5.905917030759156,
+          "events_precision": 0.13793103448275862,
+          "events_recall": 1.0,
+          "events_predicted": 29,
+          "events_matched": 4,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 1.0,
+          "ingest_latency_ms_min": 6.213292072061449,
+          "ingest_latency_ms_max": 7.1693320060148835,
+          "query_latency_ms_min": 5.2090000244788826,
+          "query_latency_ms_max": 6.580832996405661
+        },
+        "hardened": {
+          "storage_bytes": 81920,
+          "ingest_latency_ms_median": 6.558376015163958,
+          "query_latency_ms_median": 5.556333984714001,
+          "events_precision": 0.0,
+          "events_recall": 0.0,
+          "events_predicted": 0,
+          "events_matched": 0,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 0.0,
+          "ingest_latency_ms_min": 6.213292072061449,
+          "ingest_latency_ms_max": 7.1693320060148835,
+          "query_latency_ms_min": 5.167207971680909,
+          "query_latency_ms_max": 6.524917029310018
+        }
+      },
+      "parquet": {
+        "naive": {
+          "storage_bytes": 10161,
+          "ingest_latency_ms_median": 2.065416018012911,
+          "query_latency_ms_median": 8.358833030797541,
+          "events_precision": 0.13793103448275862,
+          "events_recall": 1.0,
+          "events_predicted": 29,
+          "events_matched": 4,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 1.0,
+          "ingest_latency_ms_min": 2.0474580232985318,
+          "ingest_latency_ms_max": 2.5689579197205603,
+          "query_latency_ms_min": 7.448874937836081,
+          "query_latency_ms_max": 8.815624983981252
+        },
+        "hardened": {
+          "storage_bytes": 10161,
+          "ingest_latency_ms_median": 2.065416018012911,
+          "query_latency_ms_median": 7.888250052928925,
+          "events_precision": 0.0,
+          "events_recall": 0.0,
+          "events_predicted": 0,
+          "events_matched": 0,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 0.0,
+          "ingest_latency_ms_min": 2.0474580232985318,
+          "ingest_latency_ms_max": 2.5689579197205603,
+          "query_latency_ms_min": 7.481250970158726,
+          "query_latency_ms_max": 8.396750956308097
+        }
+      },
+      "json_gzip": {
+        "naive": {
+          "storage_bytes": 2388,
+          "ingest_latency_ms_median": 2.0319170434959233,
+          "query_latency_ms_median": 3.5090410383418202,
+          "events_precision": 0.13793103448275862,
+          "events_recall": 1.0,
+          "events_predicted": 29,
+          "events_matched": 4,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 1.0,
+          "ingest_latency_ms_min": 1.9205000717192888,
+          "ingest_latency_ms_max": 2.7239170158281922,
+          "query_latency_ms_min": 3.383792005479336,
+          "query_latency_ms_max": 3.9655419532209635
+        },
+        "hardened": {
+          "storage_bytes": 2388,
+          "ingest_latency_ms_median": 2.0319170434959233,
+          "query_latency_ms_median": 3.3012909698300064,
+          "events_precision": 0.0,
+          "events_recall": 0.0,
+          "events_predicted": 0,
+          "events_matched": 0,
+          "events_ground_truth": 4,
+          "events_mean_temporal_iou": 0.0,
+          "ingest_latency_ms_min": 1.9205000717192888,
+          "ingest_latency_ms_max": 2.7239170158281922,
+          "query_latency_ms_min": 3.271042020060122,
+          "query_latency_ms_max": 3.6937500699423254
+        }
+      }
+    }
+  },
+  "config": {
+    "query_repeats": 11,
+    "ingest_repeats": 5,
+    "noise_tracks_per_clip": 10,
+    "noise_seed": 42
+  },
+  "verdict": {
+    "verdict": "zpe_packet_beaten_by_commodity_format",
+    "rationale": "The raw_struct_zlib baseline strictly dominates ZPE packet on BOTH storage (bytes 1077 vs 7595, 0.14x) AND query latency (1.66 ms vs 2.25 ms, 0.74x), with identical precision and recall. The ZPE packet format has NO unique structural advantage over commodity alternatives for this workload. The archive-query wedge as currently framed is FALSIFIED.",
+    "kill_criteria": {
+      "baselines_dominating_zpe_on_both_axes": [
+        "raw_struct_zlib",
+        "json_gzip"
+      ],
+      "baselines_within_2x_of_zpe_on_both_axes": [
+        "raw_struct_zlib",
+        "json_gzip"
+      ],
+      "naive_precision_identical_across_representations": true,
+      "naive_noisy_precisions_per_representation": {
+        "zpe_packet": 0.13793103448275862,
+        "raw_struct_zlib": 0.13793103448275862,
+        "sqlite": 0.13793103448275862,
+        "parquet": 0.13793103448275862,
+        "json_gzip": 0.13793103448275862
+      }
+    },
+    "defend_criteria": {
+      "zpe_dominates_storage_by_2x_everywhere": false,
+      "zpe_dominates_query_latency_by_2x_everywhere": false
+    },
+    "ratio_table_baseline_over_zpe": {
+      "parquet": {
+        "storage_over_zpe": 1.1100724160631994,
+        "query_latency_over_zpe": 2.763044002226469,
+        "ingest_latency_over_zpe": 1.1937188947218136
+      },
+      "sqlite": {
+        "storage_over_zpe": 9.707439104674128,
+        "query_latency_over_zpe": 1.7940346710368937,
+        "ingest_latency_over_zpe": 3.2894724006863445
+      },
+      "raw_struct_zlib": {
+        "storage_over_zpe": 0.14180381830151415,
+        "query_latency_over_zpe": 0.7376220903761825,
+        "ingest_latency_over_zpe": 0.3611402199374736
+      },
+      "json_gzip": {
+        "storage_over_zpe": 0.20842659644502962,
+        "query_latency_over_zpe": 0.9886212551272563,
+        "ingest_latency_over_zpe": 0.6451392922517637
+      }
+    }
+  }
+}
