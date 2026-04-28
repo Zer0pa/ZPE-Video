@@ -6,7 +6,7 @@
   <img src="../.github/assets/readme/section-bars/summary.svg" alt="SUMMARY" width="100%">
 </p>
 
-Current state (2026-04-24):
+Current state (2026-04-28):
 
 - Package version: <code>0.1.0</code>
 - Posture: <code>always-in-beta</code> (useful now, improving continuously)

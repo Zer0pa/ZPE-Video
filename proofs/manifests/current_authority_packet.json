@@ -1,16 +1,16 @@
 {
-  "bundle_sha256": "bde8d94dc3c6edb4029f3dc17bb85e787d27bfce60f0975dd0722b88377ca897",
+  "bundle_sha256": "74c629f2ada1b4765d1985c19ce284a08f9fc3b0e22a356916f7f168eec4bbb1",
   "commercial_receipt_core_verdict": "PASS",
   "files": [
     {
       "path": "README.md",
-      "sha256": "69977be7be8d73b43324bcb5bac7cbe278372acf7f2cffd6bda4cadb0814c56a",
-      "size": 12217
+      "sha256": "b1d34a6b7f6eae1e9636fd5ecd026ba1364a23148fc20b1421fc1936790d42fe",
+      "size": 14176
     },
     {
       "path": "pyproject.toml",
-      "sha256": "e5f102e156fa8874955c4dd71c2e1fa433e0f5d87362839cb84833f35a38cc48",
-      "size": 3201
+      "sha256": "b3dcf7eece28790ed28251b09751d670fc7a81a592a42004ae870e4ab7eab075",
+      "size": 3162
     },
     {
       "path": "CITATION.cff",

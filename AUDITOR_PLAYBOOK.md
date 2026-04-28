@@ -17,7 +17,7 @@ What you can verify quickly:
 - the repo installs as a Python package (`pip install -e .[dev]`)
 - the package imports cleanly with zero runtime dependencies for the
   core receipt surface
-- the full test suite passes (22 tests: 20 receipt + 2 legacy codec)
+- the full test suite passes (29 tests: 20 receipt + 7 manifest + 2 legacy codec)
 - the cross-writer wedge is load-bearing:
   `pytest tests/test_receipt.py::test_cross_writer_independent_implementation_matches`
 - the full research transparency bundle is present under

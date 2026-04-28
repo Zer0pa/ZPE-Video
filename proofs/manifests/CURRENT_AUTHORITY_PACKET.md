@@ -5,15 +5,15 @@
 - Predicate type: `https://zer0pa.ai/predicates/zpe-video-receipt/v1`
 - Commercial receipt-core verdict: `PASS`
 - Sovereign gate status: `red`
-- Bundle SHA-256: `bde8d94dc3c6edb4029f3dc17bb85e787d27bfce60f0975dd0722b88377ca897`
+- Bundle SHA-256: `74c629f2ada1b4765d1985c19ce284a08f9fc3b0e22a356916f7f168eec4bbb1`
 
 The bundle hash covers the canonical sorted list of authority files below. It is
 a repo-local receipt-chain anchor; it does not claim Phase 10 closure.
 
 | Path | SHA-256 | Bytes |
 |---|---:|---:|
-| `README.md` | `69977be7be8d73b43324bcb5bac7cbe278372acf7f2cffd6bda4cadb0814c56a` | 12217 |
-| `pyproject.toml` | `e5f102e156fa8874955c4dd71c2e1fa433e0f5d87362839cb84833f35a38cc48` | 3201 |
+| `README.md` | `b1d34a6b7f6eae1e9636fd5ecd026ba1364a23148fc20b1421fc1936790d42fe` | 14176 |
+| `pyproject.toml` | `b3dcf7eece28790ed28251b09751d670fc7a81a592a42004ae870e4ab7eab075` | 3162 |
 | `CITATION.cff` | `ad0970d327d44bf4542202a69953b4eacb53c4e0d0159979ba632b6f59572ffd` | 1688 |
 | `docs/WEDGE.md` | `e5351d07aca59e0bed9c70b83171d36c43f651940ec9cce11af115712b030545` | 8313 |
 | `docs/WIRE_FORMAT.md` | `332323234629d68ad5887d83ae171bf79cec37a6cafeb0b1dc849b021d8fd09d` | 7723 |

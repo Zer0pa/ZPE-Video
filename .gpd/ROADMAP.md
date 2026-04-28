@@ -10,7 +10,7 @@ version see `ROADMAP.md` at repo root.
 
 | Phase | Title | Descriptive label | Canonical enum | Folder |
 |---|---|---|---|---|
-| 08 | Comparator expansion | killed | `INCONCLUSIVE` | (pre-GPD; see `docs/TRANSPARENCY_JOURNEY.md`) |
+| 08 | Comparator expansion | killed | `FAIL` | (pre-GPD; see `docs/TRANSPARENCY_JOURNEY.md`) |
 | 09-09 | Architectural purification and contour primary recovery | `bounded_signal_only` | `INCONCLUSIVE` | [09-architectural-purification-and-contour-primary-recovery](PHASES/09-architectural-purification-and-contour-primary-recovery/) |
 | 09.1 | Seedance-informed video subchannel factorization hypothesis | `flat_lane_still_dominant` | `INCONCLUSIVE` | [09.1-seedance-informed-video-subchannel-factorization-hypothesis](PHASES/09.1-seedance-informed-video-subchannel-factorization-hypothesis/) |
 | 09.2 | Primitive-native layered control plane wedge | `bounded_signal_only` | `INCONCLUSIVE` | [09.2-primitive-native-layered-control-plane-wedge](PHASES/09.2-primitive-native-layered-control-plane-wedge/) |
@@ -19,8 +19,8 @@ version see `ROADMAP.md` at repo root.
 | 09.3.2 | Portal-local state machine | `retire_surface` | `SUSPENDED_BY_OWNER` | [09.3.2-portal-local-state-machine](PHASES/09.3.2-portal-local-state-machine/) |
 | 09.4 | Repo public-surface hardening | complete | `PASS` | (pre-GPD; see `docs/TRANSPARENCY_JOURNEY.md`) |
 | 09.4.1–09.4.1.1.1 | Ground-state wedge audit + pod-backed archive-query benchmark | `bounded_signal_only` | `INCONCLUSIVE` | (pre-GPD; see `docs/TRANSPARENCY_JOURNEY.md`) |
-| 09.4.1.1.2 | Fair-baseline archive-query falsification | killed | `INCONCLUSIVE` | (pre-GPD; see `docs/TRANSPARENCY_JOURNEY.md`) |
-| 09.4.1.1.2.1-A | ROI / foveated sidecar | killed | `INCONCLUSIVE` | (pre-GPD; see `docs/TRANSPARENCY_JOURNEY.md`) |
+| 09.4.1.1.2 | Fair-baseline archive-query falsification | killed | `FAIL` | (pre-GPD; see `docs/TRANSPARENCY_JOURNEY.md`) |
+| 09.4.1.1.2.1-A | ROI / foveated sidecar | killed | `FAIL` | (pre-GPD; see `docs/TRANSPARENCY_JOURNEY.md`) |
 | 09.4.1.1.2.1-B | Cross-writer hash-stable receipt (Candidate B) | defended | `PASS` | (pre-GPD; see `docs/TRANSPARENCY_JOURNEY.md`) |
 | 09.4.1.1.2.1-C | State-layer enrichment (trajectory features) | defended-with-caveat | `PASS` | (pre-GPD; see `docs/TRANSPARENCY_JOURNEY.md`) |
 | 09.4.1.1.2.2 | Receipt-core provenance benchmark and C2PA readiness | **ACTIVE** | `PASS` | `docs/transparency/phase09_4_1_1_2_2_receipt_core_provenance_benchmark/` |

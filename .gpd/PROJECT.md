@@ -23,7 +23,7 @@ All broader wedge claims were falsified through the 09.x phase series.
 ## What This Lane Is Not
 
 - Not a claim about the Compass-8 / 8-primitive directional-encoding
-  architecture. This codec does not use it. (See `docs/NOVELTY_CARD.md`.)
+  architecture. This codec does not use it. (See [`docs/_reorientation/2026-04-17/NOVELTY_CARD.md`](../docs/_reorientation/2026-04-17/NOVELTY_CARD.md).)
 - Not a universal video-codec superiority claim (killed in Phase 08).
 - Not an archive-query ZPE-specific claim (killed in Phase 09.4.1.1.2).
 
