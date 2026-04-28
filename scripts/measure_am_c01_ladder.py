@@ -13,7 +13,6 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw
 
-
 REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "scripts"))
@@ -58,7 +57,7 @@ class PatchPlan:
     variants: tuple[tuple[int, PatchSpec], ...]
 
     @classmethod
-    def fixed(cls, patch_spec: PatchSpec) -> "PatchPlan":
+    def fixed(cls, patch_spec: PatchSpec) -> PatchPlan:
         return cls(variants=((0, patch_spec),))
 
     def select(self, box: object) -> PatchSpec:
@@ -69,7 +68,10 @@ class PatchPlan:
         return self.variants[-1][1]
 
     def describe(self) -> str:
-        parts = [f"{min_area}:{spec.width}x{spec.height}x{spec.channels}@{spec.quant_levels}" for min_area, spec in self.variants]
+        parts = [
+            f"{min_area}:{spec.width}x{spec.height}x{spec.channels}@{spec.quant_levels}"
+            for min_area, spec in self.variants
+        ]
         return ",".join(parts)
 
 
@@ -111,7 +113,9 @@ def _mean_value(values: list[float]) -> float:
     return float(sum(values) / len(values))
 
 
-def _compute_patch_grid(roi: np.ndarray, patch_spec: PatchSpec) -> tuple[list[int], int, int, int, int]:
+def _compute_patch_grid(
+    roi: np.ndarray, patch_spec: PatchSpec
+) -> tuple[list[int], int, int, int, int]:
     import cv2  # type: ignore
 
     if roi.size == 0:
@@ -126,7 +130,9 @@ def _compute_patch_grid(roi: np.ndarray, patch_spec: PatchSpec) -> tuple[list[in
     elif source.ndim == 3 and patch_spec.channels == 1:
         source = np.asarray(Image.fromarray(source).convert("L"), dtype=np.uint8)
 
-    resized = cv2.resize(source, (patch_spec.width, patch_spec.height), interpolation=cv2.INTER_AREA)
+    resized = cv2.resize(
+        source, (patch_spec.width, patch_spec.height), interpolation=cv2.INTER_AREA
+    )
     quant_step = 255.0 / float(patch_spec.quant_levels - 1)
     quantized = np.clip(
         np.round(resized.astype(np.float32) / quant_step),
@@ -396,7 +402,19 @@ def _deserialize_sparse_frames(blob: bytes) -> tuple[int, int, list[list[SparseP
         for _ in range(primitive_count):
             if payload_offset + _PRIMITIVE_STRUCT.size > len(payload):
                 raise ValueError("SPARSE_PRIMITIVE_TRUNCATED")
-            box_id, label, point_count, patch_width, patch_height, patch_channels, patch_bits, x, y, w, h = _PRIMITIVE_STRUCT.unpack_from(
+            (
+                box_id,
+                label,
+                point_count,
+                patch_width,
+                patch_height,
+                patch_channels,
+                patch_bits,
+                x,
+                y,
+                w,
+                h,
+            ) = _PRIMITIVE_STRUCT.unpack_from(
                 payload,
                 payload_offset,
             )
@@ -409,7 +427,11 @@ def _deserialize_sparse_frames(blob: bytes) -> tuple[int, int, list[list[SparseP
                 payload_offset += 4
                 points.append((int(px), int(py)))
             patch_value_count = int(patch_width) * int(patch_height) * int(patch_channels)
-            patch_byte_len = ((patch_value_count * int(patch_bits)) + 7) // 8 if patch_value_count and patch_bits else 0
+            patch_byte_len = (
+                ((patch_value_count * int(patch_bits)) + 7) // 8
+                if patch_value_count and patch_bits
+                else 0
+            )
             if payload_offset + patch_byte_len > len(payload):
                 raise ValueError("SPARSE_PATCH_TRUNCATED")
             patch_values = _unpack_patch_values(
@@ -439,7 +461,12 @@ def _deserialize_sparse_frames(blob: bytes) -> tuple[int, int, list[list[SparseP
 
 
 def _decode_patch_array(primitive: SparsePrimitive) -> np.ndarray | None:
-    if not primitive.patch_values or primitive.patch_width <= 0 or primitive.patch_height <= 0 or primitive.patch_bits <= 0:
+    if (
+        not primitive.patch_values
+        or primitive.patch_width <= 0
+        or primitive.patch_height <= 0
+        or primitive.patch_bits <= 0
+    ):
         return None
     scale = 255.0 / float((1 << primitive.patch_bits) - 1)
     patch_array = np.asarray(primitive.patch_values, dtype=np.float32) * scale
@@ -478,7 +505,9 @@ def _render_sparse_frames(
                 canvas_rgb[y0 : y0 + h, x0 : x0 + w] = fill
             if draw_contour and len(primitive.points) >= 2:
                 pts = np.asarray(primitive.points, dtype=np.int32).reshape((-1, 1, 2))
-                cv2.polylines(canvas_rgb, [pts], True, color=(245, 245, 245), thickness=line_thickness)
+                cv2.polylines(
+                    canvas_rgb, [pts], True, color=(245, 245, 245), thickness=line_thickness
+                )
         rendered_frames.append(canvas_rgb.astype(np.uint8))
     return rendered_frames
 
@@ -504,7 +533,9 @@ def _run_sparse_representation(
         patch_rgb_frames=rgb_frames if spec.patch_plan is not None else None,
     )
     artifact_path = rep_root / f"{spec.name}.bin"
-    size_bytes = _serialize_sparse_frames(sparse_frames, width=width, height=height, output_path=artifact_path)
+    size_bytes = _serialize_sparse_frames(
+        sparse_frames, width=width, height=height, output_path=artifact_path
+    )
     _, _, decoded_frames = _deserialize_sparse_frames(artifact_path.read_bytes())
     rendered_frames = _render_sparse_frames(
         decoded_frames,
@@ -537,8 +568,12 @@ def _run_sparse_representation(
             "include_contour": spec.include_contour,
             "draw_contour": spec.draw_contour,
             "patch_plan": spec.patch_plan.describe() if spec.patch_plan is not None else "none",
-            "patch_quant_levels": spec.patch_plan.variants[0][1].quant_levels if spec.patch_plan is not None else 0,
-            "patch_channels": spec.patch_plan.variants[0][1].channels if spec.patch_plan is not None else 0,
+            "patch_quant_levels": spec.patch_plan.variants[0][1].quant_levels
+            if spec.patch_plan is not None
+            else 0,
+            "patch_channels": spec.patch_plan.variants[0][1].channels
+            if spec.patch_plan is not None
+            else 0,
             "patch_histogram": patch_histogram,
             "dominant_patch_grid": dominant_patch_grid,
         },
@@ -573,7 +608,9 @@ def _run_box_representation(
         reconstruct_frame=reconstruct_frame,
     )
     decoded = decode_sequence(str(zpe_stream_path), tolerate_corruption=True)
-    decoded_box_metric, _ = h0._compute_map50(gt_frames, decoded.decoded_boxes[: len(gt_frames)], iou=iou)
+    decoded_box_metric, _ = h0._compute_map50(
+        gt_frames, decoded.decoded_boxes[: len(gt_frames)], iou=iou
+    )
     source_box_metric, _ = h0._compute_map50(gt_frames, source_boxes, iou=iou)
     return RepresentationResult(
         name="box",
@@ -588,8 +625,12 @@ def _run_box_representation(
             "source_box_metric": float(source_box_metric),
             "decoded_frame_count": len(decoded.decoded_boxes),
             "decode_errors": list(decoded.errors),
-            "frame_primitive_counts": [len(frame) for frame in decoded.decoded_boxes[: len(gt_frames)]],
-            "primitive_count_mean": _mean_value([float(len(frame)) for frame in decoded.decoded_boxes[: len(gt_frames)]]),
+            "frame_primitive_counts": [
+                len(frame) for frame in decoded.decoded_boxes[: len(gt_frames)]
+            ],
+            "primitive_count_mean": _mean_value(
+                [float(len(frame)) for frame in decoded.decoded_boxes[: len(gt_frames)]]
+            ),
         },
     )
 
@@ -636,7 +677,7 @@ def _save_contact_sheet(
     tile_height = int(frames[0].shape[0])
     sheet = Image.new("RGB", (tile_width * len(frames), tile_height + 28), color=(16, 16, 16))
     draw = ImageDraw.Draw(sheet)
-    for idx, (label, frame) in enumerate(zip(labels, frames)):
+    for idx, (label, frame) in enumerate(zip(labels, frames, strict=False)):
         tile = Image.fromarray(frame.astype(np.uint8))
         sheet.paste(tile, (idx * tile_width, 28))
         draw.text((idx * tile_width + 8, 6), label, fill=(245, 245, 245))
@@ -644,7 +685,9 @@ def _save_contact_sheet(
     sheet.save(output_path)
 
 
-def _rank_representation_items(representations: dict[str, dict[str, object]]) -> list[tuple[str, dict[str, object]]]:
+def _rank_representation_items(
+    representations: dict[str, dict[str, object]],
+) -> list[tuple[str, dict[str, object]]]:
     return sorted(
         representations.items(),
         key=lambda item: (float(item[1]["metric"]), -float(item[1]["bitrate_ratio"])),
@@ -678,11 +721,15 @@ def _recommended_representation(
         return "box", "No sparse representations were available.", None, "none"
 
     best_overall_name, _ = ranked[0]
-    best_under_gate_name = _best_representation_name(representations, max_bitrate_ratio=max_bitrate_ratio)
+    best_under_gate_name = _best_representation_name(
+        representations, max_bitrate_ratio=max_bitrate_ratio
+    )
     name = best_under_gate_name or best_overall_name
     data = representations[name]
     if name.startswith("patch_q4_"):
-        dominant_patch_grid = data["diagnostics"].get("dominant_patch_grid") or data["diagnostics"].get("patch_plan")
+        dominant_patch_grid = data["diagnostics"].get("dominant_patch_grid") or data[
+            "diagnostics"
+        ].get("patch_plan")
         return (
             name,
             f"{dominant_patch_grid} quantized ROI thumbnails are the strongest current gate-aware H2 frontier and show that appearance fidelity, not geometry transport, is now the limiting stage.",
@@ -786,14 +833,20 @@ def _write_markdown_report(
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run AM-C01 representation ladder on the same frozen VisDrone slice.")
-    parser.add_argument("--frame-count", type=int, default=20, help="Number of VisDrone frames to evaluate.")
+    parser = argparse.ArgumentParser(
+        description="Run AM-C01 representation ladder on the same frozen VisDrone slice."
+    )
+    parser.add_argument(
+        "--frame-count", type=int, default=20, help="Number of VisDrone frames to evaluate."
+    )
     parser.add_argument(
         "--artifact-dir",
         default="artifacts/2026-03-13_am_c01_ladder_h2_budgetfinal",
         help="Artifact directory relative to repo root.",
     )
-    parser.add_argument("--score-threshold", type=float, default=0.05, help="Detector score threshold.")
+    parser.add_argument(
+        "--score-threshold", type=float, default=0.05, help="Detector score threshold."
+    )
     args = parser.parse_args()
 
     artifact_root = (REPO_ROOT / args.artifact_dir).resolve()
@@ -824,9 +877,13 @@ def main() -> int:
     detector = TorchvisionCocoDetector(score_threshold=args.score_threshold)
     baseline_predictions = h0._predict_many(detector, rgb_frames)
     source_boxes = h0._assign_track_ids(baseline_predictions, Box=Box, iou=iou)
-    baseline_metric, baseline_per_class = h0._compute_map50(gt_frames, baseline_predictions, iou=iou)
+    baseline_metric, baseline_per_class = h0._compute_map50(
+        gt_frames, baseline_predictions, iou=iou
+    )
 
-    h265_frames, h265_bitrate_bytes, h265_path = h0._encode_h265(REPO_ROOT, artifact_root, rgb_frames, frame_rate=24)
+    h265_frames, h265_bitrate_bytes, h265_path = h0._encode_h265(
+        REPO_ROOT, artifact_root, rgb_frames, frame_rate=24
+    )
     h265_predictions = h0._predict_many(detector, h265_frames[: len(gt_frames)])
     h265_metric, h265_per_class = h0._compute_map50(gt_frames, h265_predictions, iou=iou)
 
@@ -844,7 +901,9 @@ def main() -> int:
             notes="Contour/stroke reconstruction with 4x4x3 quantized interior color patches from detector-supported ROIs.",
             include_contour=True,
             draw_contour=True,
-            patch_plan=PatchPlan.fixed(PatchSpec(width=4, height=4, quant_levels=16, channels=3, margin_ratio=0.0)),
+            patch_plan=PatchPlan.fixed(
+                PatchSpec(width=4, height=4, quant_levels=16, channels=3, margin_ratio=0.0)
+            ),
         ),
         SparseRepresentationSpec(
             name="patch_q4_8",
@@ -852,7 +911,9 @@ def main() -> int:
             notes="8x8 4-bit RGB ROI thumbnails without contour overlay.",
             include_contour=False,
             draw_contour=False,
-            patch_plan=PatchPlan.fixed(PatchSpec(width=8, height=8, quant_levels=16, channels=3, margin_ratio=0.0)),
+            patch_plan=PatchPlan.fixed(
+                PatchSpec(width=8, height=8, quant_levels=16, channels=3, margin_ratio=0.0)
+            ),
         ),
         SparseRepresentationSpec(
             name="patch_q4_mix_8_10_area1600",
@@ -862,8 +923,16 @@ def main() -> int:
             draw_contour=False,
             patch_plan=PatchPlan(
                 variants=(
-                    (1600, PatchSpec(width=10, height=10, quant_levels=16, channels=3, margin_ratio=0.0)),
-                    (0, PatchSpec(width=8, height=8, quant_levels=16, channels=3, margin_ratio=0.0)),
+                    (
+                        1600,
+                        PatchSpec(
+                            width=10, height=10, quant_levels=16, channels=3, margin_ratio=0.0
+                        ),
+                    ),
+                    (
+                        0,
+                        PatchSpec(width=8, height=8, quant_levels=16, channels=3, margin_ratio=0.0),
+                    ),
                 )
             ),
         ),
@@ -875,8 +944,16 @@ def main() -> int:
             draw_contour=False,
             patch_plan=PatchPlan(
                 variants=(
-                    (2200, PatchSpec(width=10, height=10, quant_levels=16, channels=3, margin_ratio=0.0)),
-                    (0, PatchSpec(width=8, height=8, quant_levels=16, channels=3, margin_ratio=0.0)),
+                    (
+                        2200,
+                        PatchSpec(
+                            width=10, height=10, quant_levels=16, channels=3, margin_ratio=0.0
+                        ),
+                    ),
+                    (
+                        0,
+                        PatchSpec(width=8, height=8, quant_levels=16, channels=3, margin_ratio=0.0),
+                    ),
                 )
             ),
         ),
@@ -888,8 +965,16 @@ def main() -> int:
             draw_contour=False,
             patch_plan=PatchPlan(
                 variants=(
-                    (2500, PatchSpec(width=10, height=10, quant_levels=16, channels=3, margin_ratio=0.0)),
-                    (0, PatchSpec(width=8, height=8, quant_levels=16, channels=3, margin_ratio=0.0)),
+                    (
+                        2500,
+                        PatchSpec(
+                            width=10, height=10, quant_levels=16, channels=3, margin_ratio=0.0
+                        ),
+                    ),
+                    (
+                        0,
+                        PatchSpec(width=8, height=8, quant_levels=16, channels=3, margin_ratio=0.0),
+                    ),
                 )
             ),
         ),
@@ -899,7 +984,9 @@ def main() -> int:
             notes="10x10 4-bit RGB ROI thumbnails without contour overlay.",
             include_contour=False,
             draw_contour=False,
-            patch_plan=PatchPlan.fixed(PatchSpec(width=10, height=10, quant_levels=16, channels=3, margin_ratio=0.0)),
+            patch_plan=PatchPlan.fixed(
+                PatchSpec(width=10, height=10, quant_levels=16, channels=3, margin_ratio=0.0)
+            ),
         ),
         SparseRepresentationSpec(
             name="patch_q4_12",
@@ -907,7 +994,9 @@ def main() -> int:
             notes="12x12 4-bit RGB ROI thumbnails without contour overlay.",
             include_contour=False,
             draw_contour=False,
-            patch_plan=PatchPlan.fixed(PatchSpec(width=12, height=12, quant_levels=16, channels=3, margin_ratio=0.0)),
+            patch_plan=PatchPlan.fixed(
+                PatchSpec(width=12, height=12, quant_levels=16, channels=3, margin_ratio=0.0)
+            ),
         ),
     ]
 
@@ -945,7 +1034,9 @@ def main() -> int:
         predictions = h0._predict_many(detector, rep.frames)
         metric, per_class = h0._compute_map50(gt_frames, predictions, iou=iou)
         detection_retention = (metric / baseline_metric) if baseline_metric > 0 else 0.0
-        bitrate_ratio = (rep.size_bytes / float(h265_bitrate_bytes)) if h265_bitrate_bytes > 0 else float("inf")
+        bitrate_ratio = (
+            (rep.size_bytes / float(h265_bitrate_bytes)) if h265_bitrate_bytes > 0 else float("inf")
+        )
         rep_payload[rep.name] = {
             "measurement_type": rep.measurement_type,
             "metric": float(metric),
@@ -961,11 +1052,7 @@ def main() -> int:
             "diagnostics": rep.diagnostics,
         }
 
-    sparse_rep_payload = {
-        name: data
-        for name, data in rep_payload.items()
-        if name != "box"
-    }
+    sparse_rep_payload = {name: data for name, data in rep_payload.items() if name != "box"}
     (
         recommended_next_representation,
         recommended_rationale,
@@ -982,7 +1069,9 @@ def main() -> int:
         "frame_names": [frame.name for frame in frames],
         "detector_model": detector.model_id,
         "detector_score_threshold": float(args.score_threshold),
-        "detector_model_sha256": h0._sha256_file(detector.checkpoint_path) if detector.checkpoint_path else None,
+        "detector_model_sha256": h0._sha256_file(detector.checkpoint_path)
+        if detector.checkpoint_path
+        else None,
         "baseline_metric": float(baseline_metric),
         "baseline_per_class_ap50": baseline_per_class,
         "baseline_prediction_count": _prediction_count_stats(baseline_predictions),
@@ -994,7 +1083,9 @@ def main() -> int:
         "h265_prediction_count": _prediction_count_stats(h265_predictions),
         "h265_signal": _image_signal_stats(h265_frames[: len(gt_frames)]),
         "representations": rep_payload,
-        "representation_ranking": [name for name, _ in _rank_representation_items(sparse_rep_payload)],
+        "representation_ranking": [
+            name for name, _ in _rank_representation_items(sparse_rep_payload)
+        ],
         "best_overall_representation": best_overall_representation,
         "best_under_gate_representation": best_under_gate_representation,
         "recommended_next_representation": recommended_next_representation,
@@ -1016,7 +1107,10 @@ def main() -> int:
         frames=[
             rgb_frames[first_index],
             h265_frames[first_index],
-            *[representation_by_name[name].frames[first_index] for name in deduped_contact_rep_names],
+            *[
+                representation_by_name[name].frames[first_index]
+                for name in deduped_contact_rep_names
+            ],
         ],
     )
     _save_contact_sheet(
@@ -1025,7 +1119,10 @@ def main() -> int:
         frames=[
             rgb_frames[last_index],
             h265_frames[last_index],
-            *[representation_by_name[name].frames[last_index] for name in deduped_contact_rep_names],
+            *[
+                representation_by_name[name].frames[last_index]
+                for name in deduped_contact_rep_names
+            ],
         ],
     )
 
@@ -1040,15 +1137,16 @@ def main() -> int:
         "script_sha256": h0._sha256_file(Path(__file__).resolve()),
         "detector_model": summary["detector_model"],
         "detector_score_threshold": summary["detector_score_threshold"],
-        "detector_checkpoint_path": str(detector.checkpoint_path) if detector.checkpoint_path else None,
+        "detector_checkpoint_path": str(detector.checkpoint_path)
+        if detector.checkpoint_path
+        else None,
         "detector_checkpoint_sha256": summary["detector_model_sha256"],
         "frame_manifest": h0._frame_manifest(frames),
         "output_hashes": {
             "h265_video_path": str(h265_path),
             "h265_video_sha256": h0._sha256_file(h265_path),
             **{
-                f"{name}_artifact_path": data["artifact_path"]
-                for name, data in rep_payload.items()
+                f"{name}_artifact_path": data["artifact_path"] for name, data in rep_payload.items()
             },
             **{
                 f"{name}_artifact_sha256": h0._sha256_file(Path(data["artifact_path"]))
@@ -1060,11 +1158,18 @@ def main() -> int:
     measurement_path = artifact_root / "am_c01_ladder_measurement.json"
     custody_path = artifact_root / "am_c01_ladder_custody_manifest.json"
     report_path = artifact_root / "am_c01_ladder_analysis.md"
-    measurement_path.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    custody_path.write_text(json.dumps(custody_manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    measurement_path.write_text(
+        json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    custody_path.write_text(
+        json.dumps(custody_manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     _write_markdown_report(report_path, summary=summary)
     print(json.dumps(summary, indent=2, sort_keys=True))
-    if any(bool(data["detection_retention"] >= 0.95 and data["bitrate_ratio"] <= 0.02) for data in rep_payload.values()):
+    if any(
+        bool(data["detection_retention"] >= 0.95 and data["bitrate_ratio"] <= 0.02)
+        for data in rep_payload.values()
+    ):
         return 0
     return 1
 

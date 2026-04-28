@@ -18,15 +18,15 @@ COCO_TO_EVAL_LABEL = {
 }
 
 VISDRONE_TO_EVAL_LABEL = {
-    1: 1,   # pedestrian
-    2: 1,   # people
-    3: 2,   # bicycle
-    4: 3,   # car
-    5: 3,   # van
-    6: 6,   # truck
-    7: 2,   # tricycle
-    8: 2,   # awning-tricycle
-    9: 5,   # bus
+    1: 1,  # pedestrian
+    2: 1,  # people
+    3: 2,  # bicycle
+    4: 3,  # car
+    5: 3,  # van
+    6: 6,  # truck
+    7: 2,  # tricycle
+    8: 2,  # awning-tricycle
+    9: 5,  # bus
     10: 4,  # motor
 }
 
@@ -45,7 +45,9 @@ class TorchvisionCocoDetector:
         self._to_tensor = weights.transforms()
         self._device = torch.device("cpu")
         torch.set_num_threads(max(1, min(8, torch.get_num_threads())))
-        self._model = fasterrcnn_mobilenet_v3_large_320_fpn(weights=weights, box_score_thresh=score_threshold)
+        self._model = fasterrcnn_mobilenet_v3_large_320_fpn(
+            weights=weights, box_score_thresh=score_threshold
+        )
         self._model.eval()
         self._model.to(self._device)
         self.score_threshold = score_threshold
@@ -73,7 +75,9 @@ class TorchvisionCocoDetector:
         predicted_labels = output["labels"].detach().cpu().numpy()
         predicted_scores = output["scores"].detach().cpu().numpy()
         height, width = image.shape[:2]
-        for coords, coco_label, score in zip(predicted_boxes, predicted_labels, predicted_scores):
+        for coords, coco_label, score in zip(
+            predicted_boxes, predicted_labels, predicted_scores, strict=True
+        ):
             if float(score) < self.score_threshold:
                 continue
             eval_label = COCO_TO_EVAL_LABEL.get(int(coco_label))
