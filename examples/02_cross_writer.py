@@ -14,10 +14,10 @@ import struct
 import zlib
 
 from zpe_video import (
-    Box,
-    PerceptionReceipt,
     WIRE_MAGIC,
     WIRE_VERSION,
+    Box,
+    PerceptionReceipt,
     encode_receipt,
     receipt_hash,
     verify_receipt,

@@ -6,7 +6,7 @@ Run:
 
 from __future__ import annotations
 
-from zpe_video import Box, PerceptionReceipt, encode_receipt, decode_receipt, receipt_hash
+from zpe_video import Box, PerceptionReceipt, decode_receipt, encode_receipt, receipt_hash
 
 
 def main() -> None:
