@@ -1,0 +1,17 @@
+{
+  "title": "ZPE Video",
+  "creators": [
+    {
+      "name": "Zer0pa (Pty) Ltd"
+    }
+  ],
+  "license": "LicenseRef-Zer0pa-SAL-7.0",
+  "description": "ZPE Video structure encoding package with lightweight proof metadata and external heavy artifact custody.",
+  "keywords": [
+    "video",
+    "codec",
+    "encoding",
+    "zpe"
+  ]
+}
+

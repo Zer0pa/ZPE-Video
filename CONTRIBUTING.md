@@ -15,16 +15,12 @@ This repo follows a falsification-first contribution standard.
 Run the cheap checks first:
 
 ```bash
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
-python3 -m pip install -e ".[dev]"
-python3 -m compileall src scripts
-python3 - <<'PY'
-import sys
-sys.path.insert(0, "src")
-from zpe_video import Wave1Pipeline
-print(Wave1Pipeline)
-PY
+python -m pip install -e ".[dev]"
+python -m compileall src scripts
+python -m unittest tests/test_codec.py -v
+bash scripts/compliance_audit.sh
 ```
 
 If you change path resolution or bootstrap behavior, include the exact before/after evidence in your PR.
@@ -47,4 +43,3 @@ If you change path resolution or bootstrap behavior, include the exact before/af
 ## Licensing
 
 `LICENSE` is the legal source of truth for contributions and usage.
-
