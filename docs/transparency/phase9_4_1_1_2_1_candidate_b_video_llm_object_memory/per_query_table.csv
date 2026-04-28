@@ -1,0 +1,91 @@
+query_id,video_id,strategy,category,reference_answer,answer,is_correct,cache_read_ms_median,prompt_build_ms_median,tokenize_ms_median,llm_gen_ms,end_to_end_ms_median,prompt_tokens,detections_reused
+synth_v000:t7:presence,synth_v000,none,presence,bicycle,bicycle,True,0.006500,0.002792,0.386750,4216.445583,4216.841625,66,False
+synth_v000:t7:presence,synth_v000,parquet,presence,bicycle,bicycle,True,3.655833,0.002791,0.362792,2891.068709,2895.090125,66,True
+synth_v000:t7:presence,synth_v000,zpe_packet,presence,bicycle,bicycle,True,0.174583,0.002166,0.287125,2794.054792,2794.518666,66,True
+synth_v000:t7:count,synth_v000,none,count,2,"To determine how many objects are visible at time \(t = 7\), we need to consider the visibility of each",False,0.005666,0.002375,0.273041,8217.611083,8217.892165,56,False
+synth_v000:t7:count,synth_v000,parquet,count,2,"To determine how many objects are visible at time \(t = 7\), we need to consider the visibility of each",False,3.170000,0.003084,0.313042,9056.662792,9060.148918,56,True
+synth_v000:t7:count,synth_v000,zpe_packet,count,2,"To determine how many objects are visible at time \(t = 7\), we need to consider the visibility of each",False,0.188042,0.002333,0.276959,9606.015042,9606.482376,56,True
+synth_v000:t7:class,synth_v000,none,class,yes,No,False,0.007083,0.002958,0.348541,1589.251334,1589.609916,58,False
+synth_v000:t7:class,synth_v000,parquet,class,yes,No,False,3.791833,0.002625,0.350042,1564.309542,1568.454042,58,True
+synth_v000:t7:class,synth_v000,zpe_packet,class,yes,No,False,0.210375,0.002542,0.313750,1664.280875,1664.807542,58,True
+synth_v001:t8:presence,synth_v001,none,presence,"backpack, cat, dog","cat,dog",False,0.005958,0.003792,0.420708,2356.074416,2356.504874,81,False
+synth_v001:t8:presence,synth_v001,parquet,presence,"backpack, cat, dog","cat,dog",False,3.894667,0.003583,0.416500,2205.735917,2210.050667,81,True
+synth_v001:t8:presence,synth_v001,zpe_packet,presence,"backpack, cat, dog","cat,dog",False,0.185625,0.003666,0.426167,2232.584666,2233.200124,81,True
+synth_v001:t8:count,synth_v001,none,count,3,"To determine how many objects are visible at time \(t = 8\), we need to consider the visibility of each",False,0.005916,0.003625,0.406791,6391.694916,6392.111248,71,False
+synth_v001:t8:count,synth_v001,parquet,count,3,"To determine how many objects are visible at time \(t = 8\), we need to consider the visibility of each",False,4.255834,0.004250,0.409750,6325.531625,6330.201459,71,True
+synth_v001:t8:count,synth_v001,zpe_packet,count,3,"To determine how many objects are visible at time \(t = 8\), we need to consider the visibility of each",False,0.184541,0.003625,0.357209,6274.404958,6274.950333,71,True
+synth_v001:t8:class,synth_v001,none,class,yes,No,False,0.007208,0.004083,0.407750,1876.251250,1876.670291,73,False
+synth_v001:t8:class,synth_v001,parquet,class,yes,No,False,5.103833,0.006583,0.425208,1884.268167,1889.803791,73,True
+synth_v001:t8:class,synth_v001,zpe_packet,class,yes,No,False,0.206833,0.004333,0.363834,1895.945750,1896.520750,73,True
+synth_v002:t7:presence,synth_v002,none,presence,"backpack, cat",cat,False,0.010792,0.004542,0.529458,2126.871541,2127.416333,96,False
+synth_v002:t7:presence,synth_v002,parquet,presence,"backpack, cat",cat,False,4.626625,0.005000,0.487667,2131.076542,2136.195834,96,True
+synth_v002:t7:presence,synth_v002,zpe_packet,presence,"backpack, cat",cat,False,0.360500,0.005958,0.460083,2153.906333,2154.732874,96,True
+synth_v002:t7:count,synth_v002,none,count,4,"To determine how many objects are visible at time \(t = 7\), we need to consider the visibility of each",False,0.011791,0.005084,0.474083,4963.033709,4963.524667,86,False
+synth_v002:t7:count,synth_v002,parquet,count,4,"To determine how many objects are visible at time \(t = 7\), we need to consider the visibility of each",False,4.373792,0.004542,0.539500,3780.886500,3785.804334,86,True
+synth_v002:t7:count,synth_v002,zpe_packet,count,4,"To determine how many objects are visible at time \(t = 7\), we need to consider the visibility of each",False,0.246916,0.004167,0.329875,3452.308000,3452.888958,86,True
+synth_v002:t7:class,synth_v002,none,class,yes,No,False,0.008583,0.003708,0.378417,1291.595791,1291.986499,88,False
+synth_v002:t7:class,synth_v002,parquet,class,yes,No,False,4.061542,0.005208,0.474042,1842.107500,1846.648292,88,True
+synth_v002:t7:class,synth_v002,zpe_packet,class,yes,No,False,0.310667,0.005167,0.419125,1918.893375,1919.628334,88,True
+synth_v003:t23:presence,synth_v003,none,presence,none,None.,True,0.004583,0.000375,0.449375,1578.100416,1578.554749,39,False
+synth_v003:t23:presence,synth_v003,parquet,presence,none,None.,True,3.312792,0.000416,0.265292,1539.585625,1543.164125,39,True
+synth_v003:t23:presence,synth_v003,zpe_packet,presence,none,None.,True,0.164000,0.000417,0.267041,1543.506291,1543.937749,39,True
+synth_v003:t23:count,synth_v003,none,count,0,0,True,0.004625,0.000417,0.374584,1362.374917,1362.754543,29,False
+synth_v003:t23:count,synth_v003,parquet,count,0,0,True,3.903458,0.000458,0.247958,1326.326375,1330.478249,29,True
+synth_v003:t23:count,synth_v003,zpe_packet,count,0,0,True,0.164792,0.000416,0.211791,1312.261500,1312.638499,29,True
+synth_v003:t23:class,synth_v003,none,class,no,No,True,0.004458,0.000417,0.242875,1318.256708,1318.504458,31,False
+synth_v003:t23:class,synth_v003,parquet,class,no,No,True,3.635458,0.000417,0.214375,1376.911583,1380.761833,31,True
+synth_v003:t23:class,synth_v003,zpe_packet,class,no,No,True,0.186667,0.000459,0.251625,1347.639375,1348.078126,31,True
+synth_v004:t21:presence,synth_v004,none,presence,handbag,Handbag,True,0.011458,0.002917,0.336584,1716.174083,1716.525042,53,False
+synth_v004:t21:presence,synth_v004,parquet,presence,handbag,Handbag,True,4.312417,0.003041,0.341208,1846.282125,1850.938791,53,True
+synth_v004:t21:presence,synth_v004,zpe_packet,presence,handbag,Handbag,True,0.207667,0.001709,0.348417,1842.460500,1843.018293,53,True
+synth_v004:t21:count,synth_v004,none,count,1,"To determine the number of visible objects at time \(t = 21\), we need to consider the visibility pattern",False,0.006959,0.001791,0.257000,6892.161125,6892.426875,43,False
+synth_v004:t21:count,synth_v004,parquet,count,1,"To determine the number of visible objects at time \(t = 21\), we need to consider the visibility pattern",False,4.749166,0.003000,0.463750,7744.548250,7749.764166,43,True
+synth_v004:t21:count,synth_v004,zpe_packet,count,1,"To determine the number of visible objects at time \(t = 21\), we need to consider the visibility pattern",False,0.265333,0.001750,0.290958,10037.825583,10038.383624,43,True
+synth_v004:t21:class,synth_v004,none,class,yes,No,False,0.014042,0.003750,0.642291,3329.333042,3329.993125,46,False
+synth_v004:t21:class,synth_v004,parquet,class,yes,No,False,6.443542,0.002917,0.405709,2246.520125,2253.372293,46,True
+synth_v004:t21:class,synth_v004,zpe_packet,class,yes,No,False,0.343666,0.002958,0.499875,7511.309375,7512.155874,46,True
+synth_v005:t5:presence,synth_v005,none,presence,car,None,False,0.019708,0.002916,0.569083,3131.578042,3132.169749,50,False
+synth_v005:t5:presence,synth_v005,parquet,presence,car,None,False,5.955625,0.002917,0.564041,2348.901333,2355.423916,50,True
+synth_v005:t5:presence,synth_v005,zpe_packet,presence,car,None,False,0.539625,0.002875,0.717958,2494.148875,2495.409333,50,True
+synth_v005:t5:count,synth_v005,none,count,1,1,True,0.020792,0.003041,0.394750,1892.125084,1892.543667,40,False
+synth_v005:t5:count,synth_v005,parquet,count,1,1,True,5.856583,0.002291,0.376541,2113.407375,2119.642790,40,True
+synth_v005:t5:count,synth_v005,zpe_packet,count,1,1,True,0.604083,0.002917,0.490917,1958.257458,1959.355375,40,True
+synth_v005:t5:class,synth_v005,none,class,yes,No,False,0.016041,0.002375,0.436959,2047.638584,2048.093959,42,False
+synth_v005:t5:class,synth_v005,parquet,class,yes,No,False,6.617000,0.002167,0.382417,2059.647666,2066.649250,42,True
+synth_v005:t5:class,synth_v005,zpe_packet,class,yes,No,False,0.520958,0.002417,0.505417,2136.806167,2137.834959,42,True
+synth_v006:t27:presence,synth_v006,none,presence,none,None.,True,0.007167,0.000625,0.460959,2541.386208,2541.854959,39,False
+synth_v006:t27:presence,synth_v006,parquet,presence,none,None.,True,5.387666,0.000625,0.404291,2548.009000,2553.801582,39,True
+synth_v006:t27:presence,synth_v006,zpe_packet,presence,none,None.,True,0.349041,0.000791,0.461042,2478.694209,2479.505083,39,True
+synth_v006:t27:count,synth_v006,none,count,0,0,True,0.007291,0.000625,0.373875,1942.860167,1943.241958,29,False
+synth_v006:t27:count,synth_v006,parquet,count,0,0,True,5.861625,0.000625,0.327917,1894.585750,1900.775917,29,True
+synth_v006:t27:count,synth_v006,zpe_packet,count,0,0,True,0.284958,0.000625,0.405375,3332.137209,3332.828167,29,True
+synth_v006:t27:class,synth_v006,none,class,no,No,True,0.007458,0.000792,0.335916,2629.694042,2630.038208,31,False
+synth_v006:t27:class,synth_v006,parquet,class,no,No,True,6.884833,0.000791,0.499125,2472.293166,2479.677915,31,True
+synth_v006:t27:class,synth_v006,zpe_packet,class,no,No,True,0.274291,0.000666,0.334250,2043.488416,2044.097623,31,True
+synth_v007:t0:presence,synth_v007,none,presence,truck,truck,True,0.012959,0.002875,0.524084,1744.473709,1745.013627,51,False
+synth_v007:t0:presence,synth_v007,parquet,presence,truck,truck,True,4.354334,0.002167,0.476208,1516.649875,1521.482584,51,True
+synth_v007:t0:presence,synth_v007,zpe_packet,presence,truck,truck,True,0.415625,0.003042,0.770959,1786.464542,1787.654168,51,True
+synth_v007:t0:count,synth_v007,none,count,1,3,False,0.010959,0.002417,0.404917,1375.383667,1375.801960,41,False
+synth_v007:t0:count,synth_v007,parquet,count,1,3,False,4.018708,0.002500,0.399459,1397.169542,1401.590209,41,True
+synth_v007:t0:count,synth_v007,zpe_packet,count,1,3,False,0.353250,0.002917,0.394667,1423.350333,1424.101167,41,True
+synth_v007:t0:class,synth_v007,none,class,yes,No,False,0.010125,0.002542,0.481792,1406.964750,1407.459209,43,False
+synth_v007:t0:class,synth_v007,parquet,class,yes,No,False,4.342625,0.002375,0.426834,1368.682292,1373.454126,43,True
+synth_v007:t0:class,synth_v007,zpe_packet,class,yes,No,False,0.294000,0.002416,0.405709,1417.004125,1417.706250,43,True
+synth_v008:t6:presence,synth_v008,none,presence,"car, dog","dog,car",True,0.011167,0.005500,0.637834,2259.174792,2259.829293,82,False
+synth_v008:t6:presence,synth_v008,parquet,presence,"car, dog","dog,car",True,5.058417,0.005667,0.676042,2323.098250,2328.838376,82,True
+synth_v008:t6:presence,synth_v008,zpe_packet,presence,"car, dog","dog,car",True,0.324792,0.005458,0.696334,2252.550375,2253.576959,82,True
+synth_v008:t6:count,synth_v008,none,count,3,1,False,0.009666,0.004750,0.553458,2016.942167,2017.510041,72,False
+synth_v008:t6:count,synth_v008,parquet,count,3,1,False,6.970417,0.006584,0.694333,3746.473875,3754.145209,72,True
+synth_v008:t6:count,synth_v008,zpe_packet,count,3,1,False,0.416084,0.006583,0.711917,3469.482458,3470.617042,72,True
+synth_v008:t6:class,synth_v008,none,class,yes,No,False,0.014333,0.006792,0.767042,3803.653667,3804.441834,74,False
+synth_v008:t6:class,synth_v008,parquet,class,yes,No,False,6.982792,0.006708,0.883125,2913.880375,2921.753000,74,True
+synth_v008:t6:class,synth_v008,zpe_packet,class,yes,No,False,0.454583,0.006708,0.738667,2814.168333,2815.368291,74,True
+synth_v009:t16:presence,synth_v009,none,presence,"bicycle, cat, truck","truck,bicycle,cat",True,0.018167,0.006917,0.885709,5242.865959,5243.776752,81,False
+synth_v009:t16:presence,synth_v009,parquet,presence,"bicycle, cat, truck","truck,bicycle,cat",True,8.379750,0.006375,1.013041,6098.956917,6108.356083,81,True
+synth_v009:t16:presence,synth_v009,zpe_packet,presence,"bicycle, cat, truck","truck,bicycle,cat",True,0.589125,0.006875,0.848458,4483.942667,4485.387125,81,True
+synth_v009:t16:count,synth_v009,none,count,3,"To determine how many objects are visible at time \(t = 16\), we need to consider the visibility of",False,0.020125,0.008625,1.002625,9940.034875,9941.066250,71,False
+synth_v009:t16:count,synth_v009,parquet,count,3,"To determine how many objects are visible at time \(t = 16\), we need to consider the visibility of",False,5.887417,0.005542,0.614667,9366.606958,9373.114584,71,True
+synth_v009:t16:count,synth_v009,zpe_packet,count,3,"To determine how many objects are visible at time \(t = 16\), we need to consider the visibility of",False,0.418000,0.005542,0.563583,8154.139833,8155.126958,71,True
+synth_v009:t16:class,synth_v009,none,class,yes,No,False,0.020042,0.004166,0.416584,1778.000083,1778.440875,73,False
+synth_v009:t16:class,synth_v009,parquet,class,yes,No,False,4.159083,0.006667,0.450167,1766.902292,1771.518209,73,True
+synth_v009:t16:class,synth_v009,zpe_packet,class,yes,No,False,0.310834,0.004208,0.415667,1733.146833,1733.877542,73,True

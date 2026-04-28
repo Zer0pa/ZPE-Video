@@ -1,17 +1,28 @@
 {
-  "title": "ZPE Video",
   "creators": [
     {
-      "name": "Zer0pa (Pty) Ltd"
+      "name": "Zer0pa (Pty) Ltd",
+      "affiliation": "Zer0pa"
     }
   ],
-  "license": "LicenseRef-Zer0pa-SAL-7.0",
-  "description": "ZPE Video structure encoding package with lightweight proof metadata and external heavy artifact custody.",
+  "description": "ZPE Video is a deterministic perception-receipt format for AI video pipelines: a compact, cross-writer-stable, CRC-protected binary record of detector and tracker state.",
   "keywords": [
     "video",
-    "codec",
-    "encoding",
-    "zpe"
-  ]
+    "perception receipts",
+    "provenance",
+    "C2PA",
+    "deterministic binary format",
+    "cross-writer hash stability"
+  ],
+  "license": "LicenseRef-Zer0pa-SAL-7.0",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/Zer0pa/ZPE-Video",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ],
+  "title": "ZPE Video: Perception Receipts for AI Video Pipelines",
+  "upload_type": "software"
 }
-

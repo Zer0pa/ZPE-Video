@@ -1,0 +1,27 @@
+{
+  "cases": [
+    {
+      "case_id": "candidate_b_holdout_motion",
+      "content_id": "zpe-video://phase09.4.1.1.2.2/candidate_b_holdout_motion",
+      "manifest_binding_verified": true,
+      "manifest_byte_length": 430,
+      "manifest_sha256": "8aa1ed640322bda53899f8353dccb27eff2797c62b2d1b7bf85229ce2f09bf3a"
+    },
+    {
+      "case_id": "empty_receipt",
+      "content_id": "zpe-video://phase09.4.1.1.2.2/empty_receipt",
+      "manifest_binding_verified": true,
+      "manifest_byte_length": 403,
+      "manifest_sha256": "1626000d522ba8615333284f336a1975818ae2365705464b8fd0eba1c7eb18b3"
+    },
+    {
+      "case_id": "dense_receipt",
+      "content_id": "zpe-video://phase09.4.1.1.2.2/dense_receipt",
+      "manifest_binding_verified": true,
+      "manifest_byte_length": 404,
+      "manifest_sha256": "b8a0ab35f2f628b4a790e71321565877683f5e456a89f7f269df24e2cf9413fe"
+    }
+  ],
+  "manifest_binding_verified_all_cases": true,
+  "phase": "09.4.1.1.2.2"
+}

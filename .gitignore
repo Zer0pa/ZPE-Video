@@ -15,4 +15,5 @@ artifacts/
 datasets/
 proofs/reruns/*
 !proofs/reruns/README.md
+BRANCH_HYGIENE_ADVISORY.md
 

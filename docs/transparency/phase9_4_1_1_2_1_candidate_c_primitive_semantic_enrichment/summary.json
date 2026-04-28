@@ -1,0 +1,245 @@
+{
+  "phase": "09.4.1.1.2.1-parallel-bounded-wedge-discovery-three-hypotheses-run-in-wave-parallel-no-pre-selection",
+  "plan": "03",
+  "candidate": "C-primitive-semantic-enrichment",
+  "proxy": {
+    "seed": 42,
+    "frame_count": 60,
+    "width": 320,
+    "height": 180,
+    "noise_tracks_per_clip": 10,
+    "total_predicted": 29,
+    "total_matched": 4,
+    "total_gt": 4,
+    "base_rate": 0.13793103448275862
+  },
+  "backbone": {
+    "name": "facebook/dinov2-small",
+    "in_dim": 384,
+    "projected_dim": 128,
+    "note": "appearance features were computed over a deterministic synthetic RGB render of the proxy (gray background + colored rectangles keyed to box_id and shape, NOT label). The proxy has no underlying video texture; the backbone embedding therefore encodes box geometry, position, and local arrangement through a frozen visual pathway. This is an honest approximation \u2014 see report for full disclosure."
+  },
+  "classifiers": [
+    "logreg",
+    "lightgbm"
+  ],
+  "ablations": [
+    "appearance_only",
+    "trajectory_only",
+    "combined"
+  ],
+  "cv": {
+    "k": 5,
+    "seed": 0,
+    "split_level": "track",
+    "track_disjointness_asserted": true,
+    "stratify_label": true
+  },
+  "feature_dims": {
+    "appearance_only": 256,
+    "trajectory_only": 5,
+    "combined": 261
+  },
+  "results": {
+    "logreg": {
+      "appearance_only": {
+        "precision_mean": 1.0,
+        "precision_stdev": 0.0,
+        "precision_stderr": 0.0,
+        "recall_mean": 0.75,
+        "recall_stdev": 0.5,
+        "recall_stderr": 0.25,
+        "f1_mean": 1.0,
+        "nan_fold_count": 2,
+        "meets_threshold": false
+      },
+      "trajectory_only": {
+        "precision_mean": 1.0,
+        "precision_stdev": 0.0,
+        "precision_stderr": 0.0,
+        "recall_mean": 1.0,
+        "recall_stdev": 0.0,
+        "recall_stderr": 0.0,
+        "f1_mean": 1.0,
+        "nan_fold_count": 1,
+        "meets_threshold": true
+      },
+      "combined": {
+        "precision_mean": 1.0,
+        "precision_stdev": 0.0,
+        "precision_stderr": 0.0,
+        "recall_mean": 1.0,
+        "recall_stdev": 0.0,
+        "recall_stderr": 0.0,
+        "f1_mean": 1.0,
+        "nan_fold_count": 1,
+        "meets_threshold": true
+      }
+    },
+    "lightgbm": {
+      "appearance_only": {
+        "precision_mean": 1.0,
+        "precision_stdev": 0.0,
+        "precision_stderr": 0.0,
+        "recall_mean": 1.0,
+        "recall_stdev": 0.0,
+        "recall_stderr": 0.0,
+        "f1_mean": 1.0,
+        "nan_fold_count": 1,
+        "meets_threshold": true
+      },
+      "trajectory_only": {
+        "precision_mean": 1.0,
+        "precision_stdev": 0.0,
+        "precision_stderr": 0.0,
+        "recall_mean": 1.0,
+        "recall_stdev": 0.0,
+        "recall_stderr": 0.0,
+        "f1_mean": 1.0,
+        "nan_fold_count": 1,
+        "meets_threshold": true
+      },
+      "combined": {
+        "precision_mean": 1.0,
+        "precision_stdev": 0.0,
+        "precision_stderr": 0.0,
+        "recall_mean": 1.0,
+        "recall_stdev": 0.0,
+        "recall_stderr": 0.0,
+        "f1_mean": 1.0,
+        "nan_fold_count": 1,
+        "meets_threshold": true
+      }
+    }
+  },
+  "robustness_seeds": {
+    "winner_ablation": "trajectory_only",
+    "winner_classifier": "logreg",
+    "seeds": [
+      0,
+      7,
+      42
+    ],
+    "per_seed": [
+      {
+        "seed": 0,
+        "precision_mean": 1.0,
+        "recall_mean": 1.0,
+        "f1_mean": 1.0,
+        "meets_threshold": true,
+        "nan_fold_count": 1
+      },
+      {
+        "seed": 7,
+        "precision_mean": 1.0,
+        "recall_mean": 1.0,
+        "f1_mean": 1.0,
+        "meets_threshold": true,
+        "nan_fold_count": 1
+      },
+      {
+        "seed": 42,
+        "precision_mean": 1.0,
+        "recall_mean": 1.0,
+        "f1_mean": 1.0,
+        "meets_threshold": true,
+        "nan_fold_count": 1
+      }
+    ],
+    "precision_median": 1.0,
+    "recall_median": 1.0,
+    "high_variance_flag": false
+  },
+  "controls": {
+    "shuffled_features_precision": 0.0,
+    "shuffled_features_precision_stdev": 0.0,
+    "shuffled_features_recall": 0.0,
+    "shuffled_features_nan_fold_count": 2,
+    "saturated_features_precision": NaN,
+    "saturated_features_precision_stdev": 0.0,
+    "saturated_features_recall": 0.0,
+    "saturated_features_nan_fold_count": 5
+  },
+  "attribution": {
+    "single_family_lifts": [
+      {
+        "classifier": "logreg",
+        "family": "appearance_only",
+        "precision_mean": 1.0,
+        "lift_vs_baseline": 0.8620689655172413,
+        "clears_attribution_min": true
+      },
+      {
+        "classifier": "logreg",
+        "family": "trajectory_only",
+        "precision_mean": 1.0,
+        "lift_vs_baseline": 0.8620689655172413,
+        "clears_attribution_min": true
+      },
+      {
+        "classifier": "lightgbm",
+        "family": "appearance_only",
+        "precision_mean": 1.0,
+        "lift_vs_baseline": 0.8620689655172413,
+        "clears_attribution_min": true
+      },
+      {
+        "classifier": "lightgbm",
+        "family": "trajectory_only",
+        "precision_mean": 1.0,
+        "lift_vs_baseline": 0.8620689655172413,
+        "clears_attribution_min": true
+      }
+    ],
+    "lift_is_attributable": true,
+    "combined_vs_single_family": [
+      {
+        "classifier": "logreg",
+        "combined_precision": 1.0,
+        "best_single_family_precision": 1.0,
+        "combined_ge_best_single": true
+      },
+      {
+        "classifier": "lightgbm",
+        "combined_precision": 1.0,
+        "best_single_family_precision": 1.0,
+        "combined_ge_best_single": true
+      }
+    ]
+  },
+  "classifier_agreement": {
+    "winner_ablation": "trajectory_only",
+    "logreg_meets_threshold": true,
+    "lightgbm_meets_threshold": true,
+    "agree": true
+  },
+  "extract_cost_ms_per_track": {
+    "median": 580.3785400390625,
+    "p90": 615.3427734375,
+    "min": 537.7207641601562,
+    "max": 625.15380859375,
+    "n_samples": 29
+  },
+  "verdict": "defend",
+  "verdict_components": {
+    "has_configuration_meeting_threshold": true,
+    "classifier_agreement": true,
+    "attribution.lift_is_attributable": true,
+    "high_variance_flag_false": true,
+    "shuffled_features_precision_lt_0.25": true
+  },
+  "verdict_justification": "has_configuration_meeting_threshold=True; classifier_agreement=True; attribution.lift_is_attributable=True; high_variance_flag_false=True; shuffled_features_precision_lt_0.25=True",
+  "sovereign_gate_status": "red",
+  "state_layer_not_serialization_disclosure": "A defend verdict establishes only that the state-enrichment layer is the lever. Appearance embeddings and trajectory features can be attached to any sparse-metadata format (raw struct+zlib, Parquet, JSON+gzip) equally well. This result is therefore NOT a ZPE-specific wedge. The Compass-8 sovereign primitive-native gate remains red regardless of verdict.",
+  "forbidden_proxy_audit": {
+    "rebrand_as_zpe_wedge": "rejected: state-layer-not-serialization disclosure included",
+    "leaky_cv": "rejected: stratified K-fold at the track level; train/test tracks asserted disjoint",
+    "overfit_combined_only": "rejected: defend requires single-family attribution lift >= 0.1",
+    "gt_leakage": "rejected: labels never used as features",
+    "cherry_pick": "rejected: mean + stdev across all folds reported; NaN folds flagged",
+    "ap_proxy": "rejected: binary precision and recall only",
+    "external_repo_touch": "rejected: local commits only",
+    "reopen_phase10": "rejected: out of scope",
+    "reopen_archive_query_box_state": "rejected: out of scope"
+  }
+}

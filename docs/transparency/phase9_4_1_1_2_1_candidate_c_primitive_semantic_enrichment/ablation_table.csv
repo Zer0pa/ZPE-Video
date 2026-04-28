@@ -1,0 +1,7 @@
+classifier,ablation,precision_mean,precision_stdev,precision_stderr,recall_mean,recall_stdev,recall_stderr,f1_mean,nan_fold_count,meets_threshold
+logreg,appearance_only,1.000000,0.000000,0.000000,0.750000,0.500000,0.250000,1.000000,2,false
+logreg,trajectory_only,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,1,true
+logreg,combined,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,1,true
+lightgbm,appearance_only,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,1,true
+lightgbm,trajectory_only,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,1,true
+lightgbm,combined,1.000000,0.000000,0.000000,1.000000,0.000000,0.000000,1.000000,1,true
