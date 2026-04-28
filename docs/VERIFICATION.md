@@ -1,39 +1,33 @@
 # Verification
 
-This phase allows only minimal sanity.
-
-## Allowed Low-Cost Checks
+## Low-Cost Checks
 
 ```bash
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
-python3 -m pip install -e ".[dev]"
-python3 -m compileall src scripts
-python3 - <<'PY'
-import sys
-sys.path.insert(0, "src")
-from zpe_video import Wave1Pipeline
-print(Wave1Pipeline)
-PY
+python -m pip install -e ".[dev]"
+python -m compileall src scripts
+python -m unittest tests/test_codec.py -v
+bash scripts/compliance_audit.sh
 ```
 
-Optional lightweight local smoke:
+## What These Checks Cover
 
-```bash
-python3 -m unittest tests/test_codec.py
-```
+- package installation from the clone root
+- deterministic codec smoke behavior
+- parser-safe README shape
+- proof-anchor path existence
+- basic Python syntax compilation
 
-## What This Does Not Cover
+## What These Checks Do Not Cover
 
 - full gate reruns
 - benchmark campaigns
-- clean-clone verification
 - dataset-backed replay
-- public release checks
+- blind external reproduction
+- commercial-readiness closure
 
 ## Current Verification Truth
 
-- The staged repo structure can be checked now.
-- The staged proof subset can be inspected now.
-- Clean rerun authority must be deferred to Phase 4.5 and Phase 5.
+The repo can be inspected, installed, and smoke-tested. Commercial authority remains BLOCKED until clean reruns generate fresh proof artifacts under `proofs/reruns/` and replace the mixed historical authority surface.
 

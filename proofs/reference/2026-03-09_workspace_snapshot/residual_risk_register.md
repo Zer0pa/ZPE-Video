@@ -11,7 +11,7 @@
 3. RISK-003: SPADE/vid2vid commercial-safe decoder path unresolved.
 - Impact: generative claim C006 remains PAUSED_EXTERNAL.
 - Mitigation: continue decoder-alternative exhaustion and rerun C006 closure tests.
-- Evidence: `/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/internet_evidence_log.md`.
+- Evidence: `/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/internet_evidence_log.md`.
 
 4. RISK-004: Remaining proxy-derived paths still exist outside primary claim evidence.
 - Impact: auxiliary robustness comparisons may underrepresent field variance.

@@ -1,30 +1,25 @@
 # FAQ
 
-## Why is this repo private?
+## What kind of product is this?
 
-Because the current staged truth is not ready for public release.
+ZPE Video is a video-structure encoding product. It is not a directional-primitive profile lane, not a portfolio platform component, and not a generative video model.
 
-## Is the lane currently green?
+## What is the strongest current evidence signal?
 
-No. The latest known workspace snapshot says `NO-GO`.
+The historical proxy snapshot records `134.575x` compression against an H.265 proxy baseline in `proofs/reference/2026-03-09_workspace_snapshot/video_compression_benchmark.json`.
 
-## Why is there a proof snapshot if the repo is not green?
+## Does that close commercial readiness?
 
-Because evidence custody matters. The staged proof subset preserves the current known state without pretending it is a clean run-of-record.
+No. The same authority surface records Gate A as FAIL and overall `NO-GO` because proxy-only evidence cannot close the P0 compression claim.
 
-## Why are the datasets not bundled?
+## Why keep the proof snapshot?
 
-They are too large and do not belong in the repo boundary.
+Evidence custody matters. The staged proof subset preserves the known state without promoting it into a clean run-of-record.
 
-## Why is Gate A still a known problem?
+## Where are the heavy datasets and checkpoints?
 
-Its inputs were historically machine-local. This repo normalizes the path logic, but the actual input files are still not bundled here.
+Heavy Video bytes live on Architect-Prime Hugging Face storage:
 
-## Where do those Gate A inputs belong?
-
-Place them under `docs/inputs/` or supply them via:
-
-- `ZPE_VIDEO_NET_NEW_PACK_MD`
-- `ZPE_VIDEO_NET_NEW_PACK_PDF`
-- `ZPE_VIDEO_GAP_CLOSURE_MD`
-
+- `Architect-Prime/zpe-video-artifacts`
+- `Architect-Prime/zpe-video-models`
+- `Architect-Prime/zeropa-org-ZPE-Video-scratch`

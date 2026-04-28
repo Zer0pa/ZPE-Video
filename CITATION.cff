@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software or evidence surface, cite the ZPE Video repository."
+title: "ZPE Video"
+authors:
+  - name: "Zer0pa (Pty) Ltd"
+version: "0.1.0"
+date-released: "2026-04-28"
+license: "LicenseRef-Zer0pa-SAL-7.0"
+repository-code: "https://github.com/Zer0pa/ZPE-Video"
+

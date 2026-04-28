@@ -1,41 +1,38 @@
 # Auditor Playbook
 
-This is the shortest honest audit path for the private ZPE Video staging repo.
+This is the shortest honest audit path for ZPE Video.
 
-It verifies structure and current known state. It does not establish release readiness.
+It verifies structure and current known state. It does not establish commercial readiness.
 
 ## What You Can Verify Quickly
 
 - the repo installs as a Python package
 - the package imports cleanly
 - the lightweight code surface compiles
-- the staged proof snapshot is present
-- the current known verdict is still `NO-GO`
+- the deterministic codec smoke test passes
+- the historical proof snapshot is present
+- the current known verdict remains BLOCKED by Gate A
 
 ## Shortest Audit Path
 
 1. Create a local environment:
 
 ```bash
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
-python3 -m pip install --upgrade pip
-python3 -m pip install -e ".[dev]"
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
 ```
 
-2. Run near-zero-cost sanity:
+2. Run low-cost sanity:
 
 ```bash
-python3 -m compileall src scripts
-python3 - <<'PY'
-import sys
-sys.path.insert(0, "src")
-from zpe_video import Wave1Pipeline
-print(Wave1Pipeline)
-PY
+python -m compileall src scripts
+python -m unittest tests/test_codec.py -v
+bash scripts/compliance_audit.sh
 ```
 
-3. Inspect the staged proof snapshot:
+3. Inspect the proof snapshot:
 
 - `proofs/PROOF_INDEX.md`
 - `proofs/reference/2026-03-09_workspace_snapshot/README.md`
@@ -51,17 +48,15 @@ PY
 
 ## Current Expected Truth
 
-- Current repo state is private staging.
 - Current full workspace snapshot verdict is `NO-GO`.
-- The staged proof subset is historical/current-workspace evidence, not a clean rerun generated from this repo.
-- A later resource-only probe touched `resource_inventory.json`, so the copied snapshot is mixed and cannot be promoted as a clean run-of-record.
+- Commercial readiness is BLOCKED in the README parser enum.
+- The proof subset is historical workspace evidence, not a clean rerun generated from this repo.
+- Heavy artifacts and checkpoints live on Architect-Prime Hugging Face storage.
 
-## What Is Explicitly Deferred
+## What Is Open
 
-- broad reruns
 - clean-clone verification
-- benchmark/performance campaigns
-- public release posture
-
-Those belong to Phase 4.5 and Phase 5, not this staging phase.
+- dataset-backed benchmark replay
+- Gate A evidence replacement
+- commercial-safe generative decoder closure
 

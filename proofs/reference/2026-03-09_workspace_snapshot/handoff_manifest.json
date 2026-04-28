@@ -1,7 +1,7 @@
 {
   "acceptance_all_claims_pass": false,
   "appendix_e_checks_pass": true,
-  "artifact_root": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1",
+  "artifact_root": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1",
   "explicit_closure_ok": true,
   "gate_statuses": {
     "A": "FAIL",

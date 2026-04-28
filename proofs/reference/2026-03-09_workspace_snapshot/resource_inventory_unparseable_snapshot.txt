@@ -39,9 +39,9 @@
   },
   "fallback_policy": {
     "logged_in": [
-      "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/concept_resource_traceability.json",
-      "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/residual_risk_register.md",
-      "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/falsification_results.md"
+      "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/concept_resource_traceability.json",
+      "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/residual_risk_register.md",
+      "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/falsification_results.md"
     ],
     "rule": "If equivalence is unproven after substitution, dependent claims must be explicit FAIL or PAUSED_EXTERNAL (final-phase closure policy)."
   },
@@ -110,19 +110,19 @@
       {
         "attempts": [
           {
-            "command": "/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python -m pip index versions compressai-vision",
+            "command": "/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python -m pip index versions compressai-vision",
             "return_code": 1,
             "stderr_tail": "ERROR: No matching distribution found for compressai-vision",
             "stdout_tail": ""
           },
           {
-            "command": "/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python -m pip install --no-deps --ignore-requires-python git+https://github.com/InterDigitalInc/CompressAI-Vision.git",
+            "command": "/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python -m pip install --no-deps --ignore-requires-python git+https://github.com/InterDigitalInc/CompressAI-Vision.git",
             "return_code": 0,
             "stderr_tail": "Running command git clone --filter=blob:none --quiet https://github.com/InterDigitalInc/CompressAI-Vision.git /private/var/folders/49/b6bj2qfd5nl4vndxv7rb9dh00000gn/T/pip-req-build-zeemi8zh\n  Running command git submodule update --init --recursive -q",
             "stdout_tail": "Collecting git+https://github.com/InterDigitalInc/CompressAI-Vision.git\n  Cloning https://github.com/InterDigitalInc/CompressAI-Vision.git to /private/var/folders/49/b6bj2qfd5nl4vndxv7rb9dh00000gn/T/pip-req-build-zeemi8zh\n  Resolved https://github.com/InterDigitalInc/CompressAI-Vision.git to commit ad7de6a7319a85854e7e005d9b724fe779bfd7d2\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'"
           },
           {
-            "command": "/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python -c import importlib.util,sys;sys.exit(0 if importlib.util.find_spec('compressai_vision') else 1)",
+            "command": "/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python -c import importlib.util,sys;sys.exit(0 if importlib.util.find_spec('compressai_vision') else 1)",
             "return_code": 0,
             "stderr_tail": "",
             "stdout_tail": ""
@@ -166,7 +166,7 @@
       {
         "attempts": [
           {
-            "command": "zsh -lc curl -fsSLI https://media.xiph.org/video/derf/ && '/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python' -c \"from pathlib import Path; import sys; p=Path('datasets/XIPH/raw_downloads/akiyo_cif.y4m'); sys.exit(0 if p.exists() and p.stat().st_size>1000000 else 1)\"",
+            "command": "zsh -lc curl -fsSLI https://media.xiph.org/video/derf/ && '/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python' -c \"from pathlib import Path; import sys; p=Path('datasets/XIPH/raw_downloads/akiyo_cif.y4m'); sys.exit(0 if p.exists() and p.stat().st_size>1000000 else 1)\"",
             "return_code": 0,
             "stderr_tail": "",
             "stdout_tail": "HTTP/1.1 200 OK\nDate: Mon, 09 Mar 2026 13:22:45 GMT\nServer: Apache/2.4.66 (Debian)\nLast-Modified: Sat, 15 May 2021 02:15:14 GMT\nETag: \"1108a-5c254ee43e4ed\"\nAccept-Ranges: bytes\nContent-Length: 69770\nVary: Accept-Encoding\nAccess-Control-Allow-Origin: *\nAccess-Control-Allow-Methods: GET\nContent-Type: text/html"
@@ -195,7 +195,7 @@
             "stdout_tail": "4364e8265275dfa44fd8f767b5180af58580194d\tHEAD\n4364e8265275dfa44fd8f767b5180af58580194d\trefs/heads/master\nb41aff0ff6687d64ebd2e73365282e2f2878e192\trefs/pull/31/head\nab5ab82a87bb2886266f4479e6c2ad88c10fd38d\trefs/pull/31/merge\n4f487a576904a8cb2dd9fdb17d9c54549d1ea9af\trefs/pull/49/head\naceca1425723dfb841ea897edd3ea58d382d7d42\trefs/pull/49/merge\n7728062b0e1fff36526bfcfa451699a3f7c43e06\trefs/pull/50/head"
           },
           {
-            "command": "/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python -c from pathlib import Path;import sys;p=Path('datasets/VisDrone2023/raw_downloads/valset.zip');sys.exit(0 if p.exists() and p.stat().st_size>1000000 else 1)",
+            "command": "/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python -c from pathlib import Path;import sys;p=Path('datasets/VisDrone2023/raw_downloads/valset.zip');sys.exit(0 if p.exists() and p.stat().st_size>1000000 else 1)",
             "return_code": 0,
             "stderr_tail": "",
             "stdout_tail": ""
@@ -245,7 +245,7 @@
             "stdout_tail": "HTTP/1.1 200 OK\nDate: Mon, 09 Mar 2026 13:34:14 GMT\nServer: Apache/2\nLast-Modified: Fri, 27 Feb 2026 09:12:58 GMT\nETag: \"363d-64bcaa4a4ba80\"\nAccept-Ranges: bytes\nContent-Length: 13885\nContent-Type: text/html; charset=UTF-8"
           },
           {
-            "command": "/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python -c from pathlib import Path;import sys;p=Path('datasets/UVG/raw_downloads/Beauty_3840x2160_120fps_420_8bit_HEVC_RAW.hevc');sys.exit(0 if p.exists() and p.stat().st_size>1000000 else 1)",
+            "command": "/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python -c from pathlib import Path;import sys;p=Path('datasets/UVG/raw_downloads/Beauty_3840x2160_120fps_420_8bit_HEVC_RAW.hevc');sys.exit(0 if p.exists() and p.stat().st_size>1000000 else 1)",
             "return_code": 0,
             "stderr_tail": "",
             "stdout_tail": ""
@@ -272,7 +272,7 @@
             "stdout_tail": "HTTP/2 200 \nserver: GitHub.com\ncontent-type: text/html; charset=utf-8\nlast-modified: Thu, 19 Aug 2021 16:29:56 GMT\naccess-control-allow-origin: *\netag: \"611e8704-3266\"\nexpires: Mon, 09 Mar 2026 13:10:08 GMT\ncache-control: max-age=600\nx-proxy-cache: MISS\nx-github-request-id: A9B0:09E5:ADE72:DF87B:69AEC458\naccept-ranges: bytes\nage: 0\ndate: Mon, 09 Mar 2026 13:34:15 GMT\nvia: 1.1 varnish\nx-served-by: cache-jnb7023-JNB\nx-cache: HIT\nx-cache-hits: 0\nx-timer: S1773063256.592812,VS0,VE231\nvary: Accept-Encoding\nx-fastly-request-id: 3365efea6de174c098e5ae5027146e6992118918\ncontent-length: 12902"
           },
           {
-            "command": "/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python -c from pathlib import Path;import sys;p=Path('datasets/VIRAT');r=Path('datasets/VIRAT/README_acquired.txt');sys.exit(0 if p.exists() and p.is_dir() and r.exists() else 1)",
+            "command": "/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python -c from pathlib import Path;import sys;p=Path('datasets/VIRAT');r=Path('datasets/VIRAT/README_acquired.txt');sys.exit(0 if p.exists() and p.is_dir() and r.exists() else 1)",
             "return_code": 0,
             "stderr_tail": "",
             "stdout_tail": ""
@@ -288,7 +288,7 @@
         "impracticality_code": null,
         "requires_gpu": false,
         "resource_id": "VIRAT_dataset",
-       ""source_reference": "https://viratdata.org/",
+       "source_reference": "https://viratdata.org/",
         "status": "EXECUTED"
       },
       {
@@ -306,7 +306,7 @@
             "stdout_tail": "<html><head><title>www.itu.int - /wftp3/av-arch/jctvc-site/bitstream_exchange/draft_conformance/</title></head><body><H1>www.itu.int - /wftp3/av-arch/jctvc-site/bitstream_exchange/draft_conformance/</H1><hr>\n\n<pre><A HREF=\"/wftp3/av-arch/jctvc-site/bitstream_exchange/\">[To Parent Directory]</A><br><br> 2/15/2018  2:19 PM        &lt;dir&gt; <A HREF=\"/wftp3/av-arch/jctvc-site/bitstream_exchange/draft_conformance/3D-HEVC/\">3D-HEVC</A><br> 5/27/2016  4:42 PM        &lt;dir&gt; <A HREF=\"/wftp3/av-arch/jctvc-site/bitstream_exchange/draft_conformance/HEVC_v1/\">HEVC_v1</A><br> 2/15/2018 12:59 PM        &lt;dir&gt; <A HREF=\"/wftp3/av-arch/jctvc-site/bitstream_exchange/draft_conformance/MV-HEVC/\">MV-HEVC</A><br> 9/14/2018  2:29 AM        &lt;dir&gt; <A HREF=\"/wftp3/av-arch/jctvc-site/bitstream_exchange/draft_conformance/RExt/\">RExt</A><br> 9/14/2018  2:39 AM        &lt;dir&gt; <A HREF=\"/wftp3/av-arch/jctvc-site/bitstream_exchange/draft_conformance/SCC/\">SCC</A><br> 4/26/2016  3:20 AM        &lt;dir&gt; <A HREF=\"/wftp3/av-arch/jctvc-site/bitstream_exchange/draft_conformance/SHVC/\">SHVC</A><br></pre><hr></body></html>"
           },
           {
-            "command": "/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python -c from pathlib import Path;import sys;p=Path('datasets/HEVC_CTC/raw_downloads/HM_attempt1');sys.exit(0 if p.exists() and p.is_dir() else 1)",
+            "command": "/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python -c from pathlib import Path;import sys;p=Path('datasets/HEVC_CTC/raw_downloads/HM_attempt1');sys.exit(0 if p.exists() and p.is_dir() else 1)",
             "return_code": 0,
             "stderr_tail": "",
             "stdout_tail": ""
@@ -327,7 +327,7 @@
       {
         "attempts": [
           {
-            "command": "/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python -m pip index versions ffmpeg-quality-metrics",
+            "command": "/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python -m pip index versions ffmpeg-quality-metrics",
             "return_code": 0,
             "stderr_tail": "",
             "stdout_tail": "ffmpeg-quality-metrics (3.11.2)\nAvailable versions: 3.11.2, 3.11.1, 3.11.0, 3.10.0, 3.9.0, 3.8.0, 3.7.2, 3.7.1, 3.7.0, 3.6.2, 3.6.1, 3.6.0, 3.5.3, 3.5.2, 3.5.1, 3.5.0, 3.4.2, 3.4.1, 3.4.0, 3.3.1, 3.3.0, 3.2.1, 3.2.0, 3.1.7, 3.1.6, 3.1.5, 3.1.4, 3.1.3, 3.1.1, 3.1.0, 3.0.0, 2.3.0, 2.2.0, 2.1.0, 2.0.3, 2.0.2, 2.0.1, 2.0.0, 1.2.0, 1.1.3, 1.1.2, 1.1.1, 1.0.1, 0.12.1, 0.12.0, 0.11.1, 0.11.0, 0.10.0, 0.9.0, 0.8.0, 0.7.1, 0.7.0, 0.6.2, 0.6.1, 0.6.0, 0.5.1, 0.5.0, 0.4.0, 0.3.12, 0.3.11, 0.3.10, 0.3.9, 0.3.8, 0.3.7, 0.3.6, 0.3.5, 0.3.3, 0.3.2, 0.3.1"
@@ -371,7 +371,7 @@
       {
         "attempts": [
           {
-            "command": "/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python -c import cv2; print(cv2.__version__)",
+            "command": "/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python -c import cv2; print(cv2.__version__)",
             "return_code": 0,
             "stderr_tail": "",
             "stdout_tail": "4.11.0"
@@ -393,7 +393,7 @@
       {
         "attempts": [
           {
-            "command": "/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python -c import lpips; print('lpips_ok')",
+            "command": "/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python -c import lpips; print('lpips_ok')",
             "return_code": 0,
             "stderr_tail": "Disabling PyTorch because PyTorch >= 2.4 is required but found 2.2.2\nPyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.",
             "stdout_tail": "lpips_ok"
@@ -414,7 +414,7 @@
       {
         "attempts": [
           {
-            "command": "/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python -c import cv2,numpy as np;img=np.zeros((16,16),dtype=np.uint8);img[4:12,4:12]=180;mask=np.zeros((16,16),dtype=np.uint8);mask[6:10,6:10]=255;out=cv2.inpaint(img,mask,3,cv2.INPAINT_TELEA);print('opencv_inpaint_ok',out.shape)",
+            "command": "/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python -c import cv2,numpy as np;img=np.zeros((16,16),dtype=np.uint8);img[4:12,4:12]=180;mask=np.zeros((16,16),dtype=np.uint8);mask[6:10,6:10]=255;out=cv2.inpaint(img,mask,3,cv2.INPAINT_TELEA);print('opencv_inpaint_ok',out.shape)",
             "return_code": 0,
             "stderr_tail": "",
             "stdout_tail": "opencv_inpaint_ok (16, 16)"
@@ -435,7 +435,7 @@
       {
         "attempts": [
           {
-            "command": "zsh -lc '/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python' -m pip install scikit-image && '/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python' -c \"import numpy as np; from skimage.restoration import inpaint; img=np.zeros((8,8),dtype=float); mask=np.zeros((8,8),dtype=bool); mask[2:4,2:4]=True; out=inpaint.inpaint_biharmonic(img,mask,channel_axis=None); print('skimage_inpaint_ok',out.shape)\"",
+            "command": "zsh -lc '/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python' -m pip install scikit-image && '/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python' -c \"import numpy as np; from skimage.restoration import inpaint; img=np.zeros((8,8),dtype=float); mask=np.zeros((8,8),dtype=bool); mask[2:4,2:4]=True; out=inpaint.inpaint_biharmonic(img,mask,channel_axis=None); print('skimage_inpaint_ok',out.shape)\"",
             "return_code": 0,
             "stderr_tail": "",
             "stdout_tail": "Requirement already satisfied: scikit-image in ./.venv311/lib/python3.11/site-packages (0.26.0)\nRequirement already satisfied: numpy>=1.24 in ./.venv311/lib/python3.11/site-packages (from scikit-image) (1.26.4)\nRequirement already satisfied: scipy>=1.11.4 in ./.venv311/lib/python3.11/site-packages (from scikit-image) (1.17.0)\nRequirement already satisfied: networkx>=3.0 in ./.venv311/lib/python3.11/site-packages (from scikit-image) (3.6.1)\nRequirement already satisfied: pillow>=10.1 in ./.venv311/lib/python3.11/site-packages (from scikit-image) (12.1.1)\nRequirement already satisfied: imageio!=2.35.0,>=2.33 in ./.venv311/lib/python3.11/site-packages (from scikit-image) (2.37.2)\nRequirement already satisfied: tifffile>=2022.8.12 in ./.venv311/lib/python3.11/site-packages (from scikit-image) (2026.2.20)\nRequirement already satisfied: packaging>=21 in ./.venv311/lib/python3.11/site-packages (from scikit-image) (24.2)\nRequirement already satisfied: lazy-loader>=0.4 in ./.venv311/lib/python3.11/site-packages (from scikit-image) (0.4)\nskimage_inpaint_ok (8, 8)"
@@ -456,9 +456,9 @@
       {
         "attempts": [
           {
-            "command": "zsh -lc '/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python' -m pip install realesrgan && '/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python' -c \"from realesrgan import RealESRGANer; from basicsr.archs.rrdbnet_arch import RRDBNet; m=RRDBNet(num_in_ch=3,num_out_ch=3,num_feat=64,num_block=2,num_grow_ch=32,scale=2); u=RealESRGANer(scale=2,model_path=None,model=m,tile=0,tile_pad=10,pre_pad=0,half=False); print(type(u).__name__)\"",
+            "command": "zsh -lc '/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python' -m pip install realesrgan && '/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python' -c \"from realesrgan import RealESRGANer; from basicsr.archs.rrdbnet_arch import RRDBNet; m=RRDBNet(num_in_ch=3,num_out_ch=3,num_feat=64,num_block=2,num_grow_ch=32,scale=2); u=RealESRGANer(scale=2,model_path=None,model=m,tile=0,tile_pad=10,pre_pad=0,half=False); print(type(u).__name__)\"",
             "return_code": 1,
-            "stderr_tail": "d file/data utilities can be used.\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/realesrgan/__init__.py\", line 2, in <module>\n    from .archs import *\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/realesrgan/archs/__init__.py\", line 2, in <module>\n    from basicsr.utils import scandir\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/__init__.py\", line 4, in <module>\n    from .data import *\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/__init__.py\", line 22, in <module>\n    _dataset_modules = [importlib.import_module(f'basicsr.data.{file_name}') for file_name in dataset_filenames]\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/__init__.py\", line 22, in <listcomp>\n    _dataset_modules = [importlib.import_module(f'basicsr.data.{file_name}') for file_name in dataset_filenames]\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py\", line 126, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/realesrgan_dataset.py\", line 11, in <module>\n    from basicsr.data.degradations import circular_lowpass_kernel, random_mixed_kernels\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/degradations.py\", line 8, in <module>\n    from torchvision.transforms.functional_tensor import rgb_to_grayscale\nModuleNotFoundError: No module named 'torchvision.transforms.functional_tensor'",
+            "stderr_tail": "d file/data utilities can be used.\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/realesrgan/__init__.py\", line 2, in <module>\n    from .archs import *\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/realesrgan/archs/__init__.py\", line 2, in <module>\n    from basicsr.utils import scandir\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/__init__.py\", line 4, in <module>\n    from .data import *\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/__init__.py\", line 22, in <module>\n    _dataset_modules = [importlib.import_module(f'basicsr.data.{file_name}') for file_name in dataset_filenames]\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/__init__.py\", line 22, in <listcomp>\n    _dataset_modules = [importlib.import_module(f'basicsr.data.{file_name}') for file_name in dataset_filenames]\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py\", line 126, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/realesrgan_dataset.py\", line 11, in <module>\n    from basicsr.data.degradations import circular_lowpass_kernel, random_mixed_kernels\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/degradations.py\", line 8, in <module>\n    from torchvision.transforms.functional_tensor import rgb_to_grayscale\nModuleNotFoundError: No module named 'torchvision.transforms.functional_tensor'",
             "stdout_tail": "thon3.11/site-packages (from requests->basicsr>=1.4.2->realesrgan) (1.26.20)\nRequirement already satisfied: certifi>=2017.4.17 in ./.venv311/lib/python3.11/site-packages (from requests->basicsr>=1.4.2->realesrgan) (2026.1.4)\nRequirement already satisfied: imageio!=2.35.0,>=2.33 in ./.venv311/lib/python3.11/site-packages (from scikit-image->basicsr>=1.4.2->realesrgan) (2.37.2)\nRequirement already satisfied: tifffile>=2022.8.12 in ./.venv311/lib/python3.11/site-packages (from scikit-image->basicsr>=1.4.2->realesrgan) (2026.2.20)\nRequirement already satisfied: lazy-loader>=0.4 in ./.venv311/lib/python3.11/site-packages (from scikit-image->basicsr>=1.4.2->realesrgan) (0.4)\nRequirement already satisfied: mpmath<1.4,>=1.1.0 in ./.venv311/lib/python3.11/site-packages (from sympy->torch>=1.7->realesrgan) (1.3.0)\nRequirement already satisfied: absl-py>=0.4 in ./.venv311/lib/python3.11/site-packages (from tb-nightly->basicsr>=1.4.2->realesrgan) (2.4.0)\nRequirement already satisfied: grpcio>=1.48.2 in ./.venv311/lib/python3.11/site-packages (from tb-nightly->basicsr>=1.4.2->realesrgan) (1.78.1)\nRequirement already satisfied: markdown>=2.6.8 in ./.venv311/lib/python3.11/site-packages (from tb-nightly->basicsr>=1.4.2->realesrgan) (3.10.2)\nRequirement already satisfied: protobuf!=4.24.0,>=3.19.6 in ./.venv311/lib/python3.11/site-packages (from tb-nightly->basicsr>=1.4.2->realesrgan) (4.25.8)\nRequirement already satisfied: setuptools>=41.0.0 in ./.venv311/lib/python3.11/site-packages (from tb-nightly->basicsr>=1.4.2->realesrgan) (60.2.0)\nRequirement already satisfied: tensorboard-data-server<0.8.0,>=0.7.0 in ./.venv311/lib/python3.11/site-packages (from tb-nightly->basicsr>=1.4.2->realesrgan) (0.7.2)\nRequirement already satisfied: werkzeug>=1.0.1 in ./.venv311/lib/python3.11/site-packages (from tb-nightly->basicsr>=1.4.2->realesrgan) (3.1.6)\nRequirement already satisfied: platformdirs>=3.5.1 in ./.venv311/lib/python3.11/site-packages (from yapf->basicsr>=1.4.2->realesrgan) (4.9.2)"
           }
         ],
@@ -466,9 +466,7 @@
           "VID-C006"
         ],
         "comparability_impact": "high: equivalence unproven",
-        "error_signature": "d file/data utilities can be used.\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/realesrgan/__init__.py\", line 2, in <module>\n    from .archs import *\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/realesrgan/archs/__init__.py\", line 2, in <module>\n    from basicsr.utils import scandir\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/__init__.py\", line 4, in <module>\n    from .data import *\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/__init__.py\", line 22, in <module>\n    _dataset_modules = [importlib.import_module(f'basicsr.data.{file_name}') for file_name in dataset_filenames]\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/__init__.py\", line 22, in <listcomp>\n    _dataset_modules = [importlib.import_module(f'basicsr.data.{file_name}') for file_name in dataset_filenames]\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py\", line 126, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/realesrgan_dataset.py\", line 11, in <module>\n    from basicsr.data.degradations import circular_lowpass_kernel, random_mixed_kernels\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/degradations.py\", line 8, in <module>\n    from torchvision.transforms.functional_tensor import rgb_to_grayscale\nModuleNotFoundError: No module named 'torchvision.transforms.functional_tensor'",
-        "fallback": "deterministic box-fill reconstruction",
-        "impract,
+        "error_signature": "d file/data utilities can be used.\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/realesrgan/__init__.py\", line 2, in <module>\n    from .archs import *\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/realesrgan/archs/__init__.py\", line 2, in <module>\n    from basicsr.utils import scandir\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/__init__.py\", line 4, in <module>\n    from .data import *\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/__init__.py\", line 22, in <module>\n    _dataset_modules = [importlib.import_module(f'basicsr.data.{file_name}') for file_name in dataset_filenames]\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/__init__.py\", line 22, in <listcomp>\n    _dataset_modules = [importlib.import_module(f'basicsr.data.{file_name}') for file_name in dataset_filenames]\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py\", line 126, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/realesrgan_dataset.py\", line 11, in <module>\n    from basicsr.data.degradations import circular_lowpass_kernel, random_mixed_kernels\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/basicsr/data/degradations.py\", line 8, in <module>\n    from torchvision.transforms.functional_tensor import rgb_to_grayscale\nModuleNotFoundError: No module named 'torchvision.transforms.functional_tensor'",
         "fallback": "deterministic box-fill reconstruction",
         "impracticality_code": "IMP-NOCODE",
         "requires_gpu": false,
@@ -479,9 +477,9 @@
       {
         "attempts": [
           {
-            "command": "zsh -lc '/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python' -m pip install mmagic && '/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python' -c \"import mmagic; print(mmagic.__version__)\"",
+            "command": "zsh -lc '/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python' -m pip install mmagic && '/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python' -c \"import mmagic; print(mmagic.__version__)\"",
             "return_code": 1,
-            "stderr_tail": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/mmagic/__init__.py\", line 2, in <module>\n    import mmcv\nModuleNotFoundError: No module named 'mmcv'",
+            "stderr_tail": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/mmagic/__init__.py\", line 2, in <module>\n    import mmcv\nModuleNotFoundError: No module named 'mmcv'",
             "stdout_tail": " (0.4)\nRequirement already satisfied: mpmath<1.4,>=1.1.0 in ./.venv311/lib/python3.11/site-packages (from sympy->torch->face-alignment<=1.3.4->mmagic) (1.3.0)\nRequirement already satisfied: grpcio>=1.48.2 in ./.venv311/lib/python3.11/site-packages (from tensorboard->mmagic) (1.78.1)\nRequirement already satisfied: markdown>=2.6.8 in ./.venv311/lib/python3.11/site-packages (from tensorboard->mmagic) (3.10.2)\nRequirement already satisfied: setuptools>=41.0.0 in ./.venv311/lib/python3.11/site-packages (from tensorboard->mmagic) (60.2.0)\nRequirement already satisfied: tensorboard-data-server<0.8.0,>=0.7.0 in ./.venv311/lib/python3.11/site-packages (from tensorboard->mmagic) (0.7.2)\nRequirement already satisfied: werkzeug>=1.0.1 in ./.venv311/lib/python3.11/site-packages (from tensorboard->mmagic) (3.1.6)\nRequirement already satisfied: typer>=0.24.0 in ./.venv311/lib/python3.11/site-packages (from typer-slim->huggingface-hub<2.0,>=0.34.0->diffusers>=0.23.0->mmagic) (0.24.0)\nRequirement already satisfied: rich>=12.3.0 in ./.venv311/lib/python3.11/site-packages (from typer>=0.24.0->typer-slim->huggingface-hub<2.0,>=0.34.0->diffusers>=0.23.0->mmagic) (13.4.2)\nRequirement already satisfied: annotated-doc>=0.0.2 in ./.venv311/lib/python3.11/site-packages (from typer>=0.24.0->typer-slim->huggingface-hub<2.0,>=0.34.0->diffusers>=0.23.0->mmagic) (0.0.4)\nRequirement already satisfied: markdown-it-py>=2.2.0 in ./.venv311/lib/python3.11/site-packages (from rich>=12.3.0->typer>=0.24.0->typer-slim->huggingface-hub<2.0,>=0.34.0->diffusers>=0.23.0->mmagic) (4.0.0)\nRequirement already satisfied: pygments<3.0.0,>=2.13.0 in ./.venv311/lib/python3.11/site-packages (from rich>=12.3.0->typer>=0.24.0->typer-slim->huggingface-hub<2.0,>=0.34.0->diffusers>=0.23.0->mmagic) (2.19.2)\nRequirement already satisfied: mdurl~=0.1 in ./.venv311/lib/python3.11/site-packages (from markdown-it-py>=2.2.0->rich>=12.3.0->typer>=0.24.0->typer-slim->huggingface-hub<2.0,>=0.34.0->diffusers>=0.23.0->mmagic) (0.1.2)"
           }
         ],
@@ -489,7 +487,7 @@
           "VID-C006"
         ],
         "comparability_impact": "high: equivalence unproven",
-        "error_signature": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/Users/Zer0pa/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/mmagic/__init__.py\", line 2, in <module>\n    import mmcv\nModuleNotFoundError: No module named 'mmcv'",
+        "error_signature": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/Users/zer0pa-build/ZPE/ZPE Video/.venv311/lib/python3.11/site-packages/mmagic/__init__.py\", line 2, in <module>\n    import mmcv\nModuleNotFoundError: No module named 'mmcv'",
         "fallback": "deterministic box-fill reconstruction",
         "impracticality_code": "IMP-NOCODE",
         "requires_gpu": false,
@@ -500,7 +498,7 @@
       {
         "attempts": [
           {
-            "command": "/Users/Zer0pa/ZPE/ZPE Video/.venv311/bin/python -c from pathlib import Path; import sys; sys.exit(0 if (Path('decoders/spade_decoder').exists() or Path('decoders/vid2vid_decoder').exists()) else 1)",
+            "command": "/Users/zer0pa-build/ZPE/ZPE Video/.venv311/bin/python -c from pathlib import Path; import sys; sys.exit(0 if (Path('decoders/spade_decoder').exists() or Path('decoders/vid2vid_decoder').exists()) else 1)",
             "return_code": 1,
             "stderr_tail": "",
             "stdout_tail": ""
@@ -525,7 +523,7 @@
     "commercial_decoder_stack": {
       "available": true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/internet_evidence_log.md",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/internet_evidence_log.md",
       "planned_usage": "C006 generative closure without NC SPADE/vid2vid dependency",
       "selected_decoder_mode": "opencv_telea",
       "source_reference": "commercial-safe decoder alternatives",
@@ -538,7 +536,7 @@
     "compressai_vision": {
       "available": true,
       "comparability_impact": "high: VCM benchmark equivalence unproven",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/video_detection_eval.json",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/video_detection_eval.json",
       "planned_usage": "VCM-aligned detection evaluation path",
       "source_reference": "InterDigital CompressAI-Vision",
       "substitution": "proxy AP harness on deterministic synthetic sequences"
@@ -546,7 +544,7 @@
     "dcvc": {
       "available": false,
       "comparability_impact": "medium: modern comparator gap",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/concept_resource_traceability.json",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/concept_resource_traceability.json",
       "planned_usage": "modern comparator for codec efficiency context",
       "source_reference": "microsoft/DCVC",
       "substitution": "documented as unavailable; no equivalent comparator in-lane"
@@ -554,7 +552,7 @@
     "dcvc_rt": {
       "available": true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/max_resource_validation_log.md",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/max_resource_validation_log.md",
       "planned_usage": "modern comparator",
       "source_reference": "https://github.com/microsoft/DCVC",
       "substitution": "ffmpeg-only baseline"
@@ -562,7 +560,7 @@
     "decoder_mmagic": {
       "available": false,
       "comparability_impact": "high: equivalence unproven",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/internet_evidence_log.md",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/internet_evidence_log.md",
       "planned_usage": "commercial-safe generative decoder alternative",
       "source_reference": "https://github.com/open-mmlab/mmagic",
       "substitution": "deterministic box-fill reconstruction"
@@ -570,7 +568,7 @@
     "decoder_opencv_inpaint": {
       "available": true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/internet_evidence_log.md",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/internet_evidence_log.md",
       "planned_usage": "commercial-safe inpaint decoder alternative",
       "source_reference": "https://github.com/opencv/opencv",
       "substitution": "deterministic box-fill reconstruction"
@@ -578,7 +576,7 @@
     "decoder_realesrgan": {
       "available": false,
       "comparability_impact": "high: equivalence unproven",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/internet_evidence_log.md",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/internet_evidence_log.md",
       "planned_usage": "commercial-safe super-resolution decoder alternative",
       "source_reference": "https://github.com/xinntao/Real-ESRGAN",
       "substitution": "deterministic box-fill reconstruction"
@@ -586,14 +584,14 @@
     "decoder_scikitimage_inpaint": {
       "available": true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/internet_evidence_log.md",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/internet_evidence_log.md",
       "planned_usage": "commercial-safe inpaint decoder alternative",
       "source_reference": "https://github.com/scikit-image/scikit-image",
       "substitution": "deter: true,
       "comparability_impact": "none",
       "evidence_artifact": "/User: true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/video_compression_benchmark.json",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/video_compression_benchmark.json",
       "planned_usage": "incumbent H.265 baseline comparator",
       "source_reference": "ffmpeg libx265 local binary",
       "substitution": "none"
@@ -601,7 +599,7 @@
     "ffmpeg_quality_metrics_stack": {
       "available": true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/max_resource_validation_log.md",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/max_resource_validation_log.md",
       "planned_usage": "commercial-safe metric stack",
       "source_reference": "https://github.com/slhck/ffmpeg-quality-metrics",
       "substitution": "internal metric computation only"
@@ -609,15 +607,15 @@
     "hevc_ctc_dataset": {
       "available": true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/concept_resource_traceability.json",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/concept_resource_traceability.json",
       "planned_usage": "benchmark dataset requirement from PRD Appendix B",
-      "source_reference": "/Users/Zer0pa/ZPE/ZPE Video/datasets/HEVC_CTC",
+      "source_reference": "/Users/zer0pa-build/ZPE/ZPE Video/datasets/HEVC_CTC",
       "substitution": "none"
     },
     "kinetics400_dataset": {
       "available": true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/max_resource_validation_log.md",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/max_resource_validation_log.md",
       "planned_usage": "commercial-safe dataset alternative",
       "source_reference": "https://github.com/cvdfoundation/kinetics-dataset",
       "substitution": "proxy action-video fixtures"
@@ -625,7 +623,7 @@
     "lpips_package": {
       "available": true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/video_generative_eval.json",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/video_generative_eval.json",
       "planned_usage": "perceptual distance metric",
       "source_reference": "LPIPS package",
       "substitution": "none"
@@ -633,7 +631,7 @@
     "msu_quality_benchmark": {
       "available": false,
       "comparability_impact": "high: equivalence unproven",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/external_baseline_comparison_table.csv",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/external_baseline_comparison_table.csv",
       "planned_usage": "external perceptual alignment",
       "source_reference": "https://videoprocessing.ai/benchmarks/",
       "substitution": "internal perceptual proxy only"
@@ -641,7 +639,7 @@
     "opencv": {
       "available": true,
       "comparability_impact": "medium: contour extraction equivalence unproven",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/video_sketch_quality.json",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/video_sketch_quality.json",
       "planned_usage": "edge/contour extraction",
       "source_reference": "opencv Canny/findContours",
       "substitution": "pure-stdlib foreground + component extraction"
@@ -649,7 +647,7 @@
     "opendcvcs": {
       "available": true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/max_resource_validation_log.md",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/max_resource_validation_log.md",
       "planned_usage": "modern comparator",
       "source_reference": "https://gitlab.com/viper-purdue/opendcvcs",
       "substitution": "proxy comparator only"
@@ -657,7 +655,7 @@
     "spade_or_vid2vid": {
       "available": false,
       "comparability_impact": "high: generative decoder mismatch",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/video_generative_eval.json",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/video_generative_eval.json",
       "planned_usage": "generative reconstruction mode",
       "source_reference": "SPADE / vid2vid decoder path",
       "substitution": "deterministic sketch-fill reconstruction"
@@ -665,23 +663,23 @@
     "uvg_dataset": {
       "available": true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/concept_resource_traceability.json",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/concept_resource_traceability.json",
       "planned_usage": "benchmark dataset requirement from PRD Appendix B",
-      "source_reference": "/Users/Zer0pa/ZPE/ZPE Video/datasets/UVG",
+      "source_reference": "/Users/zer0pa-build/ZPE/ZPE Video/datasets/UVG",
       "substitution": "none"
     },
     "virat_dataset": {
       "available": true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/concept_resource_traceability.json",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/concept_resource_traceability.json",
       "planned_usage": "benchmark dataset requirement from PRD Appendix B",
-      "source_reference": "/Users/Zer0pa/ZPE/ZPE Video/datasets/VIRAT",
+      "source_reference": "/Users/zer0pa-build/ZPE/ZPE Video/datasets/VIRAT",
       "substitution": "none"
     },
     "visdrone2019_dataset": {
       "available": true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/max_resource_validation_log.md",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/max_resource_validation_log.md",
       "planned_usage": "real detection benchmark",
       "source_reference": "https://github.com/VisDrone/VisDrone-Dataset",
       "substitution": "proxy drone corpus"
@@ -689,15 +687,15 @@
     "visdrone_dataset": {
       "available": true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/concept_resource_traceability.json",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/concept_resource_traceability.json",
       "planned_usage": "benchmark dataset requirement from PRD Appendix B",
-      "source_reference": "/Users/Zer0pa/ZPE/ZPE Video/datasets/VisDrone2023",
+      "source_reference": "/Users/zer0pa-build/ZPE/ZPE Video/datasets/VisDrone2023",
       "substitution": "none"
     },
     "xiph_derf": {
       "available": true,
       "comparability_impact": "none",
-      "evidence_artifact": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/max_resource_validation_log.md",
+      "evidence_artifact": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/max_resource_validation_log.md",
       "planned_usage": "external baseline fixture set",
       "source_reference": "https://media.xiph.org/video/derf/",
       "substitution": "proxy fixture corpus"

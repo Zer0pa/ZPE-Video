@@ -22,7 +22,7 @@ Report security issues privately to:
 
 Those are engineering issues and should be handled through the normal repo workflow.
 
-## Current Security Caveat
+## Current Security Scope
 
-This staging phase did not run a fresh repo-local secret scan. Phase 5 verification must cover that before any public release decision.
+CI runs parser compliance, static sanity, compile checks, and codec smoke tests. A release-candidate pass still needs a dedicated secret scan and clean-clone verification before any visibility change.
 

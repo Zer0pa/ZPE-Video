@@ -6,7 +6,7 @@ This document is an operational boundary summary only.
 
 ## Current Repo Boundary
 
-- This repo is a private staging repo, not a public release.
+- This repo is a private code and proof-metadata surface, not a public release.
 - The bundled proof subset is for evidence custody and future verification planning.
 - Raw datasets are not included.
 - Third-party comparators and external corpora may require separate acquisition, compute, or license review.
@@ -22,4 +22,3 @@ This document is an operational boundary summary only.
 - Datasets referenced by the pipeline remain external to the repo.
 - Optional comparator stacks such as `CompressAI-Vision` are not fully vendored here.
 - Future public release work must re-check the dependency and evidence boundary on the exact release commit.
-

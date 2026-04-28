@@ -1,15 +1,13 @@
 # Releasing
 
-This repo is private-first and evidence-gated.
-
-No public release action should happen from this state.
+ZPE Video follows evidence-gated release discipline.
 
 ## Release Gate
 
 All of the following must be true before any public release or visibility change:
 
 1. The exact commit has a current inspector greenlight.
-2. Active path portability defects are closed.
+2. Path portability defects are closed.
 3. The dependency contract is stable and documented.
 4. A clean rerun is executed from the repo itself.
 5. The proof index is updated with clean repo-generated evidence.
@@ -18,14 +16,13 @@ All of the following must be true before any public release or visibility change
 
 ## Current Status
 
-Current status is below release gate because:
+Current status is BLOCKED because:
 
 - proof state is still `NO-GO`
-- the staged proof snapshot is mixed
-- Gate A inputs are not normalized into a clean repo-owned source
+- the historical proof snapshot is mixed
 - blind-clone verification has not been run
+- Gate A is FAIL in the current authority packet
 
 ## Release Rule
 
-If evidence conflicts, the repo stays private.
-
+If evidence conflicts, the stronger authority metric wins and the repo does not claim a pass.

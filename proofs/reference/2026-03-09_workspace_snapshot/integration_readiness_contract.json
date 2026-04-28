@@ -12,7 +12,7 @@
     ],
     "p0_proxy_pass_violations": []
   },
-  "artifact_root": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1",
+  "artifact_root": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1",
   "claim_status_counts": {
     "FAIL": 2,
     "INCONCLUSIVE": 0,
@@ -24,7 +24,7 @@
     "name": ".zpvid",
     "version": 1
   },
-  "commercialization_assessment_path": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/commercialization_assessment.json",
+  "commercialization_assessment_path": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/commercialization_assessment.json",
   "comparator_integrity": {
     "incumbent_baseline_present": true,
     "modern_comparator_present": true
@@ -36,7 +36,7 @@
     "D": "PASS",
     "E": "PASS"
   },
-  "lane_root": "/Users/Zer0pa/ZPE/ZPE Video",
+  "lane_root": "/Users/zer0pa-build/ZPE/ZPE Video",
   "notes": [
     "Proxy datasets used where required external corpora were unavailable in-lane.",
     "Final-phase closure uses PASS/FAIL/PAUSED_EXTERNAL status policy."

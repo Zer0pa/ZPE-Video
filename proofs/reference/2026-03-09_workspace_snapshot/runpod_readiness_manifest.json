@@ -1,5 +1,5 @@
 {
-  "artifact_root": "/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1",
+  "artifact_root": "/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1",
   "cuda_version": "12.1",
   "deferred_resources": [
     "SPADE_vid2vid_stack"

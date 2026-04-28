@@ -9,9 +9,9 @@
 - Alternatives attempted: 4
 - Validated alternatives: none
 - Selected runtime mode: none
-- Evidence: `/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/internet_evidence_log.md`.
+- Evidence: `/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/internet_evidence_log.md`.
 
 3. COM-RISK-003: C006 closure state under commercialization rule.
 - Claim status: PAUSED_EXTERNAL
 - Decision: PAUSED_EXTERNAL until safe decoder validated
-- Evidence: `/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/claim_status_delta.md`, `/Users/Zer0pa/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/video_generative_eval.json`.
+- Evidence: `/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/claim_status_delta.md`, `/Users/zer0pa-build/ZPE/ZPE Video/artifacts/2026-02-20_zpe_video_wave1/video_generative_eval.json`.
