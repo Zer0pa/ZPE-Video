@@ -1,0 +1,102 @@
+{
+  "lane": "ZPE-Video",
+  "as_of": "2026-04-28",
+  "package_version": "0.1.0",
+  "posture": "always-in-beta",
+  "active_phase": "09.4.1.1.2.2",
+  "active_phase_title": "Receipt-core provenance benchmark and C2PA readiness",
+  "active_phase_verdict": "PASS",
+  "commercial_wedge": "Cross-writer bit-exact AI-perception receipts",
+  "wedge_defended_phase": "09.4.1.1.2.1-B",
+  "compass_8_used": false,
+  "sovereign_gate_closed": false,
+  "phases": {
+    "09-09": {
+      "title": "Architectural purification and contour primary recovery",
+      "descriptive_label": "bounded_signal_only",
+      "verdict": "INCONCLUSIVE",
+      "dataset": "MOT17Det",
+      "best_suppression_at_95pct_retention": {
+        "YOLOv8m": "35.34%",
+        "RT-DETR-L": "33.33%"
+      }
+    },
+    "09.1": {
+      "title": "Seedance-informed video subchannel factorization hypothesis",
+      "descriptive_label": "flat_lane_still_dominant",
+      "verdict": "INCONCLUSIVE",
+      "bundle_vs_flat_ratio": 0.6866,
+      "bundle_vs_temporal_only_ratio": 1.7571
+    },
+    "09.2": {
+      "title": "Primitive-native layered control plane wedge",
+      "descriptive_label": "bounded_signal_only",
+      "verdict": "INCONCLUSIVE",
+      "dataset": "MOT17Det",
+      "best_suppression_at_95pct_retention": {
+        "YOLOv8m": "39.93%",
+        "RT-DETR-L": "39.12%"
+      },
+      "note": "No layered policy reached >= 45% suppression regime"
+    },
+    "09.3": {
+      "title": "Narrow event-annotated surveillance wedge",
+      "descriptive_label": "bounded_signal_only",
+      "verdict": "INCONCLUSIVE",
+      "dataset": "VIRAT sparse facility events",
+      "clip_count": 4,
+      "clips_positive_separation": 2,
+      "clips_negative_separation": 2
+    },
+    "09.3.1": {
+      "title": "Portal-anchored primitive event consumer on sparse facility crossing",
+      "descriptive_label": "bounded_signal_only",
+      "verdict": "INCONCLUSIVE",
+      "dataset": "VIRAT sparse facility events",
+      "best_aggregate_suppression": "34.38%",
+      "best_aggregate_recall": "96.30%",
+      "loocv_stable": false,
+      "note": "Real improvement over 09.3; LOOCV still unstable across clip holdouts"
+    },
+    "09.3.2": {
+      "title": "Portal-local state machine",
+      "descriptive_label": "retire_surface",
+      "verdict": "SUSPENDED_BY_OWNER",
+      "dataset": "VIRAT sparse facility events",
+      "best_aggregate_suppression": "37.50%",
+      "best_aggregate_recall": "96.30%",
+      "sovereign_gate": "50.00%",
+      "loocv_stable": false,
+      "root_cause": "Event heterogeneity; not absence of signal",
+      "decision": "Retire sparse VIRAT surveillance lane as promotable wedge"
+    }
+  },
+  "killed_wedges": [
+    {
+      "wedge": "Universal video-codec superiority",
+      "killed_in": "08",
+      "reason": "Lost to AV1, VVC, learned baselines on mAP@50"
+    },
+    {
+      "wedge": "Archive-query ZPE-specific",
+      "killed_in": "09.4.1.1.2",
+      "reason": "Raw struct+zlib dominates on both storage and query latency"
+    },
+    {
+      "wedge": "ROI / foveated sidecar",
+      "killed_in": "09.4.1.1.2.1-A",
+      "reason": "Lift is generic non-flat-QP, not packet-derived"
+    }
+  ],
+  "tests": {
+    "test_receipt_py": {"count": 20, "status": "PASS"},
+    "test_manifest_py": {"count": 7, "status": "PASS"},
+    "test_codec_py": {"count": 2, "status": "PASS"},
+    "ci_python_versions": ["3.11", "3.12", "3.13"]
+  },
+  "open_decisions": [
+    "PyPI publication (source-only install for now)",
+    "proofs/reference/2026-03-09_workspace_snapshot/ retention",
+    "CI publish workflow secret audit for future release cut"
+  ]
+}
