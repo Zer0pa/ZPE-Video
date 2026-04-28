@@ -48,15 +48,15 @@
   "net_new_inputs": {
     "gap_closure_md_bytes": 0,
     "gap_closure_md_exists": false,
-    "gap_closure_md_path": "/Users/prinivenpillay/ZPE Multimodality/ZPE 10-Lane Gap Closure.md",
+    "gap_closure_md_path": "~/ZPE Multimodality/ZPE 10-Lane Gap Closure.md",
     "gap_closure_md_sha256": null,
     "md_bytes": 0,
     "md_exists": false,
-    "md_path": "/Users/prinivenpillay/ZPE Multimodality/ZPE 10-Lane NET-NEW Resource Maximization Pack.md",
+    "md_path": "~/ZPE Multimodality/ZPE 10-Lane NET-NEW Resource Maximization Pack.md",
     "md_sha256": null,
     "pdf_bytes": 0,
     "pdf_exists": false,
-    "pdf_path": "/Users/prinivenpillay/ZPE Multimodality/ZPE 10-Lane NET-NEW Resource Maximization Pack.pdf",
+    "pdf_path": "~/ZPE Multimodality/ZPE 10-Lane NET-NEW Resource Maximization Pack.pdf",
     "pdf_sha256": null
   },
   "net_new_resource_attempts": {
