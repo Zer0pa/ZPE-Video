@@ -1,7 +1,7 @@
 # ZPE Video Takeover Assessment — 2026-04-16
 
 Date: 2026-04-16
-Workspace root: `/Users/Zer0pa/ZPE/ZPE Video`
+Workspace root: `<REPO_ROOT>` (operator-local; absolute path redacted)
 Author: incoming investigator (fresh eyes)
 Status: one honest bounded experiment executed; ranked hypothesis ladder
 updated; next experiment proposal requires operator decision.

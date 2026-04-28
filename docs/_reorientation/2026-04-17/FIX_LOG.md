@@ -1,6 +1,6 @@
 # Reorientation Fix Log — 2026-04-17
 
-Reorientation pass applying the ETHOS (`/Users/Zer0pa/Status_Packets/2026-04-17_Orchestrator-Working-Docs/ETHOS.md`) and UNIVERSAL_BRIEF to every in-scope doc in `zpe-video`. Scope is wider than a light touch on a few files because this repo was landing v0.1.0 in the same sequence — the perception-receipt surface was newly written and the legacy doc shell had pre-0.1.0 "staging_only / 09.3.2 = retire_surface" framing throughout. All changes below are content-level; no code was modified.
+Reorientation pass applying the ETHOS (operator-private artifact at `<OPERATOR_WORKSPACE>/Status_Packets/2026-04-17_Orchestrator-Working-Docs/ETHOS.md`) and UNIVERSAL_BRIEF to every in-scope doc in `zpe-video`. Scope is wider than a light touch on a few files because this repo was landing v0.1.0 in the same sequence — the perception-receipt surface was newly written and the legacy doc shell had pre-0.1.0 "staging_only / 09.3.2 = retire_surface" framing throughout. All changes below are content-level; no code was modified.
 
 ## Drift
 

@@ -19,7 +19,7 @@ Historical proof reading:
 
 - provenance: copied from the outer workspace on <code>2026-03-09</code>
 - status: dated evidence-custody snapshot from pre-0.1.0 research phases
-- cleanliness: mixed (<code>resource_inventory.json</code> reflects a later partial probe)
+- cleanliness: mixed (<code>resource_inventory_unparseable_snapshot.txt</code> reflects a later partial probe; retained as custody text, not machine-readable authority)
 
 **Current v0.1.0 evidence route:** [`../docs/transparency/`](../docs/transparency/)
 — reproducible bundle (harnesses, plans, summaries, machine-readable
