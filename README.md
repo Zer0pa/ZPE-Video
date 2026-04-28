@@ -71,8 +71,8 @@ Raw struct + zlib is smaller in raw bytes but has no per-frame CRC32, no schema,
 | Field | Value |
 |-------|-------|
 | Verdict | STAGED |
-| Commit SHA | d68a3da2ab8e |
-| Confidence | 100% |
+| Receipt-core verdict | PASS (per authority packet) |
+| Authority bundle SHA-256 | `bde8d94dc3c6edb4029f3dc17bb85e787d27bfce60f0975dd0722b88377ca897` |
 | Source | [`proofs/manifests/CURRENT_AUTHORITY_PACKET.md`](proofs/manifests/CURRENT_AUTHORITY_PACKET.md) |
 
 ## Tests and Verification
