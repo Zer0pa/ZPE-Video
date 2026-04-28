@@ -7,6 +7,7 @@ on:
 
 jobs:
   add-to-project:
+    if: ${{ vars.ENABLE_PROJECT_AUTOMATION == 'true' }}
     runs-on: ubuntu-latest
     env:
       ADD_TO_PROJECT_PAT: ${{ secrets.ADD_TO_PROJECT_PAT }}
