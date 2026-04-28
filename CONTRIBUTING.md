@@ -1,45 +1,78 @@
-# Contributing
+<p>
+  <img src=".github/assets/readme/zpe-masthead.gif" alt="ZPE Video Masthead" width="100%">
+</p>
+
+<p>
+  <img src=".github/assets/readme/section-bars/before-you-start.svg" alt="BEFORE YOU START" width="100%">
+</p>
 
 This repo follows a falsification-first contribution standard.
 
-## Working Rules
+Working rules:
 
 - Negative findings are valid contributions.
 - Do not turn mixed evidence into a pass narrative.
 - Do not hardcode machine-local paths.
 - Keep changes scoped and evidence-backed.
-- If a change touches runtime claims, proof handling, or gate logic, update the relevant docs and proof notes.
+- If a change touches status claims, proof routing, or gate logic, update
+  the relevant docs and artifact references.
 
-## Before Opening A PR
+<p>
+  <img src=".github/assets/readme/section-bars/verification.svg" alt="VERIFICATION" width="100%">
+</p>
 
-Run the cheap checks first:
+Run the low-cost checks first:
 
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
-python -m pip install -e ".[dev]"
-python -m compileall src scripts
-python -m unittest tests/test_codec.py -v
-bash scripts/compliance_audit.sh
+python3 -m pip install --upgrade pip
+python3 -m pip install -e ".[dev]"
+python3 -m compileall src scripts
+python3 -m pytest tests -v
+python3 examples/02_cross_writer.py   # expect: "cross-writer wedge: VERIFIED"
+python3 - <<'PY'
+import zpe_video
+print("version:", zpe_video.__version__)
+print("public:", sorted(zpe_video.__all__))
+PY
 ```
 
-If you change path resolution or bootstrap behavior, include the exact before/after evidence in your PR.
+If your change affects behaviour, attach the exact artifact path, metric
+delta, or proof note in the PR. If it does not, say why evidence is not
+required.
 
-## What We Want
+<p>
+  <img src=".github/assets/readme/section-bars/what-we-accept.svg" alt="WHAT WE ACCEPT" width="100%">
+</p>
 
-- path portability fixes
-- dependency-contract cleanup
-- repo-structure hardening
-- verification/doc corrections
-- negative findings with clear evidence
+- Path portability fixes
+- Dependency-contract cleanup
+- Repo-structure hardening
+- Documentation corrections
+- Proof-route corrections
+- Negative findings with exact evidence
 
-## What We Do Not Want
+<p>
+  <img src=".github/assets/readme/section-bars/what-we-do-not-accept.svg" alt="WHAT WE DO NOT ACCEPT" width="100%">
+</p>
 
-- new broad claims without rerun evidence
-- path hacks tied to one machine
-- cosmetic churn that does not improve install/run/audit clarity
-- silent weakening of failing or paused evidence
+- New broad claims without rerun evidence
+- Path hacks tied to one machine
+- Cosmetic churn that does not improve install, run, or audit clarity
+- Silent weakening of failing or retired evidence
 
-## Licensing
+<p>
+  <img src=".github/assets/readme/section-bars/scope-discipline.svg" alt="SCOPE DISCIPLINE" width="100%">
+</p>
+
+- Repo cleanup is valuable.
+- Repo cleanup is not a research pass.
+- Claims in docs must match the current code, tests, and artifacts — if
+  a kill verdict is recorded in [`docs/transparency/`](docs/transparency/),
+  the README and docs must not quietly reframe it as a win.
+- This codec does not use Compass-8 / 8-primitive directional encoding.
+  Do not add framing that claims it does (see
+  [`docs/_reorientation/2026-04-17/NOVELTY_CARD.md`](docs/_reorientation/2026-04-17/NOVELTY_CARD.md)).
 
 `LICENSE` is the legal source of truth for contributions and usage.
