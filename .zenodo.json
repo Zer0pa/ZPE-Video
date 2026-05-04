@@ -14,7 +14,8 @@
     "deterministic binary format",
     "cross-writer hash stability"
   ],
-  "license": "LicenseRef-Zer0pa-SAL-7.1",
+  "license": "other-open",
+  "notes": "The software is released under the Zer0pa Source Available License v7.1 (SAL v7.1). Zenodo's controlled license vocabulary represents this custom license as Other (Open); see the repository LICENSE and NOTICE.md files for the governing license terms.",
   "related_identifiers": [
     {
       "identifier": "https://github.com/Zer0pa/ZPE-Video",
@@ -24,5 +25,6 @@
     }
   ],
   "title": "ZPE Video: Perception Receipts for AI Video Pipelines",
-  "upload_type": "software"
+  "upload_type": "software",
+  "version": "0.1.0"
 }
