@@ -1,20 +1,20 @@
 {
-  "bundle_sha256": "013f1382a11874bf4cdafe18b800b3fd6e193b167d2143f1aed7b99808707ad4",
+  "bundle_sha256": "b7b00d816de201820315b1a3181f47133eb5b4484856cc3a279b4c30b61b4509",
   "commercial_receipt_core_verdict": "PASS",
   "files": [
     {
       "path": "README.md",
-      "sha256": "3bead3bd90f1fa62f351c93537488c8d20c4b2ea6cea86ba6f0b0d4b706c1a74",
-      "size": 14372
+      "sha256": "001294828ccc3daf24d9864904d6fd9b5d9f8794030a54da6740774588934628",
+      "size": 11076
     },
     {
       "path": "pyproject.toml",
-      "sha256": "b3dcf7eece28790ed28251b09751d670fc7a81a592a42004ae870e4ab7eab075",
+      "sha256": "4cf2ebed57351f0be728fb12de42719c57c1245513d7891f74340ec94a52f974",
       "size": 3162
     },
     {
       "path": "CITATION.cff",
-      "sha256": "ad0970d327d44bf4542202a69953b4eacb53c4e0d0159979ba632b6f59572ffd",
+      "sha256": "c810d79c544dbb6c517b49d6bbd1a570008649c342875e86da09bf1053ef994a",
       "size": 1688
     },
     {
