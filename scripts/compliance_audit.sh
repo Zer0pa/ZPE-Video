@@ -60,15 +60,24 @@ if [ -s "$anchor_file" ]; then
 fi
 rm -f "$anchor_file"
 
-pii_user="prinivenpillay"
+# Operator identity values are intentionally not committed.
+# Set PII_SCAN_USER and PII_SCAN_NAME in your local environment or pre-push hook.
+# If unset (e.g. in a clean sdist checkout), the identity-path scan is skipped.
+pii_user="${PII_SCAN_USER:-}"
 legacy_user="Zer0pa"
-pii_name="Priniven"" Pillay"
-if grep -RInE --exclude='LICENSE' --exclude='*.pyc' --exclude-dir='.git' --exclude-dir='.venv' "/Users/(${pii_user}|${legacy_user})|${pii_name}" . >/tmp/zpe-video-pii-scan.txt; then
-  cat /tmp/zpe-video-pii-scan.txt
+pii_name="${PII_SCAN_NAME:-}"
+if [ -z "${pii_user}${pii_name}" ]; then
+  echo "NOTE: PII_SCAN_USER / PII_SCAN_NAME not set — identity-path scan skipped"
+else
+  pattern="/Users/(${pii_user}|${legacy_user})|${pii_name}"
+  if grep -RInE --exclude='LICENSE' --exclude='*.pyc' --exclude-dir='.git' --exclude-dir='.venv' \
+       "${pattern}" . >/tmp/zpe-video-pii-scan.txt; then
+    cat /tmp/zpe-video-pii-scan.txt
+    rm -f /tmp/zpe-video-pii-scan.txt
+    echo "FAIL: hardcoded local PII path present"
+    exit 1
+  fi
   rm -f /tmp/zpe-video-pii-scan.txt
-  echo "FAIL: hardcoded local PII path present"
-  exit 1
 fi
-rm -f /tmp/zpe-video-pii-scan.txt
 
 echo "PASS: compliance audit clean"

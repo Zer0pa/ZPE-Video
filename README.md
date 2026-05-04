@@ -47,7 +47,7 @@ Perception-receipt video codec. Staged v0.1.0 receipt surface with explicit non-
 | Architecture | VIDEO_RECEIPT_STREAM |
 | Encoding | VIDEO_PERCEPTION_RECEIPT_V1 |
 | Commit SHA | 07187909 |
-| License | SAL-7.0 |
+| License | SAL-7.1 |
 | Authority Source | docs/WEDGE.md |
 
 ## Readiness

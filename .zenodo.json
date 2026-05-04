@@ -14,7 +14,7 @@
     "deterministic binary format",
     "cross-writer hash stability"
   ],
-  "license": "LicenseRef-Zer0pa-SAL-7.0",
+  "license": "LicenseRef-Zer0pa-SAL-7.1",
   "related_identifiers": [
     {
       "identifier": "https://github.com/Zer0pa/ZPE-Video",

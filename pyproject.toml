@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "ZPE Video — perception receipts for AI pipelines. Deterministic, cross-writer-stable, CRC-protected binary records of what a detector+tracker saw in a video."
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
-license = "LicenseRef-Zer0pa-SAL-7.0"
+license = "LicenseRef-Zer0pa-SAL-7.1"
 authors = [
   {name = "Zer0pa (Pty) Ltd", email = "architects@zer0pa.ai"},
 ]
