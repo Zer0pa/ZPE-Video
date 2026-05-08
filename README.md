@@ -43,10 +43,10 @@ Perception-receipt video codec. Staged v0.1.0 receipt surface with explicit non-
 | Identifier | ZPE-Video |
 | Repository | https://github.com/Zer0pa/ZPE-Video |
 | Section | encoding |
-| Visibility | PRIVATE |
+| Visibility | PUBLIC |
 | Architecture | VIDEO_RECEIPT_STREAM |
 | Encoding | VIDEO_PERCEPTION_RECEIPT_V1 |
-| Commit SHA | 07187909 |
+| Commit SHA | 73bc7de3 |
 | License | SAL-7.1 |
 | Authority Source | docs/WEDGE.md |
 
@@ -57,12 +57,12 @@ Perception-receipt video codec. Staged v0.1.0 receipt surface with explicit non-
 | Verdict | STAGED |
 | Checks | 12/12 |
 | Anchors | 6 display anchors |
-| Commit | 07187909 |
+| Commit | 73bc7de3 |
 | Authority | docs/WEDGE.md |
 
 ### Honest Blocker
 
-Repo PRIVATE during initial crafting; full proof anchors will surface on visibility flip. Phase 1 perception-receipts schema is the active surface.
+Cross-writer evidence is Python-to-Python only — multi-language portability is not proven. C2PA closure and end-to-end latency remain explicit non-claims. Not a universal video codec; falsified at Phase 08 against AV1, VVC, and learned baselines.
 
 ## What We Prove
 
