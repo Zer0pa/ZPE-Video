@@ -2,6 +2,32 @@
 
 ## Install / Developer Commands
 
+<!-- INSTALL-DX:START -->
+#### Package Install
+
+Installable package: `python3.11 -m pip install zpe-video`.
+Current release: `0.1.0` on [PyPI](https://pypi.org/project/zpe-video/).
+Source: [Zer0pa/ZPE-Video](https://github.com/Zer0pa/ZPE-Video/).
+
+```bash
+python3.11 -m pip install zpe-video
+```
+
+Import smoke:
+
+```bash
+python3.11 - <<'PY'
+import importlib.metadata as md
+import zpe_video
+
+print("zpe-video", md.version("zpe-video"))
+PY
+```
+
+Install success only proves package acquisition/import. Product scope, stale PyPI state, platform limits, and blockers remain in the front-door sections below.
+- PyPI README is stale; Python support intentionally excludes Python 3.14.
+<!-- INSTALL-DX:END -->
+
 #### Quick Start
 
 ```bash
