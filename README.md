@@ -71,7 +71,7 @@ Expected: 29/29 tests pass; the cross-writer example prints `cross-writer wedge:
 <table width="100%">
 <tr>
 <td width="50%" valign="top">
-<div><b>03 · VALUE</b></div>
+<div><b>03 · VALUE OF MARKET</b></div>
       <div>$39.7<span>B</span></div>
       <div>Content provenance is growing; ZPE-Video is a bounded Python receipt layer beneath that infrastructure, <b>not a replacement for it</b>.</div>
 </td>
