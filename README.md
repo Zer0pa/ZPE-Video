@@ -1,9 +1,6 @@
 # ZPE-Video
 
-## Install / Developer Commands
-
-<!-- INSTALL-DX:START -->
-#### Package Install
+## Package Install
 
 Installable package: `python3.11 -m pip install zpe-video`.
 Current release: `0.1.0` on [PyPI](https://pypi.org/project/zpe-video/).
@@ -13,35 +10,7 @@ Source: [Zer0pa/ZPE-Video](https://github.com/Zer0pa/ZPE-Video/).
 python3.11 -m pip install zpe-video
 ```
 
-Import smoke:
-
-```bash
-python3.11 - <<'PY'
-import importlib.metadata as md
-import zpe_video
-
-print("zpe-video", md.version("zpe-video"))
-PY
-```
-
-Install success only proves package acquisition/import. Product scope, stale PyPI state, platform limits, and blockers remain in the front-door sections below.
-- PyPI README is stale; Python support intentionally excludes Python 3.14.
-<!-- INSTALL-DX:END -->
-
-#### Quick Start
-
-```bash
-git clone https://github.com/Zer0pa/ZPE-Video.git
-cd ZPE-Video
-python3.11 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip uv
-uv sync --extra dev
-uv run pytest tests -v
-uv run python examples/02_cross_writer.py   # expected: "cross-writer wedge: VERIFIED"
-```
-
-Expected: 29/29 tests pass; the cross-writer example prints `cross-writer wedge: VERIFIED` with byte-identical output from the library and an independent from-spec encoder.
+For full install, smoke, source, and developer commands, [click here](#install-developer-commands-detailed).
 
 ---
 
@@ -315,3 +284,52 @@ Expected: 29/29 tests pass; the cross-writer example prints `cross-writer wedge:
 </td>
 </tr>
 </table>
+
+---
+
+<a id="install-developer-commands-detailed"></a>
+
+## Install / Developer Commands Detailed
+
+<!-- INSTALL-DX:START -->
+#### Package Install
+
+Installable package: `python3.11 -m pip install zpe-video`.
+Current release: `0.1.0` on [PyPI](https://pypi.org/project/zpe-video/).
+Source: [Zer0pa/ZPE-Video](https://github.com/Zer0pa/ZPE-Video/).
+
+```bash
+python3.11 -m pip install zpe-video
+```
+
+Import smoke:
+
+```bash
+python3.11 - <<'PY'
+import importlib.metadata as md
+import zpe_video
+
+print("zpe-video", md.version("zpe-video"))
+PY
+```
+
+Install success only proves package acquisition/import. Product scope, stale PyPI state, platform limits, and blockers remain in the front-door sections below.
+- PyPI README is stale; Python support intentionally excludes Python 3.14.
+<!-- INSTALL-DX:END -->
+
+#### Quick Start
+
+```bash
+git clone https://github.com/Zer0pa/ZPE-Video.git
+cd ZPE-Video
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip uv
+uv sync --extra dev
+uv run pytest tests -v
+uv run python examples/02_cross_writer.py   # expected: "cross-writer wedge: VERIFIED"
+```
+
+Expected: 29/29 tests pass; the cross-writer example prints `cross-writer wedge: VERIFIED` with byte-identical output from the library and an independent from-spec encoder.
+
+---
