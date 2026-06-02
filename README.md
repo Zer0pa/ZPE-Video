@@ -20,7 +20,7 @@ For full install, smoke, source, and developer commands, [click here](#install-d
 <div><span><b>00 · ZPE-VIDEO</b> · PERCEPTION RECEIPT</span> <span>DEVELOPER-READY · RECEIPT CORE OPEN</span></div>
       <h1>See what AI <span>really saw in video.</span></h1>
       <p>A byte-identical perception receipt for AI video pipelines · ZPE-Video · PyPI <em>zpe-video</em> v0.1.0 · github.com/Zer0pa/ZPE-Video</p>
-      <p>AI systems decide what gets flagged in video, who gets identified, what a generation model is trained on — and until now, no one outside the pipeline could check what the detector was actually shown. ZPE-Video is the record that closes that gap. Two independent Python writers, built from the same spec, produce a byte-identical perception receipt for the same frames. <strong>What the AI saw becomes a re-derivable record.</strong> This is not a video codec.</p>
+      <p>AI systems decide what gets flagged in video, who gets identified, what a generation model is trained on — and until now, no one outside the pipeline could check what the detector was actually shown. ZPE-Video is the record that closes that gap. Two independent Python writers, built from the same spec, produce a byte-identical perception receipt for the same frames. <strong>What the AI saw becomes a re-derivable record.</strong> The receipt records detector, tracker, and manifest state; it does not reconstruct pixels or audio. This is not a video codec.</p>
 </td>
 </tr>
 </table>
